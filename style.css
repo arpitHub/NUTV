@@ -36,7 +36,7 @@
   float:left;
   padding-left:20px;
   padding-right:20px;
-  margin-left:10px;
+  margin-left:40px;
   top:0px;
 }
 
@@ -98,6 +98,9 @@ body {
   margin-bottom:100px;
   border-radius:10px;
   margin-left:10px;
+  -moz-box-shadow: 1px 0px 30px rgba(0,0,0,1);
+  -webkit-box-shadow: 1px 0px 30px rgba(0,0,0,1);
+  box-shadow: 1px 0px 30px rgba(0,0,0,1);
 }
 
 .videocontainer {
@@ -124,4 +127,25 @@ body {
 .dummy {
   position: relative;
   height:100px;
+}
+
+/****ENTERTAINMENT****/
+
+.eleftnav {
+  position:relative;
+  top:100px;
+  left:50px;
+  height:300px;
+  width:300px;
+  padding:1px 0px 0px 15px;;
+  background-color:lightgray;
+  border-radius:5px;
+}
+
+.eleftnav h3 {
+  font-size:30px;
+}
+
+.eleftnav p {
+  font-size:20px;
 }
