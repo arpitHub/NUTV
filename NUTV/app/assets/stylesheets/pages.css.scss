@@ -1,0 +1,151 @@
+/****GLOBAL****/
+
+.header {
+  position:fixed;
+  z-index:10;
+  top:0px;
+  width:100%;
+  background-color:white;
+  left:0px;
+  border-bottom: 1px solid black;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  background-image:    url(/assets/cityscape.png);
+  background-repeat:   no-repeat;
+  background-position: 200px -70px;
+}
+
+.header a {
+  text-decoration:none;
+  color: black;
+  float:right;
+  transition: 0s all;
+  top:5px;
+  right:20px;
+  position:relative;
+  font-size:30px;
+  padding: 10px 20px 0px 20px;
+  margin-bottom:0px;
+  background-color:white;
+}
+ 
+.header a:hover {
+  color: #FF2323;
+}
+
+.header #logo {
+  float:left;
+  padding-left:20px;
+  padding-right:20px;
+  margin-left:40px;
+  top:0px;
+}
+
+.header #fb {
+  height:40px;
+  width:40px;
+}
+
+.header #twitter {
+  height:36px;
+  width:36px;
+  padding:3px 0px 0px 0px;
+}
+
+.footer {
+  text-align:center;
+  margin-top:30px;
+  font-size:10px;
+}
+
+.footer h3 {
+  font-family: Georgia, serif;
+  text-align:center;
+  margin-top:50px;
+}
+
+body {
+  background: gray; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(#7CD15C, #D3FFC3); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#7CD15C, #D3FFC3); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#7CD15C, #D3FFC3); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#470909, #F56E6E);
+}
+
+/****HOME****/
+
+.leftnav {
+  width:350px;
+  position:absolute;
+}
+
+.content {
+  top:75px;
+  position:relative;
+  left:50%;
+  margin-left:-780px;
+  margin-right:1000px;
+}
+
+.videos {
+  position:relative;
+  left:350px;
+  top:0px;
+  width:1200px;
+  height:800px;
+  text-align:center;
+  padding-bottom:50px;
+  background-color:#2A2F33;
+  margin-bottom:100px;
+  border-radius:10px;
+  margin-left:10px;
+  -moz-box-shadow: 1px 0px 30px rgba(0,0,0,1);
+  -webkit-box-shadow: 1px 0px 30px rgba(0,0,0,1);
+  box-shadow: 1px 0px 30px rgba(0,0,0,1);
+}
+
+.videocontainer {
+  float:left;
+  display:relative;
+  padding:20px;
+  width:560px;
+}
+
+.grid {
+  width:560px;
+  height:315px;
+}
+
+.videos h2 {
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-size:50px;
+  color:white;
+  -webkit-text-stroke: 2px black;
+  margin-bottom:0px;
+  padding-top:10px;
+}
+
+.dummy {
+  position: relative;
+  height:100px;
+}
+
+/****ENTERTAINMENT****/
+
+.eleftnav {
+  position:relative;
+  top:100px;
+  left:50px;
+  height:300px;
+  width:300px;
+  padding:1px 0px 0px 15px;;
+  background-color:lightgray;
+  border-radius:5px;
+}
+
+.eleftnav h3 {
+  font-size:30px;
+}
+
+.eleftnav p {
+  font-size:20px;
+}
