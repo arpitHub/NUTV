@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get '/entertainment' => 'pages#entertainment'
   get '/sports' => 'pages#sports'
   get '/news' => 'pages#news'
+  get '/entertainment/projects' => 'project#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -149,3 +149,170 @@ body {
 .eleftnav p {
   font-size:20px;
 }
+
+/**** PROJECTS ****/
+
+.eprojects {
+  position:relative;
+  width:1100px;
+  height:200px;
+  background-color:lightgray;
+  border-radius:5px;
+  left:400px;
+  top:-200px;
+}
+
+.etable {
+  border-collapse: collapse;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-size:15px;
+}
+
+.etable tr{
+  border-bottom:1px solid black;
+}
+
+.etable td {
+  text-align:center;
+  width:184px;
+}
+
+.eprojectcol {
+  -webkit-column-count: 6;
+  -moz-column-count: 6;
+  column-count: 6;
+}
+
+.eprojectcol p {
+  background-color:red;
+}
+
+#tabs {
+  position:relative;
+  background-color: transparent;
+  bottom:29px;
+  left:10px;
+}
+
+.hide {
+  display:none;
+}
+
+.tab-nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tab-nav-link {
+  margin-right: 4px;
+  padding: 12px;
+  color: #fff;
+  background-color: #b3b3b3;
+  text-align: center;
+  transition: color 0.3s;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 3px 3px 0px 0px;
+  border-radius: 3px 3px 0px 0px;
+}
+
+.tab-nav-link:last-child {
+  margin-right: 0;
+}
+
+.tab-nav-link:hover {
+  color: #6d6d6d;
+}
+
+.tab-nav .is-active {
+  color: #dc446e;
+  background-color: #e7e7e7;
+}
+
+.tab-nav-link i,
+.tab-nav-link span {
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+.tab-nav-link i {
+  font-size: 18px;
+}
+
+.tab-nav-link span {
+  display: none;
+  font-size: 18px;
+}
+
+@media all and (min-width: 720px) {
+  .tab-nav-link i {
+    margin-bottom: 12px;
+    font-size: 22px;
+  }
+  .tab-nav-link span {
+    display: block;
+  }
+}
+
+#tabs a {
+  text-decoration:none;
+}
+
+body {
+  height:1000px;
+}
+
+#progresstab {
+  position:relative;
+  bottom:350px;
+  left:500px;
+  width:700px;
+}
+
+.projectprogress {
+  width:120px;
+  height:100px;
+  background-color:red;
+  border-radius:5px;
+  text-align:center;
+  margin:5px;
+}
+
+.etable2 tr {
+  background-color:blue;
+}
+
+.column {
+  position:relative;
+  float:left;
+}
+
+#calendartab {
+  background-color:red;
+  position:relative;
+  bottom:350px;
+  left:500px;
+  width:800px;
+}
+
+.day {
+  width:100px;
+  height:50px;
+  background-color:blue;
+}
+
+#prev {
+  position:relative;
+  float:left;
+}
+
+#next {
+  position:relative;
+  float:right;
+}
+
+#calendartitle {
+  text-align:center;
+  font-size:30px;
+}
