@@ -65,9 +65,9 @@
 
 body {
   background: gray; /* For browsers that do not support gradients */
-  background: -webkit-linear-gradient(#7CD15C, #D3FFC3); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(#7CD15C, #D3FFC3); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(#7CD15C, #D3FFC3); /* For Firefox 3.6 to 15 */
+  background: -webkit-linear-gradient(#470909, #F56E6E); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#470909, #F56E6E); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#470909, #F56E6E); /* For Firefox 3.6 to 15 */
   background: linear-gradient(#470909, #F56E6E);
 }
 
@@ -150,22 +150,33 @@ body {
   font-size:20px;
 }
 
+.datastorage {
+  display:hidden;
+}
+
 /**** PROJECTS ****/
 
 .eprojects {
   position:relative;
-  width:1100px;
-  height:200px;
-  background-color:lightgray;
+  width:1450px;
+  height:800px;
   border-radius:5px;
-  left:400px;
-  top:-200px;
+  left:50px;
+  top:100px;
+  -moz-box-shadow: 1px 0px 30px rgba(0,0,0,1);
+  -webkit-box-shadow: 1px 0px 30px rgba(0,0,0,1);
+  box-shadow: 1px 0px 30px rgba(0,0,0,1);
+  background: gray; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(#A9A9A9, #4D4E51); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#A9A9A9, #4D4E51); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#A9A9A9, #4D4E51); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#A9A9A9, #4D4E51);
 }
 
 .etable {
   border-collapse: collapse;
   font-family: "Trebuchet MS", Helvetica, sans-serif;
-  font-size:15px;
+  font-size:20px;
 }
 
 .etable tr{
@@ -174,7 +185,12 @@ body {
 
 .etable td {
   text-align:center;
-  width:184px;
+  width:250px;
+  padding:5px 0px 5px 0px;
+}
+
+.etable .pics {
+  width:40px;
 }
 
 .eprojectcol {
@@ -207,8 +223,8 @@ body {
 .tab-nav-link {
   margin-right: 4px;
   padding: 12px;
-  color: #fff;
-  background-color: #b3b3b3;
+  color: black;
+  background-color: #e7e7e7; 
   text-align: center;
   transition: color 0.3s;
   -moz-border-radius: 0px;
@@ -221,12 +237,12 @@ body {
 }
 
 .tab-nav-link:hover {
-  color: #6d6d6d;
+  color: #dc446e;
 }
 
 .tab-nav .is-active {
   color: #dc446e;
-  background-color: #e7e7e7;
+  background-color: #A9A9A9;
 }
 
 .tab-nav-link i,
@@ -263,20 +279,64 @@ body {
   height:1000px;
 }
 
+.c-tab {
+  margin-top:30px;
+}
+
 #progresstab {
-  position:relative;
-  bottom:350px;
-  left:500px;
-  width:700px;
+  position:absolute;
+  top:100px;
+  left:80px;
+  width:1500px;
 }
 
 .projectprogress {
-  width:120px;
+  width:300px;
   height:100px;
   background-color:red;
   border-radius:5px;
   text-align:center;
   margin:5px;
+  position:relative;
+  left:50%;
+  margin-left:-150px;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  font-size:20px;
+  padding-top:20px;
+  -moz-box-shadow: 1px 0px 15px rgba(0,0,0,1);
+  -webkit-box-shadow: 1px 0px 15px rgba(0,0,0,1);
+  box-shadow: 1px 0px 15px rgba(0,0,0,1);
+  margin-bottom:10px;
+}
+
+.projectprogress #editprogress {
+  position:absolute;
+  left:260px;
+  margin-right:5px;
+  margin-top:-10px;
+}
+
+.title {
+  text-align:center;
+  margin:0px 130px 0px 130px;
+  font-size:20px;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+#writingblock {
+  background-color:#FF806C;
+}
+
+#shootingblock {
+  background-color:#FFAA6C;
+}
+
+#editingblock {
+  background-color:#FFD06C;
+}
+
+#completedblock {
+  background-color:#9FFF6C;
 }
 
 .etable2 tr {
@@ -289,17 +349,22 @@ body {
 }
 
 #calendartab {
-  background-color:red;
-  position:relative;
-  bottom:350px;
-  left:500px;
-  width:800px;
+  position:absolute;
+  top:100px;
+  left:150px;
+  width:1250px;
 }
 
 .day {
-  width:100px;
-  height:50px;
-  background-color:blue;
+  width:175px;
+  height:100px;
+  background-color:#76C1FF;
+  font-size:20px;
+  margin-bottom:-20px;
+}
+
+.today {
+  background-color:#FFDD6C;
 }
 
 #prev {
@@ -315,4 +380,72 @@ body {
 #calendartitle {
   text-align:center;
   font-size:30px;
+  margin-bottom:-5px;
+}
+
+.calproj {
+  position:relative;
+  top:-20px;
+  background-color:#FFB56C;
+  font-size:15px;
+  border-radius:5px;
+  margin-bottom:5px;
+}
+
+#pencil {
+  width:30px;
+  height:30px;
+}
+
+#trash {
+    width:30px;
+  height:30px;
+}
+
+/****NEW PROJECT ****/
+
+.newproj {
+  position:absolute;
+  width:300px;
+  height:600px;
+  background-color:#FFF3CB;
+  top:150px;
+  left:50%;
+  margin-left:-150px;
+  text-align:center;
+  border-radius:5px;
+}
+
+.blurred {
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+}
+
+.hidden {
+  display:none;
+}
+
+.actions {
+  z-index:9;
+  background-color:red;
+}
+
+.actions #plus {
+  width:40px;
+  height:40px;
+  float:right;
+  margin-right:10px;
+  margin-top:-5px;
+}
+
+#cross {
+  width:30px;
+  height:30px;
+  float:right;
+  margin-right:5px;
+  margin-top:5px;
+  z-index:9;
 }

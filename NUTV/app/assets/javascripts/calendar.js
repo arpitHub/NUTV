@@ -6,37 +6,62 @@ http://www.javascriptkit.com/
 
 var month;
 var year;
+var today;
+
+var displayedMonth;
+var displayedYear;
 
 var main = function setToday() {
-  var now   = new Date();
-  var day   = now.getDate();
+  var now = new Date();
+  today = now.getDate();
   month = now.getMonth();
   year  = now.getYear();
-  if (year < 2000)
-  year = year + 1900;
-  this.focusDay = day;
+  if (year < 2000) {
+    year = year + 1900;
+  }
   
   displayCalendar(month, year);
 }
 
 function nextMonth() {
-  month++;
-  if (month == 12) {
-    month = 0;
-    year += 1;
+  var disMonth = displayedMonth;
+  var disYear = displayedYear;
+  disMonth++;
+  if (disMonth == 12) {
+    disMonth = 0;
+    disYear += 1;
   }
   
-  displayCalendar(month, year);
+  displayCalendar(disMonth, disYear);
 }
 
 function prevMonth() {
-  month--;
-  if (month == -1) {
-    month = 11;
-    year -= 1;
+  var disMonth = displayedMonth;
+  var disYear = displayedYear;
+  disMonth--;
+  if (disMonth == -1) {
+    disMonth = 11;
+    disYear -= 1;
   }
   
-  displayCalendar(month, year);
+  displayCalendar(disMonth, disYear);
+}
+
+function getDisplayedMonth() {
+  return displayedMonth;
+}
+
+function getDisplayedYear() {
+  return displayedYear;
+}
+
+function findID(day) {
+  for (i = 0; i < 42; i++) {
+    if (X == $("#" + i.toString()).textContent) {
+      alert($("#" + i.toString()).textContent);
+      return i;
+    }
+  }
 }
 
 function isFourDigitYear(year) {
@@ -56,25 +81,32 @@ displayCalendar(month, year);
     }
 }
 
-function displayCalendar(month, year) {       
-  month = parseInt(month);
-  year = parseInt(year);
+function displayCalendar(disMonth, disYear) {       
+  disMonth = parseInt(disMonth);
+  disYear = parseInt(disYear);
   var i = 1;
-  var days = getDaysInMonth(month + 1,year);
-  var firstOfMonth = new Date (year, month, 1);
+  var days = getDaysInMonth(disMonth + 1,disYear);
+  var firstOfMonth = new Date (disYear, disMonth, 1);
   var startingPos = firstOfMonth.getDay();
   var id = startingPos;
   
   for (i = 0; i < 42; i++) {
     $("#" + i.toString()).text(" ");
+    $("#" + i.toString()).removeClass("today");
   }
   
   for (i = 1; i < days + 1; i++) {
     $("#" + id.toString()).text(i.toString());
+    if (i == today && disMonth == month && disYear == year) {
+      $("#" + id.toString()).addClass("today");
+    }
     id++;
   }
   
-  $("#calendartitle").text(monthLookup(month) + " " + year.toString());
+  displayedMonth = disMonth;
+  displayedYear = disYear;
+  
+  $("#calendartitle").text(monthLookup(disMonth) + " " + disYear.toString());
 }
 
 function getDaysInMonth(month,year)  {
@@ -84,7 +116,7 @@ var days;
   else if (month==2)  {
   if (isLeapYear(year)) { days=29; }
   else { days=28; }
-  }
+}
   
   return (days);
 }

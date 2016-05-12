@@ -1,8 +1,11 @@
 var main = function() {
-    $("#listtab").show();
+    sessionStorage.setItem('activeTab', 'listtab');
+    $("#listtab").hide();
     $("#progresstab").hide();
     $("#calendartab").hide();
-  
+  //alert(sessionStorage.getItem('activeTab'));
+    $("#" + sessionStorage.getItem('activeTab')).show();
+
   $("#listlink").click(function() {
     $("#listlink").addClass("is-active");
     $("#progresslink").removeClass("is-active");
@@ -10,6 +13,8 @@ var main = function() {
     $("#listtab").show();
     $("#progresstab").hide();
     $("#calendartab").hide();
+    sessionStorage.setItem('activeTab', 'listtab');
+    //alert(sessionStorage.getItem('activeTab'));
   });
   
   $("#progresslink").click(function() {
@@ -19,6 +24,8 @@ var main = function() {
     $("#listtab").hide();
     $("#progresstab").show();
     $("#calendartab").hide();
+    sessionStorage.setItem('activeTab', 'progresstab');
+    //alert(sessionStorage.getItem('activeTab'));
   });
   
   $("#calendarlink").click(function() {
@@ -28,6 +35,8 @@ var main = function() {
     $("#listtab").hide();
     $("#progresstab").hide();
     $("#calendartab").show();
+    sessionStorage.setItem('activeTab', 'calendartab');
+    //alert(sessionStorage.getItem('activeTab'));
   });
 }
 

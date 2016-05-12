@@ -11,6 +11,10 @@ Rails.application.routes.draw do
   get '/sports' => 'pages#sports'
   get '/news' => 'pages#news'
   get '/entertainment/projects' => 'project#index'
+  get '/entertainment/projects' => 'project#new'
+  post '/projects' => 'project#create'
+  get '/entertainment/projects/:id' => 'project#show', as: :project
+  resources :projects, only: [:index, :show]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
