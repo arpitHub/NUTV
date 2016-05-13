@@ -7,7 +7,6 @@
   width:100%;
   background-color:white;
   left:0px;
-  border-bottom: 1px solid black;
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
   background-image:    url(/assets/cityscape.png);
   background-repeat:   no-repeat;
@@ -68,7 +67,7 @@ body {
   background: -webkit-linear-gradient(#470909, #F56E6E); /* For Safari 5.1 to 6.0 */
   background: -o-linear-gradient(#470909, #F56E6E); /* For Opera 11.1 to 12.0 */
   background: -moz-linear-gradient(#470909, #F56E6E); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(#470909, #F56E6E);
+  background: linear-gradient(gray, white);
 }
 
 /****HOME****/
@@ -94,9 +93,9 @@ body {
   height:800px;
   text-align:center;
   padding-bottom:50px;
-  background-color:#2A2F33;
+  background-color:#9A0000;
   margin-bottom:100px;
-  border-radius:10px;
+  border-radius:5px;
   margin-left:10px;
   -moz-box-shadow: 1px 0px 30px rgba(0,0,0,1);
   -webkit-box-shadow: 1px 0px 30px rgba(0,0,0,1);
@@ -173,7 +172,7 @@ body {
   border-bottom: none;
   height: 4em;
   line-height: 4em;
-  background-color:#D5000B;
+  background-color:#9A0000;
   border-radius:25px;
   border: 2px solid #A40008;
   margin:50px;
@@ -183,7 +182,7 @@ body {
 
 .nav a {
   text-decoration: none;
-  color: black;
+  color: white;
   display: block;
   transition: .3s background-color;
   height:2em;
