@@ -10,11 +10,16 @@ Rails.application.routes.draw do
   get '/entertainment' => 'pages#entertainment'
   get '/sports' => 'pages#sports'
   get '/news' => 'pages#news'
-  get '/entertainment/projects' => 'project#index'
-  get '/entertainment/projects' => 'project#new'
+  get '/contact' => 'pages#contact'
+  get '/eboard' => 'pages#eboard'
+  get 'entertainment/projects' => 'project#index', as: :index
+  get 'entertainment/projects' => 'project#new'
   post '/projects' => 'project#create'
   get '/entertainment/projects/:id' => 'project#show', as: :project
-  resources :projects, only: [:index, :show]
+  get 'projects/:id/edit' => 'project#edit'
+  patch '/entertainment/projects/:id' => 'project#update'
+  delete '/entertainment/projects/:id' => 'project#destroy', as: :delete
+  resources :project, only: [:index, :show, :edit, :destroy]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

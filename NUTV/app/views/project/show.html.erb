@@ -20,34 +20,46 @@
       <a href="/entertainment">Entertainment</a>
     </div>
     <div class="econtent">
-      <div class="eleftnav">
-         <p>
-              Name
+      <div class="projview">
+        <div id="editview">
+          <div class="editproj">
+            <%= link_to image_tag("edit.png"), edit_project_path(@project.id) %>
+            <%= link_to image_tag("delete.png"), @project, method: :delete, data: {confirm: "Are you sure you want to delete this project?" } %>
+          </div> 
+        </div>
+        <div id="back">
+          <a href="/entertainment/projects"><img id="edit" src="/assets/back.png"/></a>
+        </div>
+        <div class="projdetails">
+          <p>
+            Name: <%= @project.name %>
             </p>
-             <%= @project.name %> <br>
             <p>
-              Director
+              Director: <%= @project.director %>
             </p>
-            <%= @project.director %> <br>
             <p>
-              EP
+              EP: <%= @project.ep %>
             </p>
-            <%= @project.ep %> <br>
             <p>
-              Equipment
-            </p>
-            <%= @project.equipment %> <br>
+              Equipment: <%= @project.equipment %>
+            </p>           
             <p>
-              Dates
+              Dates: <%= @project.dates %>
             </p>
-            <%= @project.dates %> <br>
             <p>
-              Status
-            </p>
-            <%= @project.status %>
-      </div>
-      <div class="content">
-
+              Status: <%= @project.status %>
+            </p> <br>
+        <p>
+          Events:                      
+            <% @events.each do |e| %>
+              <%= e.startminute %>
+              <%= e.endhour %>
+            <% end %>
+          </p>
+            <a href="#"><div class="signupbutton">
+            Sign Up!
+            </div></a>
+        </div>
       </div>
     </div>
     <div class="footer">

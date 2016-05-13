@@ -124,22 +124,115 @@ body {
   padding-top:10px;
 }
 
-.dummy {
+.aboutus {
   position: relative;
-  height:100px;
+  left:130px;
+  height:300px;
+  width:1300px;
+  text-align:center;
+  background-color:#B8BAC0;
+  border-radius:10px;
+  top:-50px;
+  -moz-box-shadow: 1px 0px 30px rgba(0,0,0,1);
+  -webkit-box-shadow: 1px 0px 30px rgba(0,0,0,1);
+  box-shadow: 1px 0px 30px rgba(0,0,0,1);
+}
+
+.aboutus h3 {
+  font-size:30px;
+  padding-top:20px;
+  font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+
+.aboutus p {
+  padding-left:20px;
+  padding-right:20px;
+  font-family: Tahoma, Geneva, sans-serif;
+  font-size:20px;
+}
+
+.nav {
+  position: relative;
+  top:-50px;
+  left:100px;
+}
+
+.nav ul {
+  list-style: none;
+  background-color: transparent;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+.nav li {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  border-bottom: 1px solid #888;
+  display: inline-block;
+  width: 300px;
+  border-bottom: none;
+  height: 4em;
+  line-height: 4em;
+  background-color:#D5000B;
+  border-radius:25px;
+  border: 2px solid #A40008;
+  margin:50px;
+  display:inline-block;
+  position:relative;
+}
+
+.nav a {
+  text-decoration: none;
+  color: black;
+  display: block;
+  transition: .3s background-color;
+  height:2em;
+  width:300px;
+  font-size:2em;
+  border-radius:25px;
+}
+ 
+.nav a:hover {
+  background-color: #FF7077;
+}
+
+/****CONTACT****/
+
+.contactcontent {
+  position:relative;
+  top:100px;
+  left:300px;
+  height:300px;
+  width:1000px;
+  padding:1px 0px 0px 15px;;
+  background-color:lightgray;
+  border-radius:5px;
+  text-align:center;
+  margin-bottom:500px;
+}
+
+.contactcontent h3{
+  font-size:40px;
 }
 
 /****ENTERTAINMENT****/
 
+.econtent {
+  position:relative;
+  left:50%;
+  margin-left:-775px;
+}
+
 .eleftnav {
   position:relative;
   top:100px;
-  left:50px;
+  left:100px;
   height:300px;
-  width:300px;
+  width:250px;
   padding:1px 0px 0px 15px;;
   background-color:lightgray;
   border-radius:5px;
+  text-align:center;
 }
 
 .eleftnav h3 {
@@ -152,6 +245,29 @@ body {
 
 .datastorage {
   display:hidden;
+}
+
+.eabout {
+  position: relative;
+  left:400px;
+  top:-240px;
+  height:300px;
+  width:1000px;
+  text-align:center;
+  background-color:#B8BAC0;
+  border-radius:10px;
+}
+
+.eabout h3 {
+  font-size:40px;
+  padding-top:20px;
+  margin-bottom:-15px;
+}
+
+.eabout p {
+  padding-left:20px;
+  padding-right:20px;
+  font-size:25px;
 }
 
 /**** PROJECTS ****/
@@ -273,10 +389,6 @@ body {
 
 #tabs a {
   text-decoration:none;
-}
-
-body {
-  height:1000px;
 }
 
 .c-tab {
@@ -409,7 +521,7 @@ body {
   width:300px;
   height:600px;
   background-color:#FFF3CB;
-  top:150px;
+  top:200px;
   left:50%;
   margin-left:-150px;
   text-align:center;
@@ -449,3 +561,75 @@ body {
   margin-top:5px;
   z-index:9;
 }
+
+/****VIEW PROJECT ****/
+
+.projdetails {
+  position:relative;
+  top:50px;
+  font-size:20px;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+.projdetails a {
+  text-decoration:none;
+  color:white;
+  position:relative;
+  left:200px;
+  top:50px;
+}
+
+.signupbutton {
+  background-color:green;
+  border-radius:5px;
+  height:30px;
+  width:100px;
+  line-height:30px;
+}
+
+.projview {
+  position:relative;
+  width:500px;
+  height:700px;
+  left:50%;
+  margin-left:-250px;
+  top:100px;
+  background-color:grey;
+  border-radius:5px;
+  text-align:center;
+}
+
+#editview {
+  position:absolute;
+  left:430px;
+}
+
+#back {
+  position:absolute;
+  left:5px;
+}
+
+.editproj {
+  float:right;
+  margin-right:5px;
+  margin-top:5px;
+  z-index:9;
+}
+
+.projview #edit {
+  width:30px;
+  height:30px;
+  float:right;
+  margin-right:5px;
+  margin-top:5px;
+  z-index:9;
+}
+
+.editform {
+  position:relative;
+  top:50px;
+  left:10px;
+  font-size:20px;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+

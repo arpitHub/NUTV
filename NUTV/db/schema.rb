@@ -11,9 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160509185214) do
+ActiveRecord::Schema.define(version: 20160513173625) do
 
-  create_table "project_prokecs", force: true do |t|
+  create_table "events", force: true do |t|
+    t.integer  "startminute"
+    t.integer  "endhour"
+    t.integer  "endminute"
+    t.integer  "day"
+    t.integer  "month"
+    t.integer  "year"
+    t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -25,6 +32,7 @@ ActiveRecord::Schema.define(version: 20160509185214) do
     t.text     "equipment"
     t.text     "dates"
     t.text     "status"
+    t.text     "department"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
