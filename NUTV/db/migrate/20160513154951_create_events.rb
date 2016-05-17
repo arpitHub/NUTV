@@ -1,7 +1,7 @@
-class CreateEvents < ActiveRecord::Migration
-  def change
+class CreateEvents < ActiveRecord::Migration 
+   def change
     create_table :events do |t|
-      t.integer :startminute
+      t.string :startminute
       t.integer :endhour
       t.integer :endminute
       t.integer :day

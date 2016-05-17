@@ -19,7 +19,15 @@ Rails.application.routes.draw do
   get 'projects/:id/edit' => 'project#edit'
   patch '/entertainment/projects/:id' => 'project#update'
   delete '/entertainment/projects/:id' => 'project#destroy', as: :delete
+  get 'entertainment/projects' => 'event#index', as: :event_index
+  get 'entertainment/projects' => 'event#new'
+  post 'entertainment/projects' => 'event#create'
+  get '/entertainment/projects/:project_id/event/:id' => 'event#show', as: :event
   resources :project, only: [:index, :show, :edit, :destroy]
+  resources :project do
+    resources :event
+  end
+  #resources :event, :path => 'event'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

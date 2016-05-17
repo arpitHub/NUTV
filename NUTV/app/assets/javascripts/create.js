@@ -15,9 +15,18 @@ var main = function() {
     $(".content").addClass("blurred");
   });
   
-    $("#closedis").click(function() {
-    $("#projdisplay").addClass("hidden");
-    $(".content").removeClass("blurred");
+  $("#closedis").click(function() {
+  $("#projdisplay").addClass("hidden");
+  $(".content").removeClass("blurred");
+  });
+  
+  $('#eventbox').change(function(){
+    if(this.checked) {
+      $("#addevent").removeClass("hidden");
+    }
+    else {
+      $("#addevent").addClass("hidden");
+    }
   });
 }
 

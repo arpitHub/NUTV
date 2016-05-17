@@ -4,9 +4,9 @@
   <head>
     <title>NUTV - Home</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-    <script type="text/javascript" src="/assets/javascripts/tabs.js"></script>
-    <script type="text/javascript" src="/assets/javascripts/calendar.js"></script>
-    <script type="text/javascript" src="/assets/javascripts/create.js"></script>
+    <%= javascript_include_tag "tabs.js" %>
+    <%= javascript_include_tag "calendar.js" %>
+    <%= javascript_include_tag "create.js" %>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="/mobile.css" />
@@ -620,8 +620,25 @@
             <p>
               Status
             </p>
-            <%= p.text_field :status %>
+            <%= p.text_field :status %> <br> <br>
+            <%= p.fields_for :events do |event| %>
+                
+                  <%= event.label :startminute %>
+                  <%= event.text_field :startminute %>
+            
+                  <%= event.label :endhour %>
+                  <%= event.number_field :endhour %>
+            
+            
+
+              <% end %>
+               
+            <input type="checkbox" name="event" value="Event" id="eventbox">Add Event<br> <br>
+            <div id="addevent" class="hidden">
+
+            </div>
         </div>
+      
         <div class="create">
           <%= p.submit "Create" %>
         </div>

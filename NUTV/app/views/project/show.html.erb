@@ -50,10 +50,12 @@
               Status: <%= @project.status %>
             </p> <br>
         <p>
-          Events:                      
-            <% @events.each do |e| %>
-              <%= e.startminute %>
-              <%= e.endhour %>
+          Events: <br>                    
+            <% @events.each do |e| %> 
+              Start Minute: <%= e.startminute %> <br>
+              End Hour: <%= e.endhour %> <br>
+              End Minute: <%= e.endminute %>
+          <%= link_to "see more", event_path(@project, e) %>
             <% end %>
           </p>
             <a href="#"><div class="signupbutton">

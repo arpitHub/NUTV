@@ -1,7 +1,8 @@
 class ProjectController < ApplicationController
   def index
-		@projects = Project.all
+		@projects = Project.includes(:events).all
 		@project = Project.new
+		@events = @project.events.new
 	end
 	
 	def show
@@ -28,17 +29,32 @@ class ProjectController < ApplicationController
   	redirect_to :index
 	end
 
-	def create 
-  	@project = Project.new(project_params) 
-  	if @project.save 
-   		redirect_to '/entertainment/projects' 
-  	else 
+	def new
+		@project = Project.new
+		@event = @project.events.build
+	end
+	
+	def create
+		#render :json => params and return
+  	@project = Project.new(project_params)
+		
+		puts params.inspect
+  	if @project.save
+   		redirect_to '/entertainment/projects'
+  	else
     	render 'new'
   	end
 	end
 	
-	private 
-  def project_params 
-    params.require(:project).permit(:name, :director, :ep, :equipment, :dates, :status) 
+	private
+  def project_params
+    params.require(:project).permit!
+		#(:name, :director, :ep, :equipment, :dates, :status, :event_id, events_attributes: [ :startminute, :endhour, :endminute, :day, :month, :year, :project, :id, :project_id])
+	end
+	
+	private
+  def event_params
+    params.require(:project).permit(:startminute, :endhour, :endminute, :day, :month, :year, :project)
   end
+	
 end
