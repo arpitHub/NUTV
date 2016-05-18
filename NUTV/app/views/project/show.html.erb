@@ -19,7 +19,7 @@
       <a href="/sports">Sports</a>
       <a href="/entertainment">Entertainment</a>
     </div>
-    <div class="econtent">
+    <div class="detailscontent">
       <div class="projview">
         <div id="editview">
           <div class="editproj">
@@ -41,20 +41,20 @@
               EP: <%= @project.ep %>
             </p>
             <p>
-              Equipment: <%= @project.equipment %>
+              Equipment: <%= @project.equipment.to_sentence %>
             </p>           
             <p>
-              Dates: <%= @project.dates %>
+              Notes: <%= @project.notes %>
             </p>
             <p>
               Status: <%= @project.status %>
             </p> <br>
         <p>
-          Events: <br>                    
+          Events: <br>
             <% @events.each do |e| %> 
-              Start Minute: <%= e.startminute %> <br>
-              End Hour: <%= e.endhour %> <br>
-              End Minute: <%= e.endminute %>
+              <%= l e.date, format: :day if e.date %> <br>
+              Starts: <%= l e.starttime, format: :hour if e.starttime %> <br>
+              Ends: <%= l e.endtime, format: :hour if e.endtime %>  <br>
           <%= link_to "see more", event_path(@project, e) %>
             <% end %>
           </p>

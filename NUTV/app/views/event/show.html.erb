@@ -19,7 +19,7 @@
       <a href="/sports">Sports</a>
       <a href="/entertainment">Entertainment</a>
     </div>
-    <div class="econtent">
+    <div class="detailscontent">
       <div class="projview">
         <div id="editview">
         </div>
@@ -28,12 +28,10 @@
         </div>
         <div class="projdetails">
           <p>
-            Start: <%= @event.startminute %>
-            </p>
-            <p>
-              End: <%= @event.endhour %> <br>
-              End Minute: <%= @event.endminute %>
-            </p>
+            Date: <%= l @event.date, format: :day if @event.date %> <br>
+            Starts: <%= l @event.starttime, format: :hour if @event.starttime %> <br>
+            Ends: <%= l @event.endtime, format: :hour if @event.endtime %>  <br>
+          </p>
         </div>
       </div>
     </div>

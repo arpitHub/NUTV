@@ -4,10 +4,11 @@ class CreateProjects < ActiveRecord::Migration
       t.text :name
       t.text :director
       t.text :ep
-      t.text :equipment
-      t.text :dates
-      t.text :status
-      t.text :department
+      t.text :equipment, array: true, default: []
+      t.text :notes
+      t.string :status
+      t.string :department
+      t.string :dates
       t.timestamps
     end
   end

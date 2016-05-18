@@ -14,27 +14,24 @@
 ActiveRecord::Schema.define(version: 20160513154951) do
 
   create_table "events", force: true do |t|
+    t.date     "date"
+    t.time     "starttime"
+    t.time     "endtime"
+    t.string   "kind"
     t.integer  "project_id"
-    t.integer  "startminute"
-    t.integer  "endhour"
-    t.integer  "endminute"
-    t.integer  "day"
-    t.integer  "month"
-    t.integer  "year"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "events", ["project_id"], name: "index_events_on_project_id"
 
   create_table "projects", force: true do |t|
     t.text     "name"
     t.text     "director"
     t.text     "ep"
-    t.text     "equipment"
-    t.text     "dates"
-    t.text     "status"
-    t.text     "department"
+    t.text     "equipment",  default: "--- []\n"
+    t.text     "notes"
+    t.string   "status"
+    t.string   "department"
+    t.string   "dates"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

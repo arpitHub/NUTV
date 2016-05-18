@@ -1,6 +1,8 @@
 class ProjectController < ApplicationController
+	helper_method :sort_column, :sort_direction
+	
   def index
-		@projects = Project.includes(:events).all
+		@projects = Project.order(sort_column + " " + sort_direction)
 		@project = Project.new
 		@events = @project.events.new
 	end
@@ -37,8 +39,7 @@ class ProjectController < ApplicationController
 	def create
 		#render :json => params and return
   	@project = Project.new(project_params)
-		
-		puts params.inspect
+		#puts params.inspect
   	if @project.save
    		redirect_to '/entertainment/projects'
   	else
@@ -55,6 +56,16 @@ class ProjectController < ApplicationController
 	private
   def event_params
     params.require(:project).permit(:startminute, :endhour, :endminute, :day, :month, :year, :project)
+  end
+	
+	  private
+  
+  def sort_column
+    Project.column_names.include?(params[:sort]) ? params[:sort] : "name"
+  end
+	
+	def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 	
 end

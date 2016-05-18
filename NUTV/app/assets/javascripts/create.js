@@ -28,6 +28,10 @@ var main = function() {
       $("#addevent").addClass("hidden");
     }
   });
+  
+  $("th").click(function() {
+    $(".sortarrow").removeClass("hidden");
+  })
 }
 
 $(document).ready(main);
