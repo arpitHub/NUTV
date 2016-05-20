@@ -26,6 +26,7 @@ en:
       day: "%m/%d/%y"
   time:
     formats:
+      daytime: "%m/%d/%y @ %I:%m %p"
       day: "%m/%d/%y"
       hour: "%I:%m %p"
       

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>NUTV - Home</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="/mobile.css" />
+    <meta name="description" content="NUTV Website">
+    <meta name="keywords" content="NUTV, Northeastern, University, Television">
+    <meta name="author" content="Eric Gift">
+  </head>
+  <body>
+    <div class="header">
+      <a id="logo" href="/home"><img src="/assets/nutv.jpg"/></a>
+      <a href="https://twitter.com/NUTV"><img id="twitter" src="/assets/twitter.png"/></a>
+      <a href="https://www.facebook.com/northeasterntv#"><img id="fb" src="/assets/facebook.jpg"/></a>
+      <a href="/news">News</a>
+      <a href="/sports">Sports</a>
+      <a href="/entertainment">Entertainment</a>
+    </div>
+    <div class="editproject">
+      <div class="projview">
+        <div class="editclose">
+          <%= link_to image_tag("close.png"), [@project, @event] %>
+        </div>
+        <div class="editform">
+        <%= form_for([@project, @event]) do |e| %>
+
+                Type: <%= e.select :kind, [['Writing Meeting','writing'],['Shoot','shoot'],['Editing Meeting','editing']], {:id => "eventkind" } %> <br>
+
+                Date: <%= e.date_field :date %> <br>
+            
+                Start Time: <%= e.time_field :starttime %> <br>
+              
+                End Time: <%= e.time_field :endtime %> <br> <br>
+
+          <br>
+         <%= e.submit "Save changes", class: "btn btn-primary" %>
+        <% end %>
+        </div>
+      </div>
+    </div>
+         <div class="edittitle">
+          <h3>
+            Edit Event
+          </h3>
+    </div>
+    <div class="footer">
+      <h3>
+        Design by Eric Gift, 2016
+      </h3>
+    </div>
+  </body>
+</html>

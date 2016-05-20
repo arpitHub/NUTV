@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>NUTV - Home</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="/mobile.css" />
+    <meta name="description" content="NUTV Website">
+    <meta name="keywords" content="NUTV, Northeastern, University, Television">
+    <meta name="author" content="Eric Gift">
+  </head>
+  <body>
+    <div class="header">
+      <a id="logo" href="/home"><img src="/assets/nutv.jpg"/></a>
+      <a href="https://twitter.com/NUTV"><img id="twitter" src="/assets/twitter.png"/></a>
+      <a href="https://www.facebook.com/northeasterntv#"><img id="fb" src="/assets/facebook.jpg"/></a>
+      <a href="/news">News</a>
+      <a href="/sports">Sports</a>
+      <a href="/entertainment">Entertainment</a>
+    </div>
+    <div class="detailscontent">
+      <div class="eventview">
+        <div id="editview">
+        </div>
+        <div id="eventback">
+          <%= link_to image_tag("back.png"), project_path(@event.project_id) %>
+        </div>
+        <div class="editproj">
+            <%= link_to image_tag("edit.png"), edit_project_event_path(@event.project_id, @event.id) %>
+            <%= link_to image_tag("delete.png"), [@project, @event], method: :delete, data: {confirm: "Are you sure you want to delete this event?" } %>  
+        </div> 
+        <div class="evdetails">
+          <h3>
+            <%= @event.kind %> for <%= @event.project.name %>
+          </h3>
+          <p>
+            Date: <%= l @event.date, format: :day if @event.date %> <br>
+            Starts: <%= l @event.starttime, format: :hour if @event.starttime %> <br>
+            Ends: <%= l @event.endtime, format: :hour if @event.endtime %>  <br>
+            Equipment: <%= @event.equipment.to_sentence if @event.equipment%>
+            <br> <br>
+            Last Updated: <%= l @event.updated_at.in_time_zone("Eastern Time (US & Canada)"), format: :daytime %>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <h3>
+        Design by Eric Gift, 2016
+      </h3>
+    </div>
+  </body>
+</html>
+

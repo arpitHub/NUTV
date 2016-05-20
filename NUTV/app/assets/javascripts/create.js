@@ -20,12 +20,32 @@ var main = function() {
   $(".content").removeClass("blurred");
   });
   
+  $("#addevent").click(function() {
+    $("#eventform").removeClass("hidden");
+    $(".detailscontent").addClass("blurred");
+  });
+  
   $('#eventbox').change(function(){
     if(this.checked) {
       $("#addevent").removeClass("hidden");
     }
     else {
       $("#addevent").addClass("hidden");
+    }
+  });
+  
+    $("#closeevent").click(function() {
+  $("#eventform").addClass("hidden");
+  $(".detailscontent").removeClass("blurred");
+  });
+  
+    $('#eventkind').change(function(){
+    if(form == "shoot") {
+      $('.equipmentreserve').removeClass("hidden");
+      alert("hi");
+    }
+    else {
+      $('.equipmentreserve').removeClass("hidden");
     }
   });
   

@@ -10,6 +10,7 @@ class ProjectController < ApplicationController
 	def show
   	@project = Project.find(params[:id])
 		@events = @project.events
+		@event = @project.events.new
 	end
 	
 	def edit
@@ -33,7 +34,8 @@ class ProjectController < ApplicationController
 
 	def new
 		@project = Project.new
-		@event = @project.events.build
+		@event = @project.event.new
+		respond_with(@project)
 	end
 	
 	def create

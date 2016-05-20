@@ -23,10 +23,12 @@ Rails.application.routes.draw do
   get 'entertainment/projects' => 'event#new'
   post 'entertainment/projects' => 'event#create'
   get '/entertainment/projects/:project_id/event/:id' => 'event#show', as: :event
+  get '/entertainment/projects/:project_id/event/:id/edit' => 'event#edit'
   resources :project, only: [:index, :show, :edit, :destroy]
   resources :project do
-    resources :event
+    resources :events
   end
+
   #resources :event, :path => 'event'
 
   # Example of regular route:

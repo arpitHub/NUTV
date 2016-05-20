@@ -19,28 +19,34 @@
       <a href="/sports">Sports</a>
       <a href="/entertainment">Entertainment</a>
     </div>
-    <div class="editevent">
+    <div class="editproject">
       <div class="projview">
-        <div class="editproj">
+        <div class="editclose">
           <%= link_to image_tag("close.png"), project_path(@project.id) %>
         </div>
         <div class="editform">
         <%= form_for(@project) do |p| %>
+          <br>
+          Name: <%= p.text_field :name, class: 'form-control' %> <br>
 
-          <%= p.label :name %>
-          <%= p.text_field :name, class: 'form-control' %> <br>
-
-          <%= p.label :director %>
-          <%= p.text_field :director, class: 'form-control' %> <br>
+          Director: <%= p.text_field :director, class: 'form-control' %> <br>
           
-          <%= p.label :dates %>
-          <%= date_field :dates, class: 'form-control' %> <br>
+          EP: <%= p.text_field :ep, class: 'form-control' %> <br>
+          
+          Status: <%= p.select :status, [['Writing','Writing'],['Shooting','Shooting'],['Editing','Editing'],['Completed','Completed']] %> <br> <br>
+          
+          Notes: <%= p.text_area :notes, { :class => 'notesarea' } %> <br>
 
           <br>
          <%= p.submit "Save changes", class: "btn btn-primary" %>
         <% end %>
         </div>
       </div>
+    </div>
+     <div class="edittitle">
+          <h3>
+            Edit Project
+          </h3>
     </div>
     <div class="footer">
       <h3>

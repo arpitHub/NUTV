@@ -4,7 +4,6 @@ class CreateProjects < ActiveRecord::Migration
       t.text :name
       t.text :director
       t.text :ep
-      t.text :equipment, array: true, default: []
       t.text :notes
       t.string :status
       t.string :department

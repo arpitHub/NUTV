@@ -20,53 +20,81 @@
       <a href="/entertainment">Entertainment</a>
     </div>
     <div class="detailscontent">
-      <div class="projview">
-        <div id="editview">
-          <div class="editproj">
+            <div class="detholder">
+        <div class="projtopnav">
+          <h3>
+            <%= @project.name %>
+          </h3>
+          <div class="editbuttons">
             <%= link_to image_tag("edit.png"), edit_project_path(@project.id) %>
             <%= link_to image_tag("delete.png"), @project, method: :delete, data: {confirm: "Are you sure you want to delete this project?" } %>
-          </div> 
-        </div>
+          </div>   
         <div id="back">
           <a href="/entertainment/projects"><img id="edit" src="/assets/back.png"/></a>
         </div>
+        </div>
         <div class="projdetails">
-          <p>
-            Name: <%= @project.name %>
-            </p>
             <p>
               Director: <%= @project.director %>
             </p>
             <p>
               EP: <%= @project.ep %>
-            </p>
-            <p>
-              Equipment: <%= @project.equipment.to_sentence %>
-            </p>           
-            <p>
-              Notes: <%= @project.notes %>
-            </p>
+            </p> 
             <p>
               Status: <%= @project.status %>
-            </p> <br>
-        <p>
-          Events: <br>
-            <% @events.each do |e| %> 
-              <%= l e.date, format: :day if e.date %> <br>
-              Starts: <%= l e.starttime, format: :hour if e.starttime %> <br>
-              Ends: <%= l e.endtime, format: :hour if e.endtime %>  <br>
-          <%= link_to "see more", event_path(@project, e) %>
-            <% end %>
+            </p>
+            <p>
+              Notes: <%= simple_format @project.notes %>
+            </p>
+          <p> <br> <br>
+          Last Updated: <%= l @project.updated_at.in_time_zone("Eastern Time (US & Canada)"), format: :daytime %>
           </p>
-            <a href="#"><div class="signupbutton">
+          </div>
+            <a class="signup" href="#"><div class="signupbutton">
             Sign Up!
             </div></a>
-        </div>
+
+        <div class="eventdetails">
+          <div class="eventsheader">
+          <h2>
+            Events:
+          </h2>
+          </div>
+         <div class="addevent">
+           <a id="addevent" href="#"><img id="plus" src="/assets/plus.png"/></a>
+         </div>
+             <% @events.each do |e| %>
+          <div class="indevent">
+              <% if e.kind %>
+                <%= e.kind %> <br>
+              <% else %>
+                Misc. Event <br>
+              <% end %>
+              <%= l e.date, format: :day if e.date %> @ <%= l e.starttime, format: :hour if e.starttime %> <br>
+            <%= link_to "Details", [@project, e] %>
+              </div>
+            <% end %>
       </div>
-    </div>
+    </div>      
+      </div>
+  <div id="eventform" class="hidden">
+    <a id="closeevent" href="#"><img id="cross" src="/assets/close.png"/></a>
+          <%= form_for [@project, @event] do |e| %>
+    
+            Type: <%= e.select :kind, [['Writing Meeting','Writing Meeting'],['Shoot','Shoot'],['Editing Meeting','Editing Meeting']], {:id => "eventkind" } %> <br>
+
+            Date: <%= e.date_field :date %> <br>
+            
+            Start Time: <%= e.time_field :starttime %> <br>
+             
+            End Time: <%= e.time_field :endtime %> <br> <br>
+          
+          <%= e.submit "Create" %>
+          <% end %>
+          </div>
     <div class="footer">
       <h3>
-        Design by Eric Gift, 2016
+       
       </h3>
     </div>
   </body>
