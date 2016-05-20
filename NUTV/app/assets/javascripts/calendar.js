@@ -7,6 +7,7 @@ http://www.javascriptkit.com/
 var month;
 var year;
 var today;
+var offset;
 
 var displayedMonth;
 var displayedYear;
@@ -64,6 +65,10 @@ function findID(day) {
   }
 }
 
+function getOffset() {
+  return 2;
+}
+
 function isFourDigitYear(year) {
 if (year.length != 4) {
 alert ("Sorry, the year must be four-digits in length.");
@@ -89,6 +94,7 @@ function displayCalendar(disMonth, disYear) {
   var firstOfMonth = new Date (disYear, disMonth, 1);
   var startingPos = firstOfMonth.getDay();
   var id = startingPos;
+  offset = startingPos;
   
   for (i = 0; i < 42; i++) {
     $("#" + i.toString()).text(" ");

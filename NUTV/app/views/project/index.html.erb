@@ -17,8 +17,9 @@
   <body class=projectbody>
     <div class="header">
       <a id="logo" href="/home"><img src="/assets/nutv.jpg"/></a>
-      <a href="https://twitter.com/NUTV"><img id="twitter" src="/assets/twitter.png"/></a>
-      <a href="https://www.facebook.com/northeasterntv#"><img id="fb" src="/assets/facebook.jpg"/></a>
+      <a class="social" href="https://www.instagram.com/northeasternuniversitytv/"><img id="insta" src="/assets/instagram.png"/></a>
+      <a class="social" href="https://twitter.com/NUTV"><img id="twitter" src="/assets/twitter.png"/></a>
+      <a class="social" href="https://www.facebook.com/northeasterntv#"><img id="fb" src="/assets/facebook.jpg"/></a>
       <a href="/news">News</a>
       <a href="/sports">Sports</a>
       <a href="/entertainment">Entertainment</a>
@@ -94,9 +95,10 @@
               <tr>
                 <div class="projectprogress" id="shootingblock">
                 <div id="editprogress"><%= link_to image_tag("open.png"), project_path(p) %></div>
-                <%= p.name %> <br>
-                <%= p.director %>
-              </div>
+                  <div class="progresstext">
+                    <%= p.name %> <br>
+                    <%= p.director %>
+                  </div>
               </tr>
             <% end %>
             <% end %>
@@ -114,9 +116,10 @@
               <tr>
                 <div class="projectprogress" id="editingblock">
                   <div id="editprogress"><%= link_to image_tag("open.png"), project_path(p) %></div>
-                <%= p.name %> <br>
-                <%= p.director %>
-              </div>
+                  <div class="progresstext">
+                    <%= p.name %> <br>
+                    <%= p.director %>
+                  </div>
               </tr>
             <% end %>
             <% end %>
@@ -134,8 +137,10 @@
               <tr>
                 <div class="projectprogress" id="completedblock">
                 <div id="editprogress"><%= link_to image_tag("open.png"), project_path(p) %></div>
-                <%= p.name %> <br>
-                <%= p.director %>
+                  <div class="progresstext">
+                    <%= p.name %> <br>
+                    <%= p.director %>
+                  </div>
               </div>
               </tr>
             <% end %>
@@ -165,16 +170,26 @@
              <p id="0">
                X
             </p>
-          <% @projects.each do |p| %>
-          <% if p.status != "Completed" %>
-            <% if javascript_tag "findID(p.dates.split('/')[1])" == 0 %>
+          <% @allevents.each do |e| %>
+           <% if e.date %>
+            <script type="text/javascript">
+              var day = <%= e.date.strftime("%d").to_i %>;
+              var month = <%= e.date.strftime("%m").to_i %>;
+              var year = <%= e.date.strftime("%y").to_i %>;
+          </script>
+           <% if same_date(e)  %>
             <div class="calproj">
-                <%= p.name %> <br>
+              
+             <%= e.date.strftime("%d").to_i %>
+                <%= l e.starttime, format: :hour if e.starttime %> :
+                <%= e.kind %> <br>
+                for <%= e.project.name %>
             </div>
             <% end %>
             <% end %>
-         <% end %>
+            
              </div></td>
+           <% end %>
            <td><div class="day">
              <p id="1">
                Q

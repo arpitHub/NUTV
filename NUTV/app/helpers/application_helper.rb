@@ -7,4 +7,8 @@ module ApplicationHelper
     link_to title, {:sort => column, :direction => direction}, {:class => css_class}
   end
   
+  def same_date(event)
+    true if event.date.strftime("%d").to_i == (javascript_tag "getOffset()")    
+  end
+  
 end

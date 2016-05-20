@@ -39,9 +39,19 @@
   top:0px;
 }
 
+.header .social {
+  padding: 10px 10px 0px 10px;
+}
+
 .header #fb {
   height:40px;
   width:40px;
+}
+
+.header #insta {
+  height:39px;
+  width:39px;
+  padding-top:2px;
 }
 
 .header #twitter {
@@ -51,8 +61,8 @@
 }
 
 .footer {
-  position:relative;
-  bottom:0;
+  position:absolute;
+  bottom:0px;
   left:50%;
   margin-left:-75px;
   margin-top:30px;
@@ -71,27 +81,32 @@ body {
   background: -o-linear-gradient(#470909, #F56E6E); /* For Opera 11.1 to 12.0 */
   background: -moz-linear-gradient(#470909, #F56E6E); /* For Firefox 3.6 to 15 */
   background: linear-gradient(gray, white);
-  min-height:100vh;
 }
 
 /****HOME****/
 
+.homebody {
+  min-height:1500px;
+}
+
 .leftnav {
   width:350px;
   position:absolute;
+  left:1210px;
+  margin-right:0px;
 }
 
 .content {
   top:75px;
+  width:90%;
   position:relative;
   left:50%;
   margin-left:-780px;
-  margin-right:1000px;
 }
 
 .videos {
-  position:relative;
-  left:350px;
+  position:absolute;
+  left:-10px;
   top:0px;
   width:1200px;
   height:800px;
@@ -113,6 +128,10 @@ body {
   width:560px;
 }
 
+.ig-root_270h54_clearfix {
+  border: 1px solid black;
+}
+
 .grid {
   width:560px;
   height:315px;
@@ -124,18 +143,25 @@ body {
   color:white;
   -webkit-text-stroke: 2px black;
   margin-bottom:0px;
-  padding-top:10px;
+  margin-top:10px;
+}
+
+.bottom {
+  position:relative;
+  top:900px;
+  width:1500px;
+  left:0px;
 }
 
 .aboutus {
   position: relative;
+  top:0px;
   left:130px;
   height:300px;
   width:1300px;
   text-align:center;
   background-color:#B8BAC0;
   border-radius:10px;
-  top:-50px;
   -moz-box-shadow: 1px 0px 30px rgba(0,0,0,1);
   -webkit-box-shadow: 1px 0px 30px rgba(0,0,0,1);
   box-shadow: 1px 0px 30px rgba(0,0,0,1);
@@ -156,8 +182,8 @@ body {
 
 .nav {
   position: relative;
-  top:-50px;
-  left:100px;
+  top:50px;
+  left:20px;
 }
 
 .nav ul {
@@ -525,6 +551,7 @@ body {
   font-size:20px;
   margin-bottom:-20px;
   overflow:hidden;
+  text-align:center;
 }
 
 .today {

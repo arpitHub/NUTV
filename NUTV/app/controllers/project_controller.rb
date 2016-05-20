@@ -5,6 +5,7 @@ class ProjectController < ApplicationController
 		@projects = Project.order(sort_column + " " + sort_direction)
 		@project = Project.new
 		@events = @project.events.new
+		@allevents = Event.all
 	end
 	
 	def show
