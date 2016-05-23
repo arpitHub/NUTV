@@ -551,7 +551,12 @@ body {
   font-size:20px;
   margin-bottom:-20px;
   overflow:hidden;
-  text-align:center;
+}
+
+.day p {
+  position:relative;
+  top:-20px;
+  left:5px;
 }
 
 .today {
@@ -576,7 +581,7 @@ body {
 
 .calproj {
   position:relative;
-  top:-20px;
+  top:-40px;
   background-color:#FFB56C;
   font-size:15px;
   border-radius:5px;
@@ -589,7 +594,7 @@ body {
 }
 
 #trash {
-    width:30px;
+  width:30px;
   height:30px;
 }
 

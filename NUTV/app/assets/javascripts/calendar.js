@@ -66,7 +66,7 @@ function findID(day) {
 }
 
 function getOffset() {
-  return 2;
+  return 1;
 }
 
 function isFourDigitYear(year) {
@@ -100,19 +100,36 @@ function displayCalendar(disMonth, disYear) {
     $("#" + i.toString()).text(" ");
     $("#" + i.toString()).removeClass("today");
   }
+  $(".calproj").remove();  
   
   for (i = 1; i < days + 1; i++) {
     $("#" + id.toString()).text(i.toString());
     if (i == today && disMonth == month && disYear == year) {
       $("#" + id.toString()).addClass("today");
     }
+    
+    for(var j = 0; j < events.length; j++) {
+      var event = events[j];
+      if (i == event[0].replace(/^0+/, '') && disMonth == (event[1] - 1) && disYear == (20 + event[2])) {
+        $("#" + id.toString()).parent().append("<div class=calproj>" + event[5] + ": " + event[3] + " for " + event[4] + "</div>");
+      }
+    }
+    
     id++;
   }
-  
+
   displayedMonth = disMonth;
   displayedYear = disYear;
   
   $("#calendartitle").text(monthLookup(disMonth) + " " + disYear.toString());
+}
+
+function makeEvents(item, index) {
+  
+}
+
+function myFunction(item, index) {
+    demoP.innerHTML = demoP.innerHTML + "index[" + index + "]: " + item + "<br />"; 
 }
 
 function getDaysInMonth(month,year)  {
