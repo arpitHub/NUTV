@@ -12,6 +12,29 @@ var offset;
 var displayedMonth;
 var displayedYear;
 
+var days = function initDayView() {
+  $(".caldet").click(function(id) {
+    $(".dayproj").remove(); 
+    var curDay = $(this).next().text();
+    var curMY = $("#calendartitle").text().split(" ");
+    $("#dayviewtitle").text("Events on " + curMY[0] + " " + curDay + ", " + curMY[1]);
+    for(var k = 0; k < events.length; k++) {
+      var event = events[k];
+      if (curDay == event[0].replace(/^0+/, '') && revMonthLookup(curMY[0]) == (event[1] - 1) && curMY[1] == (20 + event[2]) ) {
+        $(".dayview").append("<div class=dayproj>" + event[5] + ": " + event[3] + " for " + event[4] + "<a class=daydet href=" + event[6] + ">Details</a></div>");
+        $(".dayview").append("<div class=dayproj>  </div>");
+      }
+    }
+    $(".dayview").removeClass("hidden");
+    $(".content").addClass("blurred");
+  });
+  
+    $("#closeday").click(function() {
+    $(".dayview").addClass("hidden");
+    $(".content").removeClass("blurred");
+  });  
+}
+
 var main = function setToday() {
   var now = new Date();
   today = now.getDate();
@@ -111,7 +134,7 @@ function displayCalendar(disMonth, disYear) {
     for(var j = 0; j < events.length; j++) {
       var event = events[j];
       if (i == event[0].replace(/^0+/, '') && disMonth == (event[1] - 1) && disYear == (20 + event[2])) {
-        $("#" + id.toString()).parent().append("<div class=calproj>" + event[5] + ": " + event[3] + " for " + event[4] + "</div>");
+        $("#" + id.toString()).parent().append("<div class=calproj>" + event[5] + ": " + event[3] + "</div>");
       }
     }
     
@@ -183,6 +206,45 @@ function monthLookup(month) {
   }
 }
 
+function revMonthLookup(month) {
+  if (month === "January") {
+    return 0;
+  }
+  if (month == "February") {
+    return 1;
+  }
+  if (month == "March") {
+    return 2;
+  }
+  if (month == "April") {
+    return 3;
+  }
+  if (month == "May") {
+    return 4;
+  }
+  if (month == "June") {
+    return 5;
+  }
+  if (month == "July") {
+    return 6;
+  }
+  if (month == "August") {
+    return 7;
+  }
+  if (month == "September") {
+    return 8;
+  }
+  if (month == "October") {
+    return 9;
+  }
+  if (month == "November") {
+    return 10;
+  }
+  if (month == "December") {
+    return 11;
+  }
+}
+
 function isLeapYear (Year) {
   if (((Year % 4)===0) && ((Year % 100)!==0) || ((Year % 400)===0)) {
   return (true);
@@ -191,3 +253,5 @@ function isLeapYear (Year) {
 
 $(document).ready(main);
 $(document).on('page:load', main);
+$(document).ready(days);
+$(document).on('page:load', days);

@@ -546,21 +546,21 @@ body {
 
 .day {
   width:175px;
-  height:100px;
-  background-color:#76C1FF;
+  height:115px;
+  background-color:white;//#557CC2;
   font-size:20px;
-  margin-bottom:-20px;
+  margin:1px 1px 1px 1px;
   overflow:hidden;
 }
 
 .day p {
   position:relative;
-  top:-20px;
+  top:-45px;
   left:5px;
 }
 
 .today {
-  background-color:#FFDD6C;
+  background-color:#EBA300;
 }
 
 #prev {
@@ -581,11 +581,56 @@ body {
 
 .calproj {
   position:relative;
-  top:-40px;
-  background-color:#FFB56C;
+  top:-60px;
+  background-color:#9A0000;//#C5D8FF;
   font-size:15px;
   border-radius:5px;
   margin-bottom:5px;
+  color:white;
+}
+
+.dayproj {
+  position:relative;
+  width:70%;
+  left:70px;
+  top:0px;
+  background-color:#9A0000;
+  font-size:15px;
+  border-radius:5px;
+  margin-bottom:5px;
+  color:white;
+}
+
+.dayproj a {
+  color:white;
+}
+
+.daydet {
+  float:right;
+  margin-right:10px;
+}
+
+.caldet {
+  position:relative;
+  left:155px;
+  z-index:9;
+}
+
+.caldetpic {
+  width:20px;
+  height:20px;
+}
+
+.dayview {
+  position:absolute;
+  width:500px;
+  height:200px;
+  background-color:white;
+  left:50%;
+  margin-left:-250px;
+  z-index:50;
+  text-align:center;
+  border:1px solid black;
 }
 
 #pencil {

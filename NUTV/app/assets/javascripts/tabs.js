@@ -38,6 +38,7 @@ var main = function() {
     sessionStorage.setItem('activeTab', 'calendartab');
     //alert(sessionStorage.getItem('activeTab'));
   });
+  
 }
 
 $(document).ready(main);

@@ -150,6 +150,7 @@
         <div class="clearfix"></div>
       </div>
       <div class="c-tab" id="calendartab">
+        <% url = Rails.application.routes.url_helpers %>
         <%= javascript_tag do %>
             var events = [];
             var i = 0;
@@ -164,6 +165,7 @@
               events[i][3] = '<%= j e.kind %>';
               events[i][4] = '<% j e.project.name %>';
               events[i][5] = '<%= j l e.starttime, format: :hour if e.starttime %>';
+              events[i][6] = '<%= CGI.unescape url.project_event_path(e.project_id, e.id) %>';
               i++;
               <% end %>
             <% end %>
@@ -185,181 +187,355 @@
          </tr>
          <tr>
           <td><div class="day">
+            <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
              <p id="0">
                X
             </p>
-
            <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
              <p id="1">
                Q
              </p>
-             
              </div></td>
            <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
              <p id="2">
                X
-             </p>
-        
+             </p>      
              </div></td>
            <td><div class="day">
+            <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
              <p id="3">
                X
              </p>
              </div></td>
            <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
              <p id="4">
                X
              </p>
              </div></td>
            <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
              <p id="5">
                X
              </p>
-             
              </div></td>
            <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
              <p id="6">
                X
              </p>
-             
              </div></td>
          </tr>
          <tr>
           <td><div class="day">
+            <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
              <p id="7">
                X
             </p>
-          
              </div></td>
            <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
              <p id="8">
                Q
              </p>
-             
              </div></td>
            <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
              <p id="9">
                X
              </p>
-             
              </div></td>
            <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
              <p id="10">
                X
              </p>
-             
              </div></td>
            <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
              <p id="11">
                X
              </p>
-             
              </div></td>
            <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
              <p id="12">
                X
              </p>
-             
              </div></td>
            <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
              <p id="13">
                X
              </p>
-             
              </div></td>
          </tr>
          <tr>
           <td><div class="day">
+            <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
              <p id="14">
                X
             </p>
-          
              </div></td>
            <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
              <p id="15">
                Q
              </p>
-             
              </div></td>
            <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
              <p id="16">
                X
              </p>
-             
              </div></td>
            <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
              <p id="17">
                X
              </p>
-             
              </div></td>
            <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
              <p id="18">
                X
              </p>
-             
              </div></td>
            <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
              <p id="19">
                X
              </p>
-             
              </div></td>
            <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
              <p id="20">
                X
              </p>
-             
              </div></td>
          </tr>
          <tr>
           <td><div class="day">
+            <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
              <p id="21">
                X
             </p>
-          
              </div></td>
            <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
              <p id="22">
                Q
              </p>
-             
              </div></td>
            <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
              <p id="23">
                X
              </p>
-             
              </div></td>
            <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
              <p id="24">
                X
              </p>
-             
              </div></td>
            <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
              <p id="25">
                X
              </p>
-             
              </div></td>
            <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
              <p id="26">
                X
              </p>
-             
              </div></td>
            <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
              <p id="27">
                X
              </p>
-             
              </div></td>
          </tr>
-                  
+         <tr>
+          <td><div class="day">
+            <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="28">
+               X
+            </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="29">
+               Q
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="30">
+               X
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="31">
+               X
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="32">
+               X
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="33">
+               X
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="34">
+               X
+             </p>
+             </div></td>
+         </tr>
+         <tr>
+          <td><div class="day">
+            <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="35">
+               X
+            </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="36">
+               Q
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="37">
+               X
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="38">
+               X
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="39">
+               X
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="40">
+               X
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="41">
+               X
+             </p>
+             </div></td>
+         </tr>
         </table>
       </div>
-      </div>
+     </div>
+    
     <div id="projform" class="newproj hidden">
       <a id="close" href="#"><img id="cross" src="/assets/close.png"/></a>
         <h3>
@@ -451,6 +627,12 @@
         </div>
         <% end %>
       </div>
+      <div class="dayview hidden">
+        <a id="closeday" href="#"><img id="cross" src="/assets/close.png"/></a>
+        <p id="dayviewtitle">
+          X
+        </p>
+    </div>
     <div id="projdisplay" class="newproj hidden">
       <a id="closedis" href="#"><img id="cross" src="/assets/close.png"/></a>
         <h3>
