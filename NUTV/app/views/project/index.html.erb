@@ -38,13 +38,13 @@
           <a id="addproj" href="#"><img id="plus" src="/assets/plus.png"/></a>
         </div>
       <div class="c-tab hide" id="listtab">
-         <table class="etable">                         
-          <tr>                          
-            <th><%= sortable "name" %></th>
-            <th><%= sortable "director" %>  </th> 
-            <th><%= sortable "ep", "EP" %> </th>
-            <th><%= sortable "created_at", "Date Started" %></th>
-            <th><%= sortable "status" %> </th>
+         <table class="etable">
+          <tr>
+            <th>Name <%= sortable "name", image_tag("transparent.png") %></th> 
+            <th>Director <%= sortable "director", image_tag("transparent.png") %>  </th> 
+            <th>EP <%= sortable "ep", image_tag("transparent.png") %> </th>
+            <th>Date Started <%= sortable "created_at", image_tag("transparent.png") %></th>
+            <th>Status <%= sortable "status", image_tag("transparent.png") %> </th>
             <th class="pics"> </th>
           </tr>
         <% @projects.each do |p| %>
@@ -155,7 +155,11 @@
             var events = [];
             var i = 0;
         <% end %>
-        <% @allevents.each do |e| %>
+        <% @projects.each do |p| %>
+          <%= javascript_tag do %>
+              var projname = '<%= p.name %>';
+          <% end %>
+          <% p.events.each do |e| %>
            <% if e.date %>
             <%= javascript_tag do %>
               events[i] = [];
@@ -163,18 +167,20 @@
               events[i][1] = '<%= j e.date.strftime("%m") %>';
               events[i][2] = '<%= j e.date.strftime("%y") %>';
               events[i][3] = '<%= j e.kind %>';
-              events[i][4] = '<% j e.project.name %>';
+              events[i][4] = projname;
               events[i][5] = '<%= j l e.starttime, format: :hour if e.starttime %>';
               events[i][6] = '<%= CGI.unescape url.project_event_path(e.project_id, e.id) %>';
               i++;
               <% end %>
             <% end %>
           <% end %>
+        <% end %>
         <h3 id="calendartitle">
           X
         </h3>
         <button type="button" id="prev" onclick="prevMonth()">Previous</button>
         <button type="button" id="next" onclick="nextMonth()">Next</button>
+
        <table>
          <tr>
            <th>Sunday</th>
@@ -568,17 +574,19 @@
             <div id="addevent" class="hidden">
             <%= p.fields_for :events do |event| %>
               
-                Type: <%= event.select :kind, [['Writing Meeting','Writing Meeting'],['Shoot','Shoot'],['Editing Meeting','Editing Meeting']], {:id => "eventkind" } %> <br>
-
+                <%= event.radio_button :kind, "Writing Meeting", :class => "typebutton" %> Writing Meeting
+                <%= event.radio_button :kind, "Shoot", :class => "typebutton shootbutton", :id => "shootbutton" %> Shoot
+                <%= event.radio_button :kind, "Editing Meeting", :class => "typebutton" %> Editing Meeting <br>
+              
                 Date: <%= event.date_field :date %> <br>
             
                 Start Time: <%= event.time_field :starttime %> <br>
               
                 End Time: <%= event.time_field :endtime %> <br> <br>
-              <div class="equipmentreserve">
+              <div class="equipmentreserve hidden">
                 <p>
-              Equipment
-            </p>
+                  Equipment
+                </p>
             <b>Video:</b> <br>
             <%= event.check_box :equipment, { :multiple => true }, '5D #1', nil %> 5D #1
             <%= event.check_box :equipment, { :multiple => true }, '5D #2', nil %> 5D #2
@@ -617,7 +625,6 @@
             <%= event.check_box :equipment, { :multiple => true }, 'Magnus VT-4000 #2', nil %> Magnus VT-4000 #2
             <%= event.check_box :equipment, { :multiple => true }, 'Magnus VT-4000 #3', nil %> Magnus VT-4000 #3
                 <br>
-              </div>
            <% end %>
             </div>
         </div>

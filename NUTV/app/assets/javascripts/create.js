@@ -34,24 +34,24 @@ var main = function() {
     }
   });
   
-    $("#closeevent").click(function() {
-  $("#eventform").addClass("hidden");
-  $(".detailscontent").removeClass("blurred");
+  $("#closeevent").click(function() {
+    $("#eventform").addClass("hidden");
+    $(".detailscontent").removeClass("blurred");
   });
-  
-    $('#eventkind').change(function(){
-    if(form == "shoot") {
-      $('.equipmentreserve').removeClass("hidden");
-      alert("hi");
-    }
-    else {
-      $('.equipmentreserve').removeClass("hidden");
-    }
-  });
-  
+
   $("th").click(function() {
     $(".sortarrow").removeClass("hidden");
   })
+  
+  $('#addevent').change(function(e) {
+    if($('#shootbutton').is(":checked")){
+      $(".equipmentreserve").removeClass("hidden");  
+    }
+    else {
+      $(".equipmentreserve").addClass("hidden");
+    }
+  });
+    
 }
 
 $(document).ready(main);

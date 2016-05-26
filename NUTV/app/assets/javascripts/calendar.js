@@ -14,7 +14,7 @@ var displayedYear;
 
 var days = function initDayView() {
   $(".caldet").click(function(id) {
-    $(".dayproj").remove(); 
+    $(".dayproj").remove();
     var curDay = $(this).next().text();
     var curMY = $("#calendartitle").text().split(" ");
     $("#dayviewtitle").text("Events on " + curMY[0] + " " + curDay + ", " + curMY[1]);

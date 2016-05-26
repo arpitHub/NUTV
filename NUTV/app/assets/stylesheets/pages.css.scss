@@ -334,7 +334,7 @@ body {
   table-layout:fixed;
 }
 
-.etable tr{
+.etable tr {
   border-bottom:1px solid black;
 }
 
@@ -353,22 +353,21 @@ body {
 .etable th .reg {
   text-decoration:none;
   color:black;
-  padding:0px 50px 0px 50px;
-}
-
-.etable th .current {
-  text-decoration:none;
-  color:white;
   background-repeat: no-repeat;
-  background-position: 120% center;
+  background-position: 100% center;
+  background-image: url(/assets/rectangle.png);
 }
 
 .etable th .asc {
- // background-image: url(/assets/uparrow.png);
+ background-repeat: no-repeat;
+ background-position: 100% center;
+ background-image: url(/assets/downarrow.png);
 }
 
 .etable th .desc {
-  //background-image: url(/assets/downarrow.png);
+  background-repeat: no-repeat;
+  background-position: 100% center;
+  background-image: url(/assets/uparrow.png);
 }
 
 .etable .pics {
