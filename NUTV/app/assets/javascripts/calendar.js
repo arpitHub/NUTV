@@ -29,10 +29,10 @@ var days = function initDayView() {
     $(".content").addClass("blurred");
   });
   
-    $("#closeday").click(function() {
+  $("#closeday").click(function() {
     $(".dayview").addClass("hidden");
     $(".content").removeClass("blurred");
-  });  
+  });
 }
 
 var main = function setToday() {
