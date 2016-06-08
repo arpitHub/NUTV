@@ -23,6 +23,16 @@
     </div>
     <div class="content">
       <div class="leftnav">
+        <div class="login">
+          <% if current_user %>
+              Hello, <%= current_user.first_name %>
+              <%= link_to "Log out", logout_path, method: "delete" %>  
+             <%= link_to "Account", user_path(current_user) %>
+        <% else %> 
+             <%= link_to "Login", 'login' %>
+             <%= link_to "Signup", 'signup' %>
+        <% end %>
+        </div>
         <a class="twitter-timeline" href="https://twitter.com/NUTV" data-widget-id="727527561308311552">Tweets by @NUTV</a>
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
           <div class="ig-root 270h54 clearfix"> </div>

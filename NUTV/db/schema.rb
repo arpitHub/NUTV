@@ -11,15 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160513154951) do
+ActiveRecord::Schema.define(version: 20160607193746) do
 
   create_table "events", force: true do |t|
     t.date     "date"
     t.time     "starttime"
     t.time     "endtime"
     t.string   "kind"
-    t.text     "equipment",   default: "--- []\n"
-    t.text     "projectname"
+    t.text     "equipment",  default: "--- []\n"
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -27,12 +26,24 @@ ActiveRecord::Schema.define(version: 20160513154951) do
 
   create_table "projects", force: true do |t|
     t.text     "name"
-    t.text     "director"
-    t.text     "ep"
+    t.integer  "user1_id"
+    t.integer  "user2_id"
     t.text     "notes"
     t.string   "status"
     t.string   "department"
     t.string   "dates"
+    t.integer  "updatedby"
+    t.string   "emailchain", default: "--- []\n"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.string   "role"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

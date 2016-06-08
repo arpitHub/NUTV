@@ -777,7 +777,7 @@ body {
   border:1px solid black;
 }
 
-.addevent {
+.projaddevent {
   height:30px;
   width:50px;
   position:absolute;
@@ -790,7 +790,7 @@ body {
   border:1px solid black;
 }
 
-.addevent #plus {
+.projaddevent #plus {
   position:relative;
   top:2.5px;
   width:25px;
@@ -942,4 +942,34 @@ body {
   border-radius:5px;
   padding-bottom:20px;
 }
+
+/****USERS****/
+.login {
+  height:100vh;
+}
+
+.li-container {
+  text-align:center;
+  position:relative;
+  top:150px;
+  font-size:30px;
+}
+
+.su {
+  height:100vh;
+}
+
+.su-container {
+  text-align:center;
+  position:relative;
+  top:150px;
+  font-size:30px;
+}
+
+.userlist {
+  position:relative;
+  top:200px;
+}
+
+
 

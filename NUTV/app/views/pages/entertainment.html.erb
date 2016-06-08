@@ -49,9 +49,18 @@ editor, or director to name a few roles. Some of this school year’s videos are
 
 showcasing Entertainment’s increasing production diversity and quality.
         </p>
-        <h2>
+        <div class="projectlogin">
+          <% if current_user %> 
+             <h2>
           Click <a href="/entertainment/projects">here</a> to see all the projects!
-        </h2>
+          </h2>  
+        <% else %>
+          <h2>
+             You must be logged in to view projects, either <%= link_to "log in", 'login' %> or <%= link_to "sign up", 'signup' %>!
+          </h2>
+        <% end %>
+        </div>
+        
       </div>
     </div>
     <div class="footer">

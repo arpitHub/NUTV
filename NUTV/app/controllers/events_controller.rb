@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+	before_action :require_user
+	
   def index
     project = Project.find(params[:project_id])
     @events = project.events

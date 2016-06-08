@@ -37,7 +37,7 @@
             <p>
               EP
             </p>
-            <%= p.text_field :ep %> <br>
+            <%= f.collection_select(:user, @users, :id, :first_name, :last_name, :include_blank => "Select EP") %> <br>
             <p>
               Equipment
             </p>

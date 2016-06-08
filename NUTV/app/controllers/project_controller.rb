@@ -1,9 +1,11 @@
 class ProjectController < ApplicationController
+	before_action :require_user, only: [:index, :show]
 	helper_method :sort_column, :sort_direction
 	
   def index
 		@projects = Project.order(sort_column + " " + sort_direction)
 		@project = Project.new
+	  @users = User.role("ep")
 		@events = @project.events.new
 		@allevents = Event.all
 	end
@@ -16,6 +18,7 @@ class ProjectController < ApplicationController
 	
 	def edit
     @project = Project.find(params[:id])
+		@users = User.role("ep")
   end
 	
 	def update

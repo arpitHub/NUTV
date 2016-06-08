@@ -3,6 +3,7 @@
 <html>
   <head>
     <title>NUTV - Home</title>
+    <%= javascript_include_tag "create.js" %>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="/mobile.css" />
@@ -20,25 +21,32 @@
       <a href="/entertainment">Entertainment</a>
     </div>
     <div class="detailscontent">
-            <div class="detholder">
+      <div class="detholder">
         <div class="projtopnav">
           <h3>
             <%= @project.name %>
           </h3>
+          <% if current_user && (current_user.director? || current_user.id == @project.user1_id || current_user.id == @project.user2_id) %>
           <div class="editbuttons">
-            <%= link_to image_tag("edit.png"), edit_project_path(@project.id) %>
+            <%= link_to image_tag("edit.png"), edit_project_path(@project) %>
             <%= link_to image_tag("delete.png"), @project, method: :delete, data: {confirm: "Are you sure you want to delete this project?" } %>
-          </div>   
+          </div>
+          <% end %>
         <div id="back">
-          <a href="/entertainment/projects"><img id="edit" src="/assets/back.png"/></a>
+          <%= link_to image_tag("back.png"), :back %>
+          <%= link_to image_tag("list.png"), :index %>
         </div>
         </div>
         <div class="projdetails">
             <p>
-              Director: <%= @project.director %>
+              <% if @project.user1_id %>
+              Director: <%= link_to User.find(@project.user1_id).full_name, user_path(@project.user1_id) %>
+              <% end %>
             </p>
             <p>
-              EP: <%= @project.ep %>
+              <% if @project.user1_id %>
+              EP: <%= link_to User.find(@project.user2_id).full_name, user_path(@project.user2_id) %>
+              <% end %>
             </p> 
             <p>
               Status: <%= @project.status %>
@@ -46,8 +54,18 @@
             <p>
               Notes: <%= simple_format @project.notes %>
             </p>
+          
+          <p>
+            People on this project: <br> 
+            <% @project.emailchain.each do |c| %>
+            <%= User.find(c).full_name %>
+            <% end %>
+          </p>
           <p> <br> <br>
-          Last Updated: <%= l @project.updated_at.in_time_zone("Eastern Time (US & Canada)"), format: :daytime %>
+          Last Updated: <%= l @project.updated_at.in_time_zone("Eastern Time (US & Canada)"), format: :daytime %> 
+            <% if @project.updatedby %>
+              by <%= User.find(@project.updatedby).full_name %>
+            <% end %>
           </p>
           </div>
             <a class="signup" href="#"><div class="signupbutton">
@@ -60,10 +78,13 @@
             Events:
           </h2>
           </div>
-         <div class="addevent">
-           <a id="addevent" href="#"><img id="plus" src="/assets/plus.png"/></a>
+          <% if current_user && (current_user.director? || current_user.id == @project.user1_id || current_user.id == @project.user2_id) %>
+         <div class="projaddevent">
+           <a id="projaddeven" href="#"><img id="plus" src="/assets/plus.png"/></a>
          </div>
-             <% @events.each do |e| %>
+          <% end %>
+          <% if @events %>
+          <% @events.each do |e| %>
           <div class="indevent">
               <% if e.kind %>
                 <%= e.kind %> <br>
@@ -74,6 +95,7 @@
             <%= link_to "Details", [@project, e] %>
               </div>
             <% end %>
+          <% end %>
       </div>
     </div>      
       </div>

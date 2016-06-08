@@ -2,12 +2,15 @@ class CreateProjects < ActiveRecord::Migration
   def change
     create_table :projects do |t|
       t.text :name
-      t.text :director
-      t.text :ep
+      t.references :user1
+      t.references :user2
       t.text :notes
       t.string :status
       t.string :department
       t.string :dates
+      t.integer :updatedby
+      t.string :department
+      t.string :emailchain, array: true, default: []
       t.timestamps
     end
   end

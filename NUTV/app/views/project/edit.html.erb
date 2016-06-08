@@ -29,13 +29,15 @@
           <br>
           Name: <%= p.text_field :name, class: 'form-control' %> <br>
 
-          Director: <%= p.text_field :director, class: 'form-control' %> <br>
+          Director: <%= p.collection_select(:user1_id, User.all, :id, :full_name, {:prompt => "Select Director"}, class: 'form-control' ) %> <br>
           
-          EP: <%= p.text_field :ep, class: 'form-control' %> <br>
+          EP: <%= p.collection_select(:user2_id, @users, :id, :full_name, {:prompt => "Select EP"}, class: 'form-control') %> <br>
           
           Status: <%= p.select :status, [['Writing','Writing'],['Shooting','Shooting'],['Editing','Editing'],['Completed','Completed']] %> <br> <br>
           
           Notes: <%= p.text_area :notes, { :class => 'notesarea' } %> <br>
+          
+          <%= p.hidden_field :updatedby, :value => current_user.id %>
 
           <br>
          <%= p.submit "Save changes", class: "btn btn-primary" %>

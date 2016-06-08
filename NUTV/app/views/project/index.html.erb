@@ -38,8 +38,8 @@
          <table class="etable">
           <tr>
             <th>Name <%= sortable "name", image_tag("transparent.png") %></th> 
-            <th>Director <%= sortable "director", image_tag("transparent.png") %>  </th> 
-            <th>EP <%= sortable "ep", image_tag("transparent.png") %> </th>
+            <th>Director <%= sortable "user1_id", image_tag("transparent.png") %>  </th> 
+            <th>EP <%= sortable "user2_id", image_tag("transparent.png") %> </th>
             <th>Date Started <%= sortable "created_at", image_tag("transparent.png") %></th>
             <th>Status <%= sortable "status", image_tag("transparent.png") %> </th>
             <th class="pics"> </th>
@@ -47,8 +47,8 @@
         <% @projects.each do |p| %>
           <tr>
             <td><%= p.name %></td>
-            <td><%= p.director %></td>
-            <td><%= p.ep %></td>
+            <td><%= User.find(p.user1_id).full_name if p.user1_id %></td>
+            <td><%= User.find(p.user2_id).first_name if p.user2_id %> <%= User.find(p.user2_id).last_name if p.user2_id %></td>
             <td><%= l p.created_at, format: :day %></td>
             <td><%= p.status %></td>
             <td class="pics"><%= link_to image_tag("open.png"), project_path(p) %></td>
@@ -72,7 +72,7 @@
                 <div id="editprogress"><%= link_to image_tag("open.png"), project_path(p) %></div>
                   <div class="progresstext">
                     <%= p.name %> <br>
-                    <%= p.director %>
+                    <%= User.find(p.user1_id).full_name if p.user1_id %>
                   </div>
               </div>
               </tr>
@@ -94,7 +94,7 @@
                 <div id="editprogress"><%= link_to image_tag("open.png"), project_path(p) %></div>
                   <div class="progresstext">
                     <%= p.name %> <br>
-                    <%= p.director %>
+                    <%= User.find(p.user1_id).full_name if p.user1_id %>
                   </div>
                 </div>
               </tr>
@@ -116,7 +116,7 @@
                   <div id="editprogress"><%= link_to image_tag("open.png"), project_path(p) %></div>
                   <div class="progresstext">
                     <%= p.name %> <br>
-                    <%= p.director %>
+                    <%= User.find(p.user1_id).full_name if p.user1_id %>
                   </div>
                 </div>
               </tr>
@@ -138,7 +138,7 @@
                 <div id="editprogress"><%= link_to image_tag("open.png"), project_path(p) %></div>
                   <div class="progresstext">
                     <%= p.name %> <br>
-                    <%= p.director %>
+                    <%= User.find(p.user1_id).full_name if p.user1_id %>
                   </div>
               </div>
               </tr>
@@ -556,11 +556,11 @@
             <p>
               Director
             </p>
-            <%= p.text_field :director, :size => 60 %> <br>
+            <%= p.collection_select(:user1_id, User.all, :id, :full_name, {:prompt => "Select Director"}) %>  <br>
             <p>
               EP
             </p>
-            <%= p.text_field :ep, :size => 60 %> <br>
+            <%= p.collection_select(:user2_id, @users, :id, :full_name, {:prompt => "Select EP"}) %> <br>
             <p>
               Status
             </p>
@@ -569,6 +569,9 @@
               Notes
             </p>
             <%= p.text_area :notes, { :class => 'notesarea' } %> <br>  <br>
+            
+            <%= p.hidden_field :emailchain, :multiple => true, :value => current_user.id.to_s %>
+            <%= p.hidden_field :emailchain, :multiple => true, :value => :secondid %>
 
             <input type="checkbox" name="event" value="Event" id="eventbox">Add Event<br> <br>
             <div id="addevent" class="hidden">

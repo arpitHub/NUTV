@@ -51,6 +51,11 @@ var main = function() {
       $(".equipmentreserve").addClass("hidden");
     }
   });
+  
+  $(".projaddevent").click(function() {
+    $("#eventform").removeClass("hidden");
+    $(".detailscontent").addClass("blurred");
+  });
     
 }
 
