@@ -1,5 +1,5 @@
 class ProjectController < ApplicationController
-	before_action :require_user, only: [:index, :show]
+	before_action :require_user
 	helper_method :sort_column, :sort_direction
 	
   def index
@@ -14,6 +14,7 @@ class ProjectController < ApplicationController
   	@project = Project.find(params[:id])
 		@events = @project.events
 		@event = @project.events.new
+		@emailchain = @project.emailchain
 	end
 	
 	def edit

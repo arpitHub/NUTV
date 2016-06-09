@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   post '/projects' => 'project#create'
   get '/entertainment/projects/:id' => 'project#show', as: :project
   get 'projects/:id/edit' => 'project#edit'
+  get 'projects/:id' => 'project#edit'
   patch '/entertainment/projects/:id' => 'project#update'
   delete '/entertainment/projects/:id' => 'project#destroy', as: :delete
   get 'entertainment/projects' => 'event#index', as: :event_index
@@ -24,10 +25,23 @@ Rails.application.routes.draw do
   post 'entertainment/projects' => 'event#create'
   get '/entertainment/projects/:project_id/event/:id' => 'event#show', as: :event
   get '/entertainment/projects/:project_id/event/:id/edit' => 'event#edit'
+  
+  get 'signup' => 'users#new'
+  get 'login' => 'sessions#new'
+  post 'login' => 'sessions#create'
+  delete 'logout' => 'sessions#destroy'
+  get 'users/:id' => 'users#show'
+  get 'users/:id/edit' => 'users#edit'
+  patch '/users/:id' => 'users#update'
+  delete '/users/:id' => 'users#destroy'
+  delete '/users/:id' => 'sessions#destroy'
+  get 'admin' => 'users#index'
+  
   resources :project, only: [:index, :show, :edit, :destroy]
   resources :project do
     resources :events
   end
+  resources :users, only: [:index, :create, :edit, :destroy]
 
   #resources :event, :path => 'event'
 

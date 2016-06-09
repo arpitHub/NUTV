@@ -56,9 +56,10 @@
             </p>
           
           <p>
-            People on this project: <br> 
-            <% @project.emailchain.each do |c| %>
-            <%= User.find(c).full_name %>
+            People on this project: <br>
+            <% digits = @project.emailchain.split(',') %>
+            <% digits.each do |d| %>
+               <%= link_to User.find(d).full_name, user_path(d) %> <br>
             <% end %>
           </p>
           <p> <br> <br>
@@ -68,10 +69,14 @@
             <% end %>
           </p>
           </div>
-            <a class="signup" href="#"><div class="signupbutton">
-            Sign Up!
-            </div></a>
-
+        <% lastupdated = @project.updated_at %>
+        <% if @project.emailchain.exclude?(current_user.id.to_s) %>
+          <%= form_for(@project) do |p| %>
+            <%= p.hidden_field :emailchain, :value => @project.emailchain += "," + current_user.id.to_s %>
+            <%= p.hidden_field :updated_at, :value => lastupdated %>
+            <%= p.submit "Sign Up!", :class => "signupbutton emailsignup" %>
+          <% end %>
+        <% end %>
         <div class="eventdetails">
           <div class="eventsheader">
           <h2>

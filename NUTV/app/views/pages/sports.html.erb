@@ -2,8 +2,7 @@
 
 <html>
   <head>
-    <title>NUTV - Home</title>
-    <link type="text/css" rel="stylesheet" href="style.css"/>
+    <title>NUTV - Sports</title>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="/mobile.css" />
@@ -20,26 +19,64 @@
       <a href="/sports">Sports</a>
       <a href="/entertainment">Entertainment</a>
     </div>
+    <img class="departmentimage" id="entimage" src="/assets/sports.png" alt=sports />
     <div class="econtent">
-      <div class="eleftnav">
+      
+         <div class="eabout">
         <h3>
-          <i>About Sports</i>
+          About Sports
         </h3>
         <p>
-          <b>Meetings:</b> <br>
+          Love sports? So do we! NUTV Sports is Northeastern’s only student-run video sports reporting organization, which is a long winded way of saying that we have awesome camera equipment and use it to make whatever we want! 
+          Whether you’re interested in building a reel or just talking sports on camera, NUTV Sports is the most fun way to do it. 
+          In the past our team of friends has produced our own SportsCenter-esque studio show, made field reports from Northeastern and major league sporting events, and interviewed some of the best athletes in their field. 
+          What we do next is up to YOU!
+        </p>
+        <div class="projectlogin">
+          <% if current_user %> 
+             <h2>
+          Click <a href="/entertainment/projects">here</a> to see all the projects!
+          </h2>  
+        <% else %>
+          <h2>
+             You must be logged in to view projects, either <%= link_to "log in", 'login' %> or <%= link_to "sign up", 'signup' %>!
+          </h2>
+        <% end %>
+        </div>
+        
+      </div>
+      <div class="eleftnav">
+        <h3>
+          <i>Meetings</i>
+        </h3>
+        <p>
+          <b>When:</b> <br>
           Tuesdays <br>
           232 Curry - 7pm <br>
           <br>
           <b>Directors:</b> <br>
-          Matt MacCormack <br>
-          Emil Gruber
+          Michael Passarelli <br>
+          Gavin Davis
         </p>
       </div>
-    </div>
-    <div class="footer">
-      <h3>
-        Design by Eric Gift, 2016
-      </h3>
+      <div class="highlightvids">
+          <h2>
+            Sports Videos
+          </h2>
+          <div class="videocontainer">
+            <iframe class="grid" src="https://www.youtube.com/v/videoseries?list=PL3s6etJXhUBH9xuGzqSRiT4sCq6Hy6SFc&index=0"></iframe>
+          </div>
+          <div class="videocontainer">
+            <iframe class="grid" src="https://www.youtube.com/v/videoseries?list=PL3s6etJXhUBH9xuGzqSRiT4sCq6Hy6SFc&index=1"></iframe>
+          </div>
+          <div class="videocontainer">
+            <iframe class="grid" src="https://www.youtube.com/v/videoseries?list=PL3s6etJXhUBH9xuGzqSRiT4sCq6Hy6SFc&index=2"></iframe>
+          </div>
+          <div class="videocontainer">
+            <iframe class="grid" src="https://www.youtube.com/v/videoseries?list=PL3s6etJXhUBH9xuGzqSRiT4sCq6Hy6SFc&index=3"></iframe>
+          </div> 
+      </div>
+
     </div>
   </body>
 </html>

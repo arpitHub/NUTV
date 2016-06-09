@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
     end
   
     def eboard? 
-      self.role == 'eboard' 
+      self.role == 'eboard'
     end
   
     def director? 
@@ -22,6 +22,10 @@ class User < ActiveRecord::Base
   
     def user? 
       self.role == 'user' 
+    end
+  
+    def update_emails(email)
+      self.emailchain << email
     end
   
 end

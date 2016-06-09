@@ -56,8 +56,12 @@ var main = function() {
     $("#eventform").removeClass("hidden");
     $(".detailscontent").addClass("blurred");
   });
-    
+  
+  $(".signupbutton").unbind().click(function() {
+    $(".signupbutton").addClass("hidden");
+    alert(currUser);
+  });
 }
-
+ 
 $(document).ready(main);
 $(document).on('page:load', main);

@@ -19,35 +19,34 @@
       <a href="/sports">Sports</a>
       <a href="/entertainment">Entertainment</a>
     </div>
-    <div class="detailscontent">
-      <div class="detholder">
-        <div class="projtopnav">
-          <h3>
-            <%= @user.full_name %>
-          </h3>
-        <div id="back">
-          <%= link_to image_tag("back.png"), :back %>
+    <div class="editproject">
+      <div class="projview">
+        <div class="editclose">
+          <%= link_to image_tag("delete.png"), @user, method: :delete, data: {confirm: "Are you sure you want to delete your account?" } %>
+          <%= link_to image_tag("close.png"), :back %>
         </div>
-          <% if current_user && (current_user.id == @user.id) %>
-          <div class="editbuttons">
-            <%= link_to image_tag("edit.png"), edit_user_path(@user) %>
-          </div>
-          <% end %>
+        <div class="editform">
+          <br>
+        <%= form_for(@user) do |f| %>
+          <%= f.text_field :first_name, :placeholder => "First name" %> <br>
+          <%= f.text_field :last_name, :placeholder => "Last name" %> <br>
+          <%= f.email_field :email, :placeholder => "Email" %> <br>
+          <%= f.password_field :password, :placeholder => "Password" %> <br>
+          <%= f.hidden_field :role, :value => "user" %>
+          <%= f.submit "Update", class: "btn-submit" %>
+        <% end %>
         </div>
-       <p>
-         Projects <br>
-        </p>
-        <% @projects.each do |p| %>
-            <%= p.name %>
-            <%= link_to image_tag("open.png"), project_path(p) %> <br>
-        <% end %>      
-      </div>      
       </div>
+    </div>
+     <div class="edittitle">
+          <h3>
+            Edit Account
+          </h3>
+    </div>
     <div class="footer">
       <h3>
-       
+        Design by Eric Gift, 2016
       </h3>
     </div>
   </body>
 </html>
-
