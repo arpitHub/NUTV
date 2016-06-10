@@ -3,7 +3,6 @@
 <html>
   <head>
     <title>NUTV - Home</title>
-    <link type="text/css" rel="stylesheet" href="style.css"/>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="/mobile.css" />
@@ -14,56 +13,98 @@
   <body class="homebody">
     <div class="header">
       <a id="logo" href="/home"><img src="/assets/nutv.jpg"/></a>
-      <a class="social" href="https://www.instagram.com/northeasternuniversitytv/"><img id="insta" src="/assets/instagram.png"/></a>
-      <a class="social" href="https://twitter.com/NUTV"><img id="twitter" src="/assets/twitter.png"/></a>
-      <a class="social" href="https://www.facebook.com/northeasterntv#"><img id="fb" src="/assets/facebook.jpg"/></a>
       <a href="/news">News</a>
       <a href="/sports">Sports</a>
       <a href="/entertainment">Entertainment</a>
     </div>
-    <div class="content">
-      <div class="leftnav">
-        <div class="login">
-          <% if current_user %>
-              Hello, <%= current_user.first_name %>
-              <%= link_to "Log out", logout_path, method: "delete" %>  
-             <%= link_to "Account", user_path(current_user) %>
-        <% else %> 
-             <%= link_to "Login", 'login' %>
-             <%= link_to "Signup", 'signup' %>
-        <% end %>
+    <div class="homeimage">
+        <img id="camera" src="/assets/camera.png" alt="camera" />
+       <div class="rightbox">
+      <div class="accountbox">
+        <% if current_user %>
+        <h2>
+          Hello, <%= current_user.first_name %>!
+        </h2>
+          <%= link_to user_path(current_user) do %>
+            <div id="loginbox" class="profile">
+              <p>
+                Account
+              </p>
+            <img class="go" src="/assets/go.png" alt="go" /> 
+          </div>
+         <% end %>
+        <%= link_to logout_path, method: "delete" do %> 
+          <div id="signupbox" class="profile">
+            <p>
+              Logout
+            </p>
+            <img class="go" src="/assets/go.png" alt="go" />
         </div>
-        <a class="twitter-timeline" href="https://twitter.com/NUTV" data-widget-id="727527561308311552">Tweets by @NUTV</a>
-        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-          <div class="ig-root 270h54 clearfix"> </div>
-        <script>
-          scripts=[];
-          host='http://www.uptsi.com';
-          js=document.createElement('script');
-          js.src=host+"/tools/widgets/b/l7BAb5cVi3P4H636ga2h7l3k51d8j6fNjk45O8hi03K0D26L3g8711f2435SIG916e67b2";
-          scripts[0] = js;
-            for(i=0;i< scripts.length; i++){document.getElementsByTagName("HEAD")[0].appendChild(scripts[i]); }
-        </script>
-      </div>
-        <div class="videos">
+           <% end %> 
+        <% else %>
           <h2>
-            The Latest From NUTV
+            Welcome to NUTV!
           </h2>
-          <div class="videocontainer">
-            <iframe class="grid" src="https://www.youtube.com/v/videoseries?list=PL3s6etJXhUBH9xuGzqSRiT4sCq6Hy6SFc&index=0"></iframe>
+          <a class="aprofile" href="/login">
+            <div id="loginbox" class="profile" >
+              <p>
+                Login
+              </p>
+              <img class="go" src="/assets/go.png" alt="go" /> 
+            </div>
+            </a>
+        <a class="aprofile" href="/signup">
+          <div id="signupbox" class="profile">
+            <p>
+              Signup
+            </p>
+            <img class="go" src="/assets/go.png" alt="go" />
           </div>
-          <div class="videocontainer">
-            <iframe class="grid" src="https://www.youtube.com/v/videoseries?list=PL3s6etJXhUBH9xuGzqSRiT4sCq6Hy6SFc&index=1"></iframe>
-          </div>
-          <div class="videocontainer">
-            <iframe class="grid" src="https://www.youtube.com/v/videoseries?list=PL3s6etJXhUBH9xuGzqSRiT4sCq6Hy6SFc&index=2"></iframe>
-          </div>
-          <div class="videocontainer">
-            <iframe class="grid" src="https://www.youtube.com/v/videoseries?list=PL3s6etJXhUBH9xuGzqSRiT4sCq6Hy6SFc&index=3"></iframe>
-          </div> 
+           </a>  
+        <% end %>
       </div>
-      <div class="bottom">
-      <div class="aboutus">
+      <div class="socialbox">
+        <a href="https://www.facebook.com/northeasterntv#">
+          <div id="fbbox" class="sbox">
+            <p>
+              connect
+            </p>
+            <img class="fbback" src="/assets/facebookf.png"/>
+          </div>
+        </a>
+        <a href="https://twitter.com/NUTV">
+          <div id="twitterbox" class="sbox">
+            <p>
+              with
+            </p>
+            <img class="twitterback" src="/assets/twitterbird.png"/>
+          </div>
+        </a>
+        <a href="https://www.instagram.com/northeasternuniversitytv/">
+          <div id="instabox" class="sbox">
+            <p>
+              us!
+            </p>
+            <img class="instaback" src="/assets/instagram.png"/>
+          </div>
+        </a>
+      </div>    
+      </div>
+      
+      <% if current_user %>
+      <a href="/entertainment/projects">
+      <div class="rightlink">
+        <h2>
+          Projects
+        </h2>
+        <img class="gop" src="/assets/go.png" alt="go" />
+      </div>
+      </a>
+      <% end %>
+      </div>
+    <div class="content">
+      </div>
+       <div class="aboutus">
         <h3>
           About Us
         </h3>
@@ -87,6 +128,24 @@ people make awesome productions. Everyone is welcome, so come by, learn, make, a
 time!
         </p>
       </div>
+        <div class="videos">
+          <h2>
+            The Latest From NUTV
+          </h2>
+          <div class="videocontainer">
+            <iframe class="grid" src="https://www.youtube.com/v/videoseries?list=PL3s6etJXhUBH9xuGzqSRiT4sCq6Hy6SFc&index=0"></iframe>
+          </div>
+          <div class="videocontainer">
+            <iframe class="grid" src="https://www.youtube.com/v/videoseries?list=PL3s6etJXhUBH9xuGzqSRiT4sCq6Hy6SFc&index=1"></iframe>
+          </div>
+          <div class="videocontainer">
+            <iframe class="grid" src="https://www.youtube.com/v/videoseries?list=PL3s6etJXhUBH9xuGzqSRiT4sCq6Hy6SFc&index=2"></iframe>
+          </div>
+          <div class="videocontainer">
+            <iframe class="grid" src="https://www.youtube.com/v/videoseries?list=PL3s6etJXhUBH9xuGzqSRiT4sCq6Hy6SFc&index=3"></iframe>
+          </div> 
+      </div>
+      <div class="bottom">
       <div class="nav">
         <ul>
         <li id="eboard"><a href="/eboard">E-Board</a></li>
@@ -94,7 +153,8 @@ time!
       </ul>
       </div>
       </div>
-            </div>
+
+    </div>
     <div class="footer">
       <h3>
 

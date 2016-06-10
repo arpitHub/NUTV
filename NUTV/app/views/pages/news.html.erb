@@ -31,17 +31,6 @@
           We aim to shed light on issues that directly impact students, as well as provide nonfiction entertainment to our viewers. 
           Check out some of our videos to learn more about what's going on around you!
         </p>
-        <div class="projectlogin">
-          <% if current_user %> 
-             <h2>
-          Click <a href="/entertainment/projects">here</a> to see all the projects!
-          </h2>  
-        <% else %>
-          <h2>
-             You must be logged in to view projects, either <%= link_to "log in", 'login' %> or <%= link_to "sign up", 'signup' %>!
-          </h2>
-        <% end %>
-        </div>
         
       </div>
       <div class="eleftnav">
@@ -56,6 +45,27 @@
           <b>Director:</b> <br>
           Scott Adelberg
         </p>
+      </div>
+       <div class="videoheader">
+          <h2>
+            Best of News
+          </h2>
+      </div>
+      <div class="highlightvids">
+        <div class="vidbox">
+          <div class="sportsvid">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/31Jk-hcpesg" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <div class="sportsvid">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/tPUZBsWR37k" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <div class="sportsvid">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/1XfjPAq6vmE" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <div class="sportsvid">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/9ua3zPiJioI" frameborder="0" allowfullscreen></iframe>
+          </div>  
+        </div>
       </div>
 
     </div>

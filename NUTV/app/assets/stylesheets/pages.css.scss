@@ -11,6 +11,7 @@
   background-image:    url(/assets/cityscape.png);
   background-repeat:   no-repeat;
   background-position: 200px -70px;
+  border-bottom: 1px solid black;
 }
 
 .header a {
@@ -85,6 +86,228 @@ body {
 
 /****HOME****/
 
+#camera {
+  width:103vw;
+  z-index:0;
+  margin-bottom:-5px;
+}
+
+.homeimage {
+  position:relative;
+  top:15px;
+  left:-9px;
+  width:99vw;
+  overflow:hidden;
+  z-index:0;
+    -moz-box-shadow: 1px 0px 15px rgba(0,0,0,1);
+  -webkit-box-shadow: 1px 0px 15px rgba(0,0,0,1);
+  box-shadow: 1px 0px 15px rgba(0,0,0,1);
+}
+
+.rightbox {
+  position:absolute;
+  top:100px;
+  right:30px;
+  z-index:500px;
+  width:600px;
+}
+
+.accountbox {
+  position:absolute;
+  top:0px;
+  right:0px;
+  width:400px;
+  z-index:8;
+  text-align:center;
+  border-radius:15px;
+  border:1px solid black;
+  -moz-box-shadow: 1px 0px 15px rgba(0,0,0,1);
+  -webkit-box-shadow: 1px 0px 15px rgba(0,0,0,1);
+  box-shadow: 1px 0px 15px rgba(0,0,0,1);
+}
+
+.accountbox h2 {
+  font-size:40px;
+}
+
+.profile {
+  position:relative;
+  float:left;
+  width:200px;
+  height:150px;
+  transition: .3s background-color;
+}
+
+.profile p {
+  font-size:30px;
+  color:white;
+  left:50px;
+}
+
+.profile a {
+  text-decoration:none;
+}
+
+#loginbox {
+  border-radius: 0px 0px 0px 15px;
+}
+
+#loginbox:hover{
+  background-color:#58BF58;
+}
+
+#signupbox {
+   border-radius: 0px 0px 15px 0px;
+}
+
+#signupbox:hover{
+  background-color:#89B0DE;
+}
+
+.go {
+  position:relative;
+  width:30px;
+  height:50px;
+  top:-10px;
+  left:10px;
+}
+
+.socialbox {
+  position:absolute;
+  top:330px;
+  left:50%;
+  margin-left:-300px;
+  width:600px;
+  z-index:8;
+  text-align:center;
+  border-radius:15px;
+  border:1px solid black;
+  -moz-box-shadow: 1px 0px 15px rgba(0,0,0,1);
+  -webkit-box-shadow: 1px 0px 15px rgba(0,0,0,1);
+  box-shadow: 1px 0px 15px rgba(0,0,0,1);
+}
+
+.socialbox a {
+  text-decoration:none;
+}
+
+.sbox p {
+  position:absolute;
+  text-decoration:none;
+  color:white;
+  font-size:45px;
+  left:50px;
+  top:0px;
+}
+
+#twitterbox p {
+  top:140px;
+  left:70px;
+}
+
+#instabox p {
+  top:280px;
+  left:90px;
+}
+
+.sbox {
+  height:140px;
+  overflow:hidden;
+}
+
+.sbox:hover {
+  opacity:1;
+}
+
+.fbback {
+  position:relative;
+  top:-30px;
+  left:100px;
+  width:200px;
+  height:250px;
+}
+
+.twitterback {
+  position:relative;
+  top:-15px;
+  left:100px;
+  width:300px;
+  height:175px;
+}
+
+.instaback {
+  position:relative;
+  top:-180px;
+  left:80px;
+  width:400px;
+  height:400px;
+}
+
+#fbbox {
+  opacity:.6;
+  border-radius: 15px 15px 0px 0px;
+  background-color:#3b5998;
+  transition: .2s opacity;
+}
+
+#fbbox:hover {
+  opacity:1;
+}
+
+#twitterbox {
+  opacity:.6;
+  background-color:#00aced;
+  transition: .3s opacity;
+}
+
+#twitterbox:hover {
+  opacity:1;
+}
+
+#instabox {
+  opacity:.6;
+  border-radius: 0px 0px 15px 15px;
+  background-color:#9b6954;
+  transition: .3s opacity;
+}
+
+#instabox:hover {
+  opacity:1;
+}
+
+.rightlink {
+  position:absolute;
+  left:120px;
+  bottom:100px;
+  width:300px;
+  height:100px;
+  border-radius:15px;
+  background-color:green;
+  transition: .3s background-color;
+  -moz-box-shadow: 1px 0px 15px rgba(0,0,0,1);
+  -webkit-box-shadow: 1px 0px 15px rgba(0,0,0,1);
+  box-shadow: 1px 0px 15px rgba(0,0,0,1);
+}
+
+.rightlink:hover {
+  background-color:#66D232;
+}
+
+.rightlink h2 {
+  color:white;
+  font-size:40px;
+  line-height:30px;
+  padding-left:50px;
+}
+
+.gop {
+  position:relative;
+  top:-70px;
+  left:220px;
+  width:30px;
+  height:50px;
+}
+
 .homebody {
   min-height:1500px;
 }
@@ -105,9 +328,23 @@ body {
 }
 
 .videos {
-  position:absolute;
-  left:-10px;
-  top:0px;
+  position:relative;
+  top:450px;
+  width:1600px;
+  height:800px;
+  padding-bottom:50px;
+  margin-bottom:100px;
+  margin-left:-800px;
+  left:50%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url(/assets/homeback.png);
+  overflow:hidden;
+  /*
+  position:relative;
+  left:50%;
+  margin-left:-600px;
+  top:450px;
   width:1200px;
   height:800px;
   text-align:center;
@@ -115,18 +352,18 @@ body {
   background-color:#9A0000;
   margin-bottom:100px;
   border-radius:5px;
-  margin-left:10px;
   border: 2px solid white;
   -moz-box-shadow: 1px 0px 30px rgba(0,0,0,1);
   -webkit-box-shadow: 1px 0px 30px rgba(0,0,0,1);
-  box-shadow: 1px 0px 30px rgba(0,0,0,1);
+  box-shadow: 1px 0px 30px rgba(0,0,0,1); */
 }
 
 .videocontainer {
   float:left;
-  display:relative;
+  position:relative;
   padding:20px;
   width:560px;
+  left:200px;
 }
 
 .ig-root_270h54_clearfix {
@@ -143,8 +380,7 @@ body {
   font-size:50px;
   color:white;
   -webkit-text-stroke: 2px black;
-  margin-bottom:0px;
-  margin-top:10px;
+  margin:10px 100px 0px 500px;
 }
 
 .bottom {
@@ -155,21 +391,18 @@ body {
 }
 
 .aboutus {
-  position: relative;
-  top:0px;
-  left:130px;
+  position: absolute;
+  margin-top:0px;
+  left:50%;
+  margin-left:-650px;
   height:300px;
   width:1300px;
   text-align:center;
-  background-color:#B8BAC0;
   border-radius:10px;
-  -moz-box-shadow: 1px 0px 30px rgba(0,0,0,1);
-  -webkit-box-shadow: 1px 0px 30px rgba(0,0,0,1);
-  box-shadow: 1px 0px 30px rgba(0,0,0,1);
 }
 
 .aboutus h3 {
-  font-size:30px;
+  font-size:40px;
   padding-top:20px;
   font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
@@ -183,8 +416,7 @@ body {
 
 .nav {
   position: relative;
-  top:50px;
-  left:20px;
+  bottom:1575px;
 }
 
 .nav ul {
@@ -318,7 +550,45 @@ body {
 .highlightvids {
   position:relative;
   top:-200px;
-  background-color:white;
+  width:1600px;
+  height:700px;
+  padding-bottom:50px;
+  margin-bottom:100px;
+  margin-left:-820px;
+  left:50%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url(/assets/videobackground.png);
+  overflow:hidden;
+}
+
+.vidbox {
+  position:relative;
+  left:200px;
+  top:20px;
+}
+
+.sportsvid {
+  float:left;
+  display:absolute;
+  padding:20px;
+  width:560px;
+
+}
+
+.videoheader {
+  position:relative;
+  top:-250px;
+  left:100px;
+  border-bottom:1px solid black;
+  width:1300px;
+  margin-bottom:-30px;
+}
+
+.videoheader h2 {
+  margin-bottom:0px;
+  font-size:40px;
+  padding-left:30px;
 }
 
 /**** PROJECTS ****/

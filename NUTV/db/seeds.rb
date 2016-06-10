@@ -8,7 +8,7 @@
 
 eric = User.create(first_name: 'Eric', last_name: 'Gift', email: 'giftsoccer14@gmail.com', password: 'EJG17141lns', password_confirmation: 'EJG17141lns', role: 'user')
 bob = User.create(first_name: 'Bob', last_name: 'Boberson', email: 'giftsoccer12@gmail.com', password: 'EJG17141lns', password_confirmation: 'EJG17141lns', role: 'ep')
-bob.id = 17
+bob.id = 20
 bob.save!
 
 p1 = Project.create(name: "Martian Parody", user1: eric, user2: bob, dates: "1", status:"Completed", emailchain: [1])

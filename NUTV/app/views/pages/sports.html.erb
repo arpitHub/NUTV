@@ -32,18 +32,6 @@
           In the past our team of friends has produced our own SportsCenter-esque studio show, made field reports from Northeastern and major league sporting events, and interviewed some of the best athletes in their field. 
           What we do next is up to YOU!
         </p>
-        <div class="projectlogin">
-          <% if current_user %> 
-             <h2>
-          Click <a href="/entertainment/projects">here</a> to see all the projects!
-          </h2>  
-        <% else %>
-          <h2>
-             You must be logged in to view projects, either <%= link_to "log in", 'login' %> or <%= link_to "sign up", 'signup' %>!
-          </h2>
-        <% end %>
-        </div>
-        
       </div>
       <div class="eleftnav">
         <h3>
@@ -59,22 +47,26 @@
           Gavin Davis
         </p>
       </div>
-      <div class="highlightvids">
+      <div class="videoheader">
           <h2>
-            Sports Videos
+            Best of Sports
           </h2>
-          <div class="videocontainer">
-            <iframe class="grid" src="https://www.youtube.com/v/videoseries?list=PL3s6etJXhUBH9xuGzqSRiT4sCq6Hy6SFc&index=0"></iframe>
+      </div>
+      <div class="highlightvids">
+        <div class="vidbox">
+          <div class="sportsvid">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/cQJ-X3Dpus8" frameborder="0" allowfullscreen></iframe>
           </div>
-          <div class="videocontainer">
-            <iframe class="grid" src="https://www.youtube.com/v/videoseries?list=PL3s6etJXhUBH9xuGzqSRiT4sCq6Hy6SFc&index=1"></iframe>
+          <div class="sportsvid">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/fnVExXGLnP8" frameborder="0" allowfullscreen></iframe>
           </div>
-          <div class="videocontainer">
-            <iframe class="grid" src="https://www.youtube.com/v/videoseries?list=PL3s6etJXhUBH9xuGzqSRiT4sCq6Hy6SFc&index=2"></iframe>
+          <div class="sportsvid">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/QJkZQjdymHQ" frameborder="0" allowfullscreen></iframe>
           </div>
-          <div class="videocontainer">
-            <iframe class="grid" src="https://www.youtube.com/v/videoseries?list=PL3s6etJXhUBH9xuGzqSRiT4sCq6Hy6SFc&index=3"></iframe>
-          </div> 
+          <div class="sportsvid">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/-5wNvgHiV1Y" frameborder="0" allowfullscreen></iframe>
+          </div>  
+        </div>
       </div>
 
     </div>

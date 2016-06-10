@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20160607193746) do
     t.string   "department"
     t.string   "dates"
     t.integer  "updatedby"
-    t.string   "emailchain", default: "--- []\n"
+    t.string   "emailchain"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

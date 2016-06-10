@@ -10,7 +10,7 @@ class CreateProjects < ActiveRecord::Migration
       t.string :dates
       t.integer :updatedby
       t.string :department
-      t.string :emailchain, array: true, default: []
+      t.string :emailchain
       t.timestamps
     end
   end
