@@ -8,12 +8,10 @@
 
 eric = User.create(first_name: 'Eric', last_name: 'Gift', email: 'giftsoccer14@gmail.com', password: 'EJG17141lns', password_confirmation: 'EJG17141lns', role: 'user')
 bob = User.create(first_name: 'Bob', last_name: 'Boberson', email: 'giftsoccer12@gmail.com', password: 'EJG17141lns', password_confirmation: 'EJG17141lns', role: 'ep')
-bob.id = 20
-bob.save!
 
 p1 = Project.create(name: "Martian Parody", user1: eric, user2: bob, dates: "1", status:"Completed", emailchain: [1])
-p2 = Project.create(name: "Sports test", user1: eric, user2: bob, dates: "5/5/2016", status:"Completed")
-Project.create(name: "For the Kids", user1: eric, user2: bob, dates: "5/5/2016", status:"Writing")
-Project.create(name: "Test", user1: eric, user2: bob, dates: "5/5/2016", status:"Shooting")
+p2 = Project.create(name: "Sports test", user1: eric, user2: bob, dates: "5/5/2016", status:"Completed", department:"entertainment")
+Project.create(name: "For the Kids", user1: eric, user2: bob, dates: "5/5/2016", status:"Writing", department:"sports")
+Project.create(name: "Test", user1: eric, user2: bob, dates: "5/5/2016", status:"Shooting", department: "news")
 Project.create(name: "Test2", user1: eric, user2: bob, dates: "5/5/2016", status:"Editing")
 

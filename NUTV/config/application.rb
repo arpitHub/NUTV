@@ -2,8 +2,8 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
-gmail_username: 'giftsoccer14@gmail.com'
-gmail_password: 'erocksolid22'
+#gmail_username: 'giftsoccer14@gmail.com'
+#gmail_password: ''
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.

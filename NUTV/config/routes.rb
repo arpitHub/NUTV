@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   post 'entertainment/projects' => 'event#create'
   get '/entertainment/projects/:project_id/event/:id' => 'event#show', as: :event
   get '/entertainment/projects/:project_id/event/:id/edit' => 'event#edit'
+  get '/sports/projects' => "project#sportsindex"
+  get '/news/projects' => "project#newsindex"
   
   get 'signup' => 'users#new'
   get 'login' => 'sessions#new'

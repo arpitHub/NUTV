@@ -3,7 +3,23 @@ class ProjectController < ApplicationController
 	helper_method :sort_column, :sort_direction
 	
   def index
-		@projects = Project.order(sort_column + " " + sort_direction)
+		@projects = Project.department("entertainment").order(sort_column + " " + sort_direction)
+		@project = Project.new
+	  @users = User.role("ep")
+		@events = @project.events.new
+		@allevents = Event.all
+	end
+	
+	def sportsindex
+		@projects = Project.department("sports").order(sort_column + " " + sort_direction)
+		@project = Project.new
+	  @users = User.role("ep")
+		@events = @project.events.new
+		@allevents = Event.all
+	end
+	
+	def newsindex
+		@projects = Project.department("sports").order(sort_column + " " + sort_direction)
 		@project = Project.new
 	  @users = User.role("ep")
 		@events = @project.events.new

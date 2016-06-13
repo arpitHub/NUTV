@@ -26,7 +26,7 @@
     </div>
     <div class="topbanner" id="sportsbanner">
       <h2>
-        entertainment
+        news
       </h2>
       <div id="tabs" class="tab-nav">
           <a href="#" id="listlink" class="tab-nav-link is-active">List View</a>
@@ -39,7 +39,7 @@
         </p>
           <img id="plus" src="/assets/plus.png"/>
         </a>
-      <img id="clapper" src="/assets/clapper.jpg"/>
+      <img id="skyline" src="/assets/skyline.jpg"/>
     </div>
     <div class="pcontent">
       <div class="eprojects">
@@ -580,7 +580,7 @@
             <%= p.text_area :notes, { :class => 'notesarea' } %> <br>  <br>
             
            <%= p.hidden_field :emailchain, :value => current_user.id.to_s %>
-            <%= p.hidden_field :department, :value => "entertainment" %>
+            <%= p.hidden_field :department, :value => "news" %>
 
             <input type="checkbox" name="event" value="Event" id="eventbox">Add Event<br> <br>
             <div id="addevent" class="hidden">

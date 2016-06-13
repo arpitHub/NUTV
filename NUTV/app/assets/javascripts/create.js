@@ -1,23 +1,23 @@
 var main = function() { 
-  $("#addproj").click(function() {
+  $(".actions").click(function() {
     $("#projform").removeClass("hidden");
-    $(".content").addClass("blurred");
+    $(".pcontent").addClass("blurred");
   });
   
   $("#close").click(function() {
     $("#projform").addClass("hidden");
     $("#projdisplay").addClass("hidden");
-    $(".content").removeClass("blurred");
+    $(".pcontent").removeClass("blurred");
   });
   
   $(".edit").click(function() {
     $("#projdisplay").removeClass("hidden");
-    $(".content").addClass("blurred");
+    $(".pcontent").addClass("blurred");
   });
   
   $("#closedis").click(function() {
   $("#projdisplay").addClass("hidden");
-  $(".content").removeClass("blurred");
+  $(".pcontent").removeClass("blurred");
   });
   
   $("#addevent").click(function() {

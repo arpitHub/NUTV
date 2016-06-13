@@ -19,7 +19,16 @@
     </div>
     <div class="homeimage">
         <img id="camera" src="/assets/camera.png" alt="camera" />
-       <div class="rightbox">
+       <div class="rightlink">
+        <h2>
+          Connect with us!
+        </h2>
+        <a href="https://www.facebook.com/northeasterntv#"> <img class="circles" src="/assets/facebookcircle.png" alt="fb" /> </a>
+        <a href="https://twitter.com/NUTV"> <img class="circles" src="/assets/twittercircle.png" alt="twitter" /> </a>
+        <a href="https://www.instagram.com/northeasternuniversitytv/"> <img class="circles" src="/assets/instagramcircle.png" alt="insta" /></a>
+        <a href="https://www.youtube.com/channel/UCvc7BC4Q8qEu-2YUUu4BI7Q"> <img class="circles" src="/assets/youtubecircle.png" alt="yt" /></a>
+      </div>
+     <div class="rightbox">
       <div class="accountbox">
         <% if current_user %>
         <h2>
@@ -40,7 +49,34 @@
             </p>
             <img class="go" src="/assets/go.png" alt="go" />
         </div>
-           <% end %> 
+        </div>
+           <% end %>
+        <div class="socialbox">
+        <a href="/entertainment/projects">
+          <div id="fbbox" class="sbox">
+            <p>
+              entertainment
+            </p>
+            <img class="masks" src="/assets/masks.png"/>
+          </div>
+        </a>
+        <a href="/sports/projects">
+          <div id="twitterbox" class="sbox">
+            <p>
+             sports
+            </p>
+            <img class="basketball" src="/assets/basketball.png"/>
+          </div>
+        </a>
+        <a href="/news/projects">
+          <div id="instabox" class="sbox">
+            <p>
+              news
+            </p>
+            <img class="mic" src="/assets/mic.png"/>
+          </div>
+        </a>
+      </div>    
         <% else %>
           <h2>
             Welcome to NUTV!
@@ -60,50 +96,16 @@
             </p>
             <img class="go" src="/assets/go.png" alt="go" />
           </div>
-           </a>  
-        <% end %>
+           </a>
+        <div class="promodiv">
+           <iframe class="promovid" width="700" height="420" src="https://www.youtube.com/embed/PnkZjQa1-d4" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+       <% end %>
+       </div>
       </div>
-      <div class="socialbox">
-        <a href="https://www.facebook.com/northeasterntv#">
-          <div id="fbbox" class="sbox">
-            <p>
-              connect
-            </p>
-            <img class="fbback" src="/assets/facebookf.png"/>
-          </div>
-        </a>
-        <a href="https://twitter.com/NUTV">
-          <div id="twitterbox" class="sbox">
-            <p>
-              with
-            </p>
-            <img class="twitterback" src="/assets/twitterbird.png"/>
-          </div>
-        </a>
-        <a href="https://www.instagram.com/northeasternuniversitytv/">
-          <div id="instabox" class="sbox">
-            <p>
-              us!
-            </p>
-            <img class="instaback" src="/assets/instagram.png"/>
-          </div>
-        </a>
-      </div>    
-      </div>
-      
-      <% if current_user %>
-      <a href="/entertainment/projects">
-      <div class="rightlink">
-        <h2>
-          Projects
-        </h2>
-        <img class="gop" src="/assets/go.png" alt="go" />
-      </div>
-      </a>
-      <% end %>
-      </div>
+    
     <div class="content">
-      </div>
        <div class="aboutus">
         <h3>
           About Us
@@ -128,6 +130,17 @@ people make awesome productions. Everyone is welcome, so come by, learn, make, a
 time!
         </p>
       </div>
+      <img class="videocamera" src="/assets/videocamera.png" alt="videocamera" />
+      <div class="nav">
+        <a class="eboard" id="eboardlink" href="/eboard"><div>
+          E-Board
+          <img class="gob" src="/assets/go.png" alt="go" />
+        </div></a>
+        <a class="eboard" id="contactlink" href="/contact"><div>
+          Contact
+          <img class="gob" src="/assets/go.png" alt="go" />
+        </div></a>
+      </div>
         <div class="videos">
           <h2>
             The Latest From NUTV
@@ -141,23 +154,11 @@ time!
           <div class="videocontainer">
             <iframe class="grid" src="https://www.youtube.com/v/videoseries?list=PL3s6etJXhUBH9xuGzqSRiT4sCq6Hy6SFc&index=2"></iframe>
           </div>
-          <div class="videocontainer">
-            <iframe class="grid" src="https://www.youtube.com/v/videoseries?list=PL3s6etJXhUBH9xuGzqSRiT4sCq6Hy6SFc&index=3"></iframe>
-          </div> 
       </div>
-      <div class="bottom">
-      <div class="nav">
-        <ul>
-        <li id="eboard"><a href="/eboard">E-Board</a></li>
-        <li id="contact"><a href="/contact">Contact</a></li>
-      </ul>
-      </div>
-      </div>
-
     </div>
     <div class="footer">
       <h3>
-
+        Design by <a href="http://www.ericjgift.com">Eric Gift</a>, 2016
       </h3>
     </div>
   </body>
