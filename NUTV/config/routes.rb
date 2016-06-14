@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   get '/news' => 'pages#news'
   get '/contact' => 'pages#contact'
   get '/eboard' => 'pages#eboard'
-  get 'entertainment/projects' => 'project#index', as: :index
+  
+  get 'entertainment/projects' => 'project#entertainmentindex', as: :index
   get 'entertainment/projects' => 'project#new'
   post '/projects' => 'project#create'
   get '/entertainment/projects/:id' => 'project#show', as: :project
@@ -25,8 +26,10 @@ Rails.application.routes.draw do
   post 'entertainment/projects' => 'event#create'
   get '/entertainment/projects/:project_id/event/:id' => 'event#show', as: :event
   get '/entertainment/projects/:project_id/event/:id/edit' => 'event#edit'
+  
   get '/sports/projects' => "project#sportsindex"
   get '/news/projects' => "project#newsindex"
+  get '/projects' => 'project#index'
   
   get 'signup' => 'users#new'
   get 'login' => 'sessions#new'

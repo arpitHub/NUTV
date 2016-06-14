@@ -3,16 +3,27 @@ class ProjectController < ApplicationController
 	helper_method :sort_column, :sort_direction
 	
   def index
-		@projects = Project.department("entertainment").order(sort_column + " " + sort_direction)
+		@projects = Project.order(sort_column + " " + sort_direction)
 		@project = Project.new
+		@allprojects = Project.all
 	  @users = User.role("ep")
 		@events = @project.events.new
 		@allevents = Event.all
 	end
 	
+	def entertainmentindex
+		@projects = Project.department("entertainment").order(sort_column + " " + sort_direction)
+		@project = Project.new
+		@allprojects = Project.all
+	  @users = User.role("ep")
+		@events = @project.events.new
+		@allevents = Event.all
+	end
+
 	def sportsindex
 		@projects = Project.department("sports").order(sort_column + " " + sort_direction)
 		@project = Project.new
+		@allprojects = Project.all
 	  @users = User.role("ep")
 		@events = @project.events.new
 		@allevents = Event.all
@@ -21,6 +32,7 @@ class ProjectController < ApplicationController
 	def newsindex
 		@projects = Project.department("sports").order(sort_column + " " + sort_direction)
 		@project = Project.new
+		@allprojects = Project.all
 	  @users = User.role("ep")
 		@events = @project.events.new
 		@allevents = Event.all
@@ -55,7 +67,7 @@ class ProjectController < ApplicationController
 
 	def new
 		@project = Project.new
-		@event = @project.event.new
+		@event = @project.events.new
 		respond_with(@project)
 	end
 	
@@ -78,7 +90,8 @@ class ProjectController < ApplicationController
 	
 	private
   def event_params
-    params.require(:project).permit(:startminute, :endhour, :endminute, :day, :month, :year, :project)
+    params.require(:project).permit!
+		#(:date, :starttime, :endtime, :kind, :equipment)
   end
 	
 	  private

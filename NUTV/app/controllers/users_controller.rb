@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   
   def create
   session[:return_to] ||= request.referer if request.get?
-  @user = User.new(user_params) 
+  @user = User.new(user_params)
   if @user.save
 		UserMailer.sample_email(@user).deliver
     session[:user_id] = @user.id

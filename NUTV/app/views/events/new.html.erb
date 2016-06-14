@@ -3,6 +3,7 @@
 <html>
   <head>
     <title>NUTV - Home</title>
+    <%= javascript_include_tag "create.js" %>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="/mobile.css" />
@@ -13,29 +14,95 @@
   <body>
     <div class="header">
       <a id="logo" href="/home"><img src="/assets/nutv.jpg"/></a>
-      <a href="https://twitter.com/NUTV"><img id="twitter" src="/assets/twitter.png"/></a>
-      <a href="https://www.facebook.com/northeasterntv#"><img id="fb" src="/assets/facebook.jpg"/></a>
+      <% if current_user %>
+      <div class="accountwrap">
+      <p class="accountnav" id="greeting">
+        Hello, <%= current_user.first_name %>!
+      </p>
+        <p>
+         <%= link_to "Account", user_path(current_user), :class => "accountnav" %>
+      </p>
+      <p>
+         <%= link_to "Logout", logout_path, method: "delete", :class => "accountnav" %>
+      </p>
+
+      </div>
+      <a href="/news/projects">News</a>
+      <a href="/sports/projects">Sports</a>
+      <a href="/entertainment/projects">Entertainment</a>
+      <a href="/projects">All</a>
+      <% else %>
       <a href="/news">News</a>
       <a href="/sports">Sports</a>
       <a href="/entertainment">Entertainment</a>
+      <% end %>
     </div>
     <div class="detailscontent">
-      <div class="projview">
-        <div id="editview">
-        </div>
-        <div id="eventback">
-          <%= link_to image_tag("back.png"), project_path(@event.project_id) %>
-        </div>
-        <div class="projdetails">
-
-      </div>
-        </div>
-      </div>
-    </div>
-    <div class="footer">
-      <h3>
-        Design by Eric Gift, 2016
-      </h3>
+    <div id="eventform">
+    <%= link_to image_tag("close.png"), :back %>
+    <h2>
+      New Event
+    </h2>
+          <%= form_for [@project, @event] do |e| %>
+            <%= error_messages_for :event %>
+            
+            <%= e.radio_button :kind, "Writing Meeting", :class => "typebutton" %> Writing Meeting
+            <%= e.radio_button :kind, "Shoot", :class => "typebutton shootbutton", :id => "shootbutton" %> Shoot
+            <%= e.radio_button :kind, "Editing Meeting", :class => "typebutton" %> Editing Meeting <br>        
+    
+            Date: <%= e.date_field :date %> <br>
+            
+            Start Time: <%= e.time_field :starttime %> <br>
+             
+            End Time: <%= e.time_field :endtime %> <br> <br>
+        
+        <div class="equipmentreserve">
+                <p>
+                  Equipment
+                </p>
+            <b>Video:</b> <br>
+            <%= e.check_box :equipment, { :multiple => true }, '5D #1', nil %> 5D #1
+            <%= e.check_box :equipment, { :multiple => true }, '5D #2', nil %> 5D #2
+            <%= e.check_box :equipment, { :multiple => true }, '7D #1', nil %> 7D #1
+            <%= e.check_box :equipment, { :multiple => true }, '7D #2', nil %> 7D #2 <br>
+            <%= e.check_box :equipment, { :multiple => true }, 'XF100 #1', nil %> XF100 #1
+            <%= e.check_box :equipment, { :multiple => true }, 'XF100 #2', nil %> XF100 #2 <br>
+            <b>Audio:</b> <br>
+            <%= e.check_box :equipment, { :multiple => true }, 'Zoom #1', nil %> Zoom #1
+            <%= e.check_box :equipment, { :multiple => true }, 'Zoom #2', nil %> Zoom #2
+            <%= e.check_box :equipment, { :multiple => true }, 'Zoom #3', nil %> Zoom #3 <br>
+            <%= e.check_box :equipment, { :multiple => true }, 'Lav Mic #1', nil %> Lav Mic #1
+            <%= e.check_box :equipment, { :multiple => true }, 'Lav Mic #2', nil %> Lav Mic #2
+            <%= e.check_box :equipment, { :multiple => true }, 'DSLR Mounted Shotgun Mic #1', nil %> DSLR Mounted Shotgun Mic #1 <br>
+            <%= e.check_box :equipment, { :multiple => true }, 'DSLR Mounted Shotgun Mic #2', nil %> DSLR Mounted Shotgun Mic #2 
+            <%= e.check_box :equipment, { :multiple => true }, 'DSLR Mounted Shotgun Mic #3', nil %> DSLR Mounted Shotgun Mic #3 <br>
+            <%= e.check_box :equipment, { :multiple => true }, 'Shotgun Mic', nil %> Shotgun Mic
+            <%= e.check_box :equipment, { :multiple => true }, 'Handheld Mic', nil %> Handheld Mic
+            <%= e.check_box :equipment, { :multiple => true }, 'Boom Stick', nil %> Boom Stick <br>
+            <b>Lenses:</b> <br>
+            <%= e.check_box :equipment, { :multiple => true }, '35mm', nil %> 35mm
+            <%= e.check_box :equipment, { :multiple => true }, '50mm #1', nil %> 50mm #1
+            <%= e.check_box :equipment, { :multiple => true }, '50mm #2', nil %> 50mm #2
+            <%= e.check_box :equipment, { :multiple => true }, '85mm', nil %> 85mm
+            <%= e.check_box :equipment, { :multiple => true }, '28-135mm', nil %> 28-135mm (Kit Lens) <br>
+            <%= e.check_box :equipment, { :multiple => true }, '17-50mm', nil %> 17-50mm (Tamron)
+            <%= e.check_box :equipment, { :multiple => true }, '70-300mm', nil %> 70-300mm (Telephoto)
+            <%= e.check_box :equipment, { :multiple => true }, '14mm', nil %> 14mm (Wide Angle)
+            <%= e.check_box :equipment, { :multiple => true }, 'Tilt-Shift', nil %> Tilt-Shift <br>
+            <b>Mounts:</b> <br>
+            <%= e.check_box :equipment, { :multiple => true }, 'Shoulder Rig', nil %> Shoulder Rig
+            <%= e.check_box :equipment, { :multiple => true }, 'Monopod', nil %> Monopod
+            <%= e.check_box :equipment, { :multiple => true }, 'Short Manfrotto Tripod', nil %> Short Manfrotto Tripod
+            <%= e.check_box :equipment, { :multiple => true }, 'Velbon Tripod', nil %> Velbon Tripod (with feet) <br>
+            <%= e.check_box :equipment, { :multiple => true }, 'Magnus VT-4000 #1', nil %> Magnus VT-4000 #1
+            <%= e.check_box :equipment, { :multiple => true }, 'Magnus VT-4000 #2', nil %> Magnus VT-4000 #2
+            <%= e.check_box :equipment, { :multiple => true }, 'Magnus VT-4000 #3', nil %> Magnus VT-4000 #3
+                <br>
+            </div>
+          <%= e.submit "Create" %>
+          <% end %>
+    
+          </div>
     </div>
   </body>
 </html>

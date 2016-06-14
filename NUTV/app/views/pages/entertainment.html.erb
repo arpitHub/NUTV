@@ -13,11 +13,28 @@
   <body>
     <div class="header">
       <a id="logo" href="/home"><img src="/assets/nutv.jpg"/></a>
-      <a href="https://twitter.com/NUTV"><img id="twitter" src="/assets/twitter.png"/></a>
-      <a href="https://www.facebook.com/northeasterntv#"><img id="fb" src="/assets/facebook.jpg"/></a>
+      <% if current_user %>
+      <div class="accountwrap">
+      <p class="accountnav" id="greeting">
+        Hello, <%= current_user.first_name %>!
+      </p>
+        <p>
+         <%= link_to "Account", user_path(current_user), :class => "accountnav" %>
+      </p>
+      <p>
+         <%= link_to "Logout", logout_path, method: "delete", :class => "accountnav" %>
+      </p>
+
+      </div>
+      <a href="/news/projects">News</a>
+      <a href="/sports/projects">Sports</a>
+      <a href="/entertainment/projects">Entertainment</a>
+      <a href="/projects">All</a>
+      <% else %>
       <a href="/news">News</a>
       <a href="/sports">Sports</a>
       <a href="/entertainment">Entertainment</a>
+      <% end %>
     </div>
     <img class="departmentimage" id="entimage" src="/assets/entertainment.png" alt=entertainment />
     <div class="econtent">

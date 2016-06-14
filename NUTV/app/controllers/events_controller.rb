@@ -28,8 +28,8 @@ class EventsController < ApplicationController
   
   def new
     @project = Project.find(params[:project_id])
-    @event = @project.events.build
-		redirect_to :project
+    @event = @project.events.build(event_params)
+		redirect_to @project
   end
 
   def create
@@ -42,7 +42,6 @@ class EventsController < ApplicationController
   	end
   end
 
-  
   def destroy
 		@project = Project.find(params[:project_id])
     @project.events.find(params[:id]).destroy
@@ -51,7 +50,7 @@ class EventsController < ApplicationController
   
   private
   def event_params
-    params.require(:event).permit(:kind, :date, :starttime, :endtime)
+    params.require(:event).permit(:kind, :date, :starttime, :endtime, equipment: [])
   end
 
   

@@ -17,16 +17,32 @@
   <body class=projectbody>
     <div class="header">
       <a id="logo" href="/home"><img src="/assets/nutv.jpg"/></a>
-      <a class="social" href="https://www.instagram.com/northeasternuniversitytv/"><img id="insta" src="/assets/instagram.png"/></a>
-      <a class="social" href="https://twitter.com/NUTV"><img id="twitter" src="/assets/twitter.png"/></a>
-      <a class="social" href="https://www.facebook.com/northeasterntv#"><img id="fb" src="/assets/facebook.jpg"/></a>
+      <% if current_user %>
+      <div class="accountwrap">
+      <p class="accountnav" id="greeting">
+        Hello, <%= current_user.first_name %>!
+      </p>
+        <p>
+         <%= link_to "Account", user_path(current_user), :class => "accountnav" %>
+      </p>
+      <p>
+         <%= link_to "Logout", logout_path, method: "delete", :class => "accountnav" %>
+      </p>
+
+      </div>
+      <a href="/news/projects">News</a>
+      <a href="/sports/projects">Sports</a>
+      <a href="/entertainment/projects">Entertainment</a>
+      <a href="/projects">All</a>
+      <% else %>
       <a href="/news">News</a>
       <a href="/sports">Sports</a>
       <a href="/entertainment">Entertainment</a>
+      <% end %>
     </div>
     <div class="topbanner" id="sportsbanner">
       <h2>
-        entertainment
+        all
       </h2>
       <div id="tabs" class="tab-nav">
           <a href="#" id="listlink" class="tab-nav-link is-active">List View</a>
@@ -39,7 +55,6 @@
         </p>
           <img id="plus" src="/assets/plus.png"/>
         </a>
-      <img id="clapper" src="/assets/clapper.jpg"/>
     </div>
     <div class="pcontent">
       <div class="eprojects">
@@ -50,7 +65,9 @@
             <th>Director <%= sortable "user1_id", image_tag("transparent.png") %>  </th> 
             <th>EP <%= sortable "user2_id", image_tag("transparent.png") %> </th>
             <th>Date Started <%= sortable "created_at", image_tag("transparent.png") %></th>
+             <th>Last Updated <%= sortable "updated_at", image_tag("transparent.png") %> </th>
             <th>Status <%= sortable "status", image_tag("transparent.png") %> </th>
+            <th>Department <%= sortable "department", image_tag("transparent.png") %> </th>
             <th class="pics"> </th>
           </tr>
         <% @projects.each do |p| %>
@@ -59,10 +76,12 @@
             <td><%= User.find(p.user1_id).full_name if p.user1_id %></td>
             <td><%= User.find(p.user2_id).first_name if p.user2_id %> <%= User.find(p.user2_id).last_name if p.user2_id %></td>
             <td><%= l p.created_at, format: :day %></td>
+            <td><%= l p.updated_at, format: :day %></td>
             <td><%= p.status %></td>
+            <td><%= p.department %></td>
             <td class="pics"><%= link_to image_tag("open.png"), project_path(p) %></td>
           </tr>
-        <% end %>      
+        <% end %>
         </table> 
         </div>
       
@@ -161,14 +180,16 @@
         <% url = Rails.application.routes.url_helpers %>
         <%= javascript_tag do %>
             var events = [];
+            var equip = [];
             var i = 0;
+            var j = 0;
         <% end %>
         <% @projects.each do |p| %>
           <%= javascript_tag do %>
               var projname = '<%= p.name %>';
           <% end %>
           <% p.events.each do |e| %>
-           <% if e.date %>
+           <% if e.date && e.starttime && e.endtime %>
             <%= javascript_tag do %>
               events[i] = [];
               events[i][0] = '<%= j e.date.strftime("%d") %>';
@@ -178,6 +199,8 @@
               events[i][4] = projname;
               events[i][5] = '<%= j l e.starttime, format: :hour if e.starttime %>';
               events[i][6] = '<%= CGI.unescape url.project_event_path(e.project_id, e.id) %>';
+              events[i][7] = '<%= j e.equipment.to_sentence %>';
+              events[i][8] = '<%= j l e.endtime, format: :hour if e.starttime %>';
               i++;
               <% end %>
             <% end %>

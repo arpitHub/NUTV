@@ -33,12 +33,38 @@
   color: #FF2323;
 }
 
+.header .accountnav {
+  color: black;
+  transition: 0s all;
+  position:relative;
+  font-size:15px;
+  padding: 0px 5px 0px 5px;
+  margin-bottom:-20px;
+  background-color:transparent;
+}
+
+#greeting {
+  position:relative;
+  top:-10px;
+  margin-bottom:-30px;
+}
+
+.accountwrap {
+  margin:3px;
+  width:150px;
+  border-radius:5px;
+  position:relative;
+  float:right;
+  border:1px solid black;
+  text-align:center;
+}
+
 .header #logo {
   float:left;
   padding-left:20px;
   padding-right:20px;
   margin-left:40px;
-  top:0px;
+  top:-5px;
 }
 
 .header .social {
@@ -69,7 +95,7 @@
   font-size:10px;
   border-top: 1px solid black;
   width:250px;
-  margin-bottom:50px;
+  margin-bottom:40px;
 }
 
 .footer h3 {
@@ -78,10 +104,10 @@
 }
 
 body {
-  background: gray; /* For browsers that do not support gradients */
-  background: -webkit-linear-gradient(#470909, #F56E6E); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(#470909, #F56E6E); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(#470909, #F56E6E); /* For Firefox 3.6 to 15 */
+  background: gray;
+  background: -webkit-linear-gradient(#470909, #F56E6E);
+  background: -o-linear-gradient(#470909, #F56E6E);
+  background: -moz-linear-gradient(#470909, #F56E6E);
   background: linear-gradient(gray, white);
 }
 
@@ -725,6 +751,11 @@ body {
   margin-top:30px;
 }
 
+#listtab {
+  position:relative;
+  padding-left:50px;
+}
+
 #progresstab {
   position:absolute;
   top:-220px;
@@ -850,8 +881,8 @@ body {
 
 .dayproj {
   position:relative;
-  width:70%;
-  left:70px;
+  width:90%;
+  left:20px;
   top:0px;
   background-color:#9A0000;
   font-size:15px;
@@ -862,6 +893,19 @@ body {
 
 .dayproj a {
   color:white;
+}
+
+.equiplist {
+  position:relative;
+  left:40px;
+  width:80%;
+  top:0px;
+  background-color:transparent;
+  font-size:15px;
+  color:black;
+  text-align:left;
+  border-left:1px solid black;
+  padding-left:10px;
 }
 
 .daydet {
@@ -885,6 +929,7 @@ body {
   width:500px;
   height:200px;
   background-color:white;
+  top:300px;
   left:50%;
   margin-left:-250px;
   z-index:99;
@@ -1062,11 +1107,12 @@ body {
   top:20px;
   left:50%;
   margin-left:-500px;
-  background-color:#BECFEB;
+  background-color:#9A0000;
   border-radius:5px;
   border: 1px solid black;
   padding-bottom:15px;
   text-align:center;
+  color:white;
 }
 
 .editbuttons {
@@ -1085,7 +1131,7 @@ body {
 
 .eventsheader {
   position:relative;
-  background-color:#BECFEB;
+  background-color:#9A0000;
   width:120px;
   height:30px;
   left:140px;
@@ -1094,6 +1140,7 @@ body {
   -webkit-border-radius: 5px 5px 0px 0px;
   border-radius: 5px 5px 0px 0px;
   border:1px solid black;
+  color:white;
 }
 
 .projaddevent {
@@ -1102,7 +1149,7 @@ body {
   position:absolute;
   right:75px;
   top:5px;
-  background-color:#BECFEB;
+  background-color:#EF584C;
   -moz-border-radius: 0px;
   -webkit-border-radius: 5px 5px 0px 0px;
   border-radius: 5px 5px 0px 0px;
@@ -1132,7 +1179,7 @@ body {
 }
 
 .indevent {
-  background-color:#CEDFFC;
+  background-color:#EF584C;
   margin:4px 0px 10px 0px;
   padding:5px;
   font-size:20px;
@@ -1153,7 +1200,7 @@ body {
   top:100px;
   left:50%;
   margin-left:-550px;
-  background:rgba(255,255,255,0.8);
+  background:white;
   border-radius:5px;
   -moz-box-shadow: 1px 0px 15px rgba(0,0,0,1);
   -webkit-box-shadow: 1px 0px 15px rgba(0,0,0,1);
@@ -1163,12 +1210,13 @@ body {
 .projdetails {
   position:absolute;
   width:450px;
-  background-color:#CEDFFC;
+  background-color:#9A0000;
   top:110px;
   left:85px;
   border-radius:5px;
   padding-left:30px;
   border: 1px solid black;
+  color:white;
 }
 
 .eventview {
@@ -1253,13 +1301,14 @@ body {
 #eventform {
   position:absolute;
   width:600px;
-  background-color:#FFF3CB;
+  background-color:white;
   top:200px;
   left:50%;
   margin-left:-300px;
   text-align:center;
   border-radius:5px;
   padding-bottom:20px;
+  border: 1px solid black;
 }
 
 /****USERS****/
@@ -1290,5 +1339,17 @@ body {
   top:200px;
 }
 
+.li-form input {
+    color: #999;
+    font-weight: bold;
+    font-size: 24px;
+    padding: 10px;
+    border: 2px solid #999;
+    border-radius:2px;
+}
 
-
+#error_explanation {
+  width:200px;
+  height:200px;
+  background-color:red;
+}

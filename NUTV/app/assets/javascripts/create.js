@@ -1,4 +1,4 @@
-var main = function() { 
+var main = function() {
   $(".actions").click(function() {
     $("#projform").removeClass("hidden");
     $(".pcontent").addClass("blurred");
@@ -52,7 +52,7 @@ var main = function() {
     }
   });
   
-  $(".projaddevent").click(function() {
+  $("#projaddeven").click(function() {
     $("#eventform").removeClass("hidden");
     $(".detailscontent").addClass("blurred");
   });
@@ -61,7 +61,18 @@ var main = function() {
     $(".signupbutton").addClass("hidden");
     alert(currUser);
   });
+  
+  $('#eventform').change(function(e) {
+    if($('.shootbutton').is(":checked")){
+      $(".equipmentreserve").removeClass("hidden");  
+    }
+    else {
+      $(".equipmentreserve").addClass("hidden");
+    }
+  });
+ 
 }
  
 $(document).ready(main);
 $(document).on('page:load', main);
+$(window).load(main);

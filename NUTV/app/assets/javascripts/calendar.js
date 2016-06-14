@@ -15,23 +15,27 @@ var displayedYear;
 var days = function initDayView() {
   $(".caldet").click(function(id) {
     $(".dayproj").remove();
+    $(".equiplist").remove();
     var curDay = $(this).next().text();
     var curMY = $("#calendartitle").text().split(" ");
     $("#dayviewtitle").text("Events on " + curMY[0] + " " + curDay + ", " + curMY[1]);
     for(var k = 0; k < events.length; k++) {
       var event = events[k];
       if (curDay == event[0].replace(/^0+/, '') && revMonthLookup(curMY[0]) == (event[1] - 1) && curMY[1] == (20 + event[2]) ) {
-        $(".dayview").append("<div class=dayproj>" + event[5] + ": " + event[3] + " for " + event[4] + "<a class=daydet href=" + event[6] + ">Details</a></div>");
-        $(".dayview").append("<div class=dayproj>  </div>");
+        $(".dayview").append("<div class=dayproj>" + event[5] + " - " + event[8] + ": " + event[3] + " for " + event[4] + "<a class=daydet href=" + event[6] + ">Details</a> \n </div>");
+        if (event[3] == "Shoot") {
+          $(".dayview").append("<div class=equiplist> Equipment: " + event[7] + "</div");         
+        }
+        $(".dayview").append("<div class=dayproj> </div>");
       }
     }
     $(".dayview").removeClass("hidden");
-    $(".content").addClass("blurred");
+    $(".pcontent").addClass("blurred");
   });
   
   $("#closeday").click(function() {
     $(".dayview").addClass("hidden");
-    $(".content").removeClass("blurred");
+    $(".pcontent").removeClass("blurred");
   });
 }
 
