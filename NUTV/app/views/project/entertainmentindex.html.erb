@@ -184,6 +184,7 @@
         <% @allprojects.each do |p| %>
           <%= javascript_tag do %>
               var projname = '<%= p.name %>';
+              var projdept = '<%= p.department %>';
           <% end %>
           <% p.events.each do |e| %>
           <% if e.date && e.starttime && e.endtime %>
@@ -198,6 +199,7 @@
               events[i][6] = '<%= CGI.unescape url.project_event_path(e.project_id, e.id) %>';
               events[i][7] = '<%= j e.equipment.to_sentence %>';
               events[i][8] = '<%= j l e.endtime, format: :hour if e.starttime %>';
+              events[i][9] = projdept;
               i++;
               <% end %>
             <% end %>
@@ -681,11 +683,6 @@
           <i>Show Project</i>
         </h3>
 
-    </div>
-    <div class="footer">
-      <h3>
-        
-      </h3>
     </div>
   </body>
 </html>

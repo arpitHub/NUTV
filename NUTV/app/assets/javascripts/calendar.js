@@ -22,7 +22,15 @@ var days = function initDayView() {
     for(var k = 0; k < events.length; k++) {
       var event = events[k];
       if (curDay == event[0].replace(/^0+/, '') && revMonthLookup(curMY[0]) == (event[1] - 1) && curMY[1] == (20 + event[2]) ) {
-        $(".dayview").append("<div class=dayproj>" + event[5] + " - " + event[8] + ": " + event[3] + " for " + event[4] + "<a class=daydet href=" + event[6] + ">Details</a> \n </div>");
+        if (event[9] == "sports") {
+          $(".dayview").append("<div class=dayproj id=sportsev>" + event[5] + " - " + event[8] + ": " + event[3] + " for " + event[4] + "<a class=daydet href=" + event[6] + ">Details</a> \n </div>");
+        }
+        if (event[9] == "entertainment") {
+          $(".dayview").append("<div class=dayproj id=entsev>" + event[5] + " - " + event[8] + ": " + event[3] + " for " + event[4] + "<a class=daydet href=" + event[6] + ">Details</a> \n </div>");
+        }
+        if (event[9] == "news") {
+          $(".dayview").append("<div class=dayproj id=newsev>" + event[5] + " - " + event[8] + ": " + event[3] + " for " + event[4] + "<a class=daydet href=" + event[6] + ">Details</a> \n </div>");
+        }
         if (event[3] == "Shoot") {
           $(".dayview").append("<div class=equiplist> Equipment: " + event[7] + "</div");         
         }
@@ -126,11 +134,13 @@ function displayCalendar(disMonth, disYear) {
   for (i = 0; i < 42; i++) {
     $("#" + i.toString()).text(" ");
     $("#" + i.toString()).removeClass("today");
+    $("#" + i.toString()).parent().addClass("opaque");
   }
   $(".calproj").remove();  
   
   for (i = 1; i < days + 1; i++) {
     $("#" + id.toString()).text(i.toString());
+    $("#" + id.toString()).parent().removeClass("opaque");
     if (i == today && disMonth == month && disYear == year) {
       $("#" + id.toString()).addClass("today");
     }
@@ -138,7 +148,16 @@ function displayCalendar(disMonth, disYear) {
     for(var j = 0; j < events.length; j++) {
       var event = events[j];
       if (i == event[0].replace(/^0+/, '') && disMonth == (event[1] - 1) && disYear == (20 + event[2])) {
-        $("#" + id.toString()).parent().append("<div class=calproj>" + event[5] + ": " + event[3] + "</div>");
+        if (event[9] == "sports") {
+          $("#" + id.toString()).parent().append("<div class=calproj id=sportsev>" + event[5] + ": " + event[3] + "</div>");
+        }
+        else if (event[9] == "entertainment") {
+          $("#" + id.toString()).parent().append("<div class=calproj id=entev>" + event[5] + ": " + event[3] + "</div>");
+        }
+        else if (event[9] == "news") {
+          $("#" + id.toString()).parent().append("<div class=calproj id=newsev>" + event[5] + ": " + event[3] + "</div>");
+        }
+        
       }
     }
     

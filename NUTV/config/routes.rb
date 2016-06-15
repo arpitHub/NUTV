@@ -21,11 +21,12 @@ Rails.application.routes.draw do
   get 'projects/:id' => 'project#edit'
   patch '/entertainment/projects/:id' => 'project#update'
   delete '/entertainment/projects/:id' => 'project#destroy', as: :delete
-  get 'entertainment/projects' => 'event#index', as: :event_index
-  get 'entertainment/projects' => 'event#new'
-  post 'entertainment/projects' => 'event#create'
-  get '/entertainment/projects/:project_id/event/:id' => 'event#show', as: :event
-  get '/entertainment/projects/:project_id/event/:id/edit' => 'event#edit'
+  get 'entertainment/projects' => 'events#index', as: :event_index
+  get 'entertainment/projects' => 'events#new'
+  post 'entertainment/projects' => 'events#create'
+  get '/entertainment/projects/:project_id/event/:id' => 'events#show', as: :event
+  get '/entertainment/projects/:project_id/event/:id/edit' => 'events#edit'
+  patch '/entertainment/projects/:project_id/event/:id' => 'events#update'
   
   get '/sports/projects' => "project#sportsindex"
   get '/news/projects' => "project#newsindex"

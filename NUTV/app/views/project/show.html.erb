@@ -11,7 +11,7 @@
     <meta name="keywords" content="NUTV, Northeastern, University, Television">
     <meta name="author" content="Eric Gift">
   </head>
-  <body>
+  <body class="projbody">
     <div class="header">
       <a id="logo" href="/home"><img src="/assets/nutv.jpg"/></a>
       <% if current_user %>
@@ -43,7 +43,7 @@
           <h3>
             <%= @project.name %>
           </h3>
-          <% if current_user && (current_user.director? || current_user.id == @project.user1_id || current_user.id == @project.user2_id) %>
+          <% if current_user && (current_user.director? || current_user.eboard? || current_user.id == @project.user1_id || current_user.id == @project.user2_id) %>
           <div class="editbuttons">
             <%= link_to image_tag("edit.png"), edit_project_path(@project) %>
             <%= link_to image_tag("delete.png"), @project, method: :delete, data: {confirm: "Are you sure you want to delete this project?" } %>
@@ -72,8 +72,16 @@
               Notes: <%= simple_format @project.notes %>
             </p>
           
+          
+          <p> <br> <br>
+          Last Updated: <%= l @project.updated_at.in_time_zone("Eastern Time (US & Canada)"), format: :daytime %> 
+            <% if @project.updatedby %>
+              by <%= User.find(@project.updatedby).full_name %>
+            <% end %>
+          </p>
+          <div class="people">
           <p>
-            People on this project: <br>
+            People on this project: <br> <br>
             <% if @project.emailchain %>
             <% digits = @project.emailchain.split(',') %>
             <% digits.each do |d| %>
@@ -81,12 +89,7 @@
             <% end %>
             <% end %>
           </p>
-          <p> <br> <br>
-          Last Updated: <%= l @project.updated_at.in_time_zone("Eastern Time (US & Canada)"), format: :daytime %> 
-            <% if @project.updatedby %>
-              by <%= User.find(@project.updatedby).full_name %>
-            <% end %>
-          </p>
+        </div>
           </div>
         <% lastupdated = @project.updated_at %>
         <% if @project.emailchain %>
@@ -98,6 +101,7 @@
           <% end %>
         <% end %>
         <% end %>
+
         <div class="eventdetails">
           <div class="eventsheader">
           <h2>

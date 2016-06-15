@@ -8,12 +8,12 @@ class User < ActiveRecord::Base
       self.first_name + ' ' + self.last_name
     end
   
-    def eboard? 
+    def eboard?
       self.role == 'eboard'
     end
   
     def director? 
-      self.role == 'director' 
+      self.role == 'director'
     end
   
     def ep? 

@@ -43,10 +43,12 @@
         <div id="eventback">
           <%= link_to image_tag("back.png"), project_path(@event.project_id) %>
         </div>
+        <% if current_user && (current_user.director? || current_user.eboard? || current_user.id == @project.user1_id || current_user.id == @project.user2_id) %>
         <div class="editproj">
             <%= link_to image_tag("edit.png"), edit_project_event_path(@event.project_id, @event.id) %>
             <%= link_to image_tag("delete.png"), [@project, @event], method: :delete, data: {confirm: "Are you sure you want to delete this event?" } %>  
-        </div> 
+        </div>
+        <% end %>
         <div class="evdetails">
           <h3>
             <%= @event.kind %> for <%= @event.project.name %>
@@ -55,7 +57,9 @@
             Date: <%= l @event.date, format: :day if @event.date %> <br>
             Starts: <%= l @event.starttime, format: :hour if @event.starttime %> <br>
             Ends: <%= l @event.endtime, format: :hour if @event.endtime %>  <br>
+            <% if @event.kind == "Shoot" %>
             Equipment: <%= @event.equipment.to_sentence if @event.equipment%>
+            <% end %>
             <br> <br>
             Last Updated: <%= l @event.updated_at.in_time_zone("Eastern Time (US & Canada)"), format: :daytime %>
           </p>

@@ -30,7 +30,7 @@ class ProjectController < ApplicationController
 	end
 	
 	def newsindex
-		@projects = Project.department("sports").order(sort_column + " " + sort_direction)
+		@projects = Project.department("news").order(sort_column + " " + sort_direction)
 		@project = Project.new
 		@allprojects = Project.all
 	  @users = User.role("ep")

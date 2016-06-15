@@ -70,6 +70,15 @@ var main = function() {
       $(".equipmentreserve").addClass("hidden");
     }
   });
+  
+  $('.editform').change(function(e) {
+    if($('.shootbutton').is(":checked")){
+      $(".equipmentreserve").removeClass("hidden");  
+    }
+    else {
+      $(".equipmentreserve").addClass("hidden");
+    }
+  });
  
 }
  

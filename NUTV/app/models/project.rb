@@ -8,5 +8,6 @@ class Project < ActiveRecord::Base
   scope :user1, -> (user1) { where user1: user1 }
   scope :user2, -> (user2) { where user2: user2 }
   scope :department, -> (department) { where department: department }
+  scope :emailchain, -> (emailchain) { where emailchain: emailchain }
   
 end

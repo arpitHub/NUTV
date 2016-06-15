@@ -1,11 +1,13 @@
 class UsersController < ApplicationController
-  
+  before_action :require_user
+	
   def new
     @user = User.new
 		store_referrer_location if session[:return_to].blank?
   end
   
-  def index 
+  def index
+		redirect_to'/' unless current_user.eboard?
     @users = User.all
   end
   
@@ -24,6 +26,8 @@ end
   def show
   	@user = User.find(params[:id])
     @projects = Project.user1(@user.id)
+		@projectson = Project.user2(@user.id)
+		#|| Project.emailchain.to_sentence.include?(@user.id)
 	end
   
 	def edit
@@ -42,7 +46,7 @@ end
 	
 	def destroy
   	User.find_by(id: params[:id]).destroy
-		session[:user_id] = nil 
+		session[:user_id] = nil
   	redirect_to '/home'
 	end
 	
