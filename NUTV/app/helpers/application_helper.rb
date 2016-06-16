@@ -7,4 +7,17 @@ module ApplicationHelper
     link_to title, {:sort => column, :direction => direction}, {:class => css_class}
   end
   
+  def get_id(name)
+    found = false
+      User.all.each do |u|
+        if u.full_name == name
+          return u.id
+          found = true
+        end
+      end
+    if !found
+          return 0
+        end
+    end
+  
 end

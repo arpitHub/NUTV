@@ -63,8 +63,7 @@
          <table class="etable">
           <tr>
             <th>Name <%= sortable "name", image_tag("transparent.png") %></th> 
-            <th>Director <%= sortable "user1_id", image_tag("transparent.png") %>  </th> 
-            <th>EP <%= sortable "user2_id", image_tag("transparent.png") %> </th>
+            <th>Director <%= sortable "user1", image_tag("transparent.png") %>  </th> 
             <th>Date Started <%= sortable "created_at", image_tag("transparent.png") %></th>
             <th>Last Updated <%= sortable "updated_at", image_tag("transparent.png") %> </th>
             <th>Status <%= sortable "status", image_tag("transparent.png") %> </th>
@@ -73,8 +72,12 @@
         <% @projects.each do |p| %>
           <tr>
             <td><%= p.name %></td>
-            <td><%= User.find(p.user1_id).full_name if p.user1_id %></td>
-            <td><%= User.find(p.user2_id).first_name if p.user2_id %> <%= User.find(p.user2_id).last_name if p.user2_id %></td>
+            <td><% if get_id(p.user1) != 0 %>
+                    <%= User.find(get_id(p.user1)).full_name if p.user1 %>
+                    <% else %>
+                    <%= p.user1 if p.user1 %>
+                    <% end %>
+            </td>
             <td><%= l p.created_at, format: :day %></td>
             <td><%= l p.updated_at, format: :daytime %></td>
             <td><%= p.status %></td>
@@ -99,7 +102,11 @@
                 <div id="editprogress"><%= link_to image_tag("open.png"), project_path(p) %></div>
                   <div class="progresstext">
                     <%= p.name %> <br>
-                    <%= User.find(p.user1_id).full_name if p.user1_id %>
+                    <% if get_id(p.user1) != 0 %>
+                    <%= User.find(get_id(p.user1)).full_name if p.user1 %>
+                    <% else %>
+                    <%= p.user1 if p.user1 %>
+                    <% end %>
                   </div>
               </div>
               </tr>
@@ -121,7 +128,11 @@
                 <div id="editprogress"><%= link_to image_tag("open.png"), project_path(p) %></div>
                   <div class="progresstext">
                     <%= p.name %> <br>
-                    <%= User.find(p.user1_id).full_name if p.user1_id %>
+                    <% if get_id(p.user1) != 0 %>
+                    <%= User.find(get_id(p.user1)).full_name if p.user1 %>
+                    <% else %>
+                    <%= p.user1 if p.user1 %>
+                    <% end %>
                   </div>
                 </div>
               </tr>
@@ -143,7 +154,11 @@
                   <div id="editprogress"><%= link_to image_tag("open.png"), project_path(p) %></div>
                   <div class="progresstext">
                     <%= p.name %> <br>
-                    <%= User.find(p.user1_id).full_name if p.user1_id %>
+                    <% if get_id(p.user1) != 0 %>
+                    <%= User.find(get_id(p.user1)).full_name if p.user1 %>
+                    <% else %>
+                    <%= p.user1 if p.user1 %>
+                    <% end %>
                   </div>
                 </div>
               </tr>
@@ -165,7 +180,11 @@
                 <div id="editprogress"><%= link_to image_tag("open.png"), project_path(p) %></div>
                   <div class="progresstext">
                     <%= p.name %> <br>
-                    <%= User.find(p.user1_id).full_name if p.user1_id %>
+                    <% if get_id(p.user1) != 0 %>
+                    <%= User.find(get_id(p.user1)).full_name if p.user1 %>
+                    <% else %>
+                    <%= p.user1 if p.user1 %>
+                    <% end %>
                   </div>
               </div>
               </tr>
@@ -198,7 +217,7 @@
               events[i][5] = '<%= j l e.starttime, format: :hour if e.starttime %>';
               events[i][6] = '<%= CGI.unescape url.project_event_path(e.project_id, e.id) %>';
               events[i][7] = '<%= j e.equipment.to_sentence %>';
-              events[i][8] = '<%= j l e.endtime, format: :hour if e.starttime %>';
+              events[i][8] = '<%= j l e.endtime, format: :hour if e.endtime %>';
               events[i][9] = projdept;
               i++;
               <% end %>
@@ -585,13 +604,8 @@
             </p>
             <%= p.text_field :name, :size => 60 %> <br>
             <p>
-              Director
+              Director <br> <%= p.text_field :user1 %>  <br>
             </p>
-            <%= p.collection_select(:user1_id, User.all, :id, :full_name, {:prompt => "Select Director"}) %>  <br>
-            <p>
-              EP
-            </p>
-            <%= p.collection_select(:user2_id, @users, :id, :full_name, {:prompt => "Select EP"}) %> <br>
             <p>
               Status
             </p>
@@ -604,13 +618,16 @@
            <%= p.hidden_field :emailchain, :value => current_user.id.to_s %>
            <%= p.hidden_field :department, :value => "Sports" %>
 
-            <input type="checkbox" name="event" value="Event" id="eventbox">Add Event<br> <br>
+            <p>
+            <input type="checkbox" name="event" value="Event" id="eventbox" class="checkboxes">Add Event</p><br>
             <div id="addevent" class="hidden">
             <%= p.fields_for :events do |event| %>
               
+               <p>
                 <%= event.radio_button :kind, "Writing Meeting", :class => "typebutton" %> Writing Meeting
                 <%= event.radio_button :kind, "Shoot", :class => "typebutton shootbutton", :id => "shootbutton" %> Shoot
                 <%= event.radio_button :kind, "Editing Meeting", :class => "typebutton" %> Editing Meeting <br>
+              </p> 
               
                 Date: <%= event.date_field :date %> <br>
             
@@ -618,47 +635,48 @@
               
                 End Time: <%= event.time_field :endtime %> <br> <br>
               <div class="equipmentreserve hidden">
+                <h2>
+                  Equipment:
+                </h2>
                 <p>
-                  Equipment
-                </p>
             <b>Video:</b> <br>
-            <%= event.check_box :equipment, { :multiple => true }, '5D #1', nil %> 5D #1
-            <%= event.check_box :equipment, { :multiple => true }, '5D #2', nil %> 5D #2
-            <%= event.check_box :equipment, { :multiple => true }, '7D #1', nil %> 7D #1
-            <%= event.check_box :equipment, { :multiple => true }, '7D #2', nil %> 7D #2 <br>
-            <%= event.check_box :equipment, { :multiple => true }, 'XF100 #1', nil %> XF100 #1
-            <%= event.check_box :equipment, { :multiple => true }, 'XF100 #2', nil %> XF100 #2 <br>
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, '5D #1', nil %> 5D #1
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, '5D #2', nil %> 5D #2
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, '7D #1', nil %> 7D #1
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, '7D #2', nil %> 7D #2 <br>
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'XF100 #1', nil %> XF100 #1
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'XF100 #2', nil %> XF100 #2 <br>
             <b>Audio:</b> <br>
-            <%= event.check_box :equipment, { :multiple => true }, 'Zoom #1', nil %> Zoom #1
-            <%= event.check_box :equipment, { :multiple => true }, 'Zoom #2', nil %> Zoom #2
-            <%= event.check_box :equipment, { :multiple => true }, 'Zoom #3', nil %> Zoom #3 <br>
-            <%= event.check_box :equipment, { :multiple => true }, 'Lav Mic #1', nil %> Lav Mic #1
-            <%= event.check_box :equipment, { :multiple => true }, 'Lav Mic #2', nil %> Lav Mic #2
-            <%= event.check_box :equipment, { :multiple => true }, 'DSLR Mounted Shotgun Mic #1', nil %> DSLR Mounted Shotgun Mic #1 <br>
-            <%= event.check_box :equipment, { :multiple => true }, 'DSLR Mounted Shotgun Mic #2', nil %> DSLR Mounted Shotgun Mic #2 
-            <%= event.check_box :equipment, { :multiple => true }, 'DSLR Mounted Shotgun Mic #3', nil %> DSLR Mounted Shotgun Mic #3 <br>
-            <%= event.check_box :equipment, { :multiple => true }, 'Shotgun Mic', nil %> Shotgun Mic
-            <%= event.check_box :equipment, { :multiple => true }, 'Handheld Mic', nil %> Handheld Mic
-            <%= event.check_box :equipment, { :multiple => true }, 'Boom Stick', nil %> Boom Stick <br>
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Zoom #1', nil %> Zoom #1
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Zoom #2', nil %> Zoom #2
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Zoom #3', nil %> Zoom #3 <br>
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Lav Mic #1', nil %> Lav Mic #1
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Lav Mic #2', nil %> Lav Mic #2
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'DSLR Mounted Shotgun Mic #1', nil %> DSLR Mounted Shotgun Mic #1 <br>
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'DSLR Mounted Shotgun Mic #2', nil %> DSLR Mounted Shotgun Mic #2 
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'DSLR Mounted Shotgun Mic #3', nil %> DSLR Mounted Shotgun Mic #3 <br>
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Shotgun Mic', nil %> Shotgun Mic
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Handheld Mic', nil %> Handheld Mic
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Boom Stick', nil %> Boom Stick <br>
             <b>Lenses:</b> <br>
-            <%= event.check_box :equipment, { :multiple => true }, '35mm', nil %> 35mm
-            <%= event.check_box :equipment, { :multiple => true }, '50mm #1', nil %> 50mm #1
-            <%= event.check_box :equipment, { :multiple => true }, '50mm #2', nil %> 50mm #2
-            <%= event.check_box :equipment, { :multiple => true }, '85mm', nil %> 85mm
-            <%= event.check_box :equipment, { :multiple => true }, '28-135mm', nil %> 28-135mm (Kit Lens) <br>
-            <%= event.check_box :equipment, { :multiple => true }, '17-50mm', nil %> 17-50mm (Tamron)
-            <%= event.check_box :equipment, { :multiple => true }, '70-300mm', nil %> 70-300mm (Telephoto)
-            <%= event.check_box :equipment, { :multiple => true }, '14mm', nil %> 14mm (Wide Angle)
-            <%= event.check_box :equipment, { :multiple => true }, 'Tilt-Shift', nil %> Tilt-Shift <br>
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, '35mm', nil %> 35mm
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, '50mm #1', nil %> 50mm #1
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, '50mm #2', nil %> 50mm #2
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, '85mm', nil %> 85mm
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, '28-135mm', nil %> 28-135mm (Kit Lens) <br>
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, '17-50mm', nil %> 17-50mm (Tamron)
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, '70-300mm', nil %> 70-300mm (Telephoto)
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, '14mm', nil %> 14mm (Wide Angle)
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Tilt-Shift', nil %> Tilt-Shift <br>
             <b>Mounts:</b> <br>
-            <%= event.check_box :equipment, { :multiple => true }, 'Shoulder Rig', nil %> Shoulder Rig
-            <%= event.check_box :equipment, { :multiple => true }, 'Monopod', nil %> Monopod
-            <%= event.check_box :equipment, { :multiple => true }, 'Short Manfrotto Tripod', nil %> Short Manfrotto Tripod
-            <%= event.check_box :equipment, { :multiple => true }, 'Velbon Tripod', nil %> Velbon Tripod (with feet) <br>
-            <%= event.check_box :equipment, { :multiple => true }, 'Magnus VT-4000 #1', nil %> Magnus VT-4000 #1
-            <%= event.check_box :equipment, { :multiple => true }, 'Magnus VT-4000 #2', nil %> Magnus VT-4000 #2
-            <%= event.check_box :equipment, { :multiple => true }, 'Magnus VT-4000 #3', nil %> Magnus VT-4000 #3
-                <br>
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Shoulder Rig', nil %> Shoulder Rig
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Monopod', nil %> Monopod
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Short Manfrotto Tripod', nil %> Short Manfrotto Tripod
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Velbon Tripod', nil %> Velbon Tripod (with feet) <br>
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Magnus VT-4000 #1', nil %> Magnus VT-4000 #1
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Magnus VT-4000 #2', nil %> Magnus VT-4000 #2
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Magnus VT-4000 #3', nil %> Magnus VT-4000 #3            
+             </p>  <br>
            <% end %>
             </div>
         </div>

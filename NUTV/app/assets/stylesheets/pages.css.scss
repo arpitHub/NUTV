@@ -20,7 +20,7 @@
   float:right;
   transition: 0s all;
   line-height:43px;
-  right:20px;
+  right:15px;
   position:relative;
   font-size:30px;
   padding: 10px 20px 0px 20px;
@@ -95,7 +95,7 @@
   font-size:10px;
   border-top: 1px solid black;
   width:250px;
-  margin-bottom:40px;
+  margin-bottom:50px;
 }
 
 .footer h3 {
@@ -355,13 +355,14 @@ body {
 }
 
 .homebody {
-  width:98vw;
+  width:94vw;
   min-height:100%;
 }
 
 .videos {
   position:relative;
   top:150px;
+  left:20px;
   width:1600px;
   overflow:hidden;
 }
@@ -371,7 +372,7 @@ body {
   position:relative;
   padding:10px;
   width:500px;
-  left:12.5px;
+  left:30px;
 }
 
 .videocontainer iframe {
@@ -410,6 +411,7 @@ body {
   border-radius:10px;
   padding-left:50px;
   float:left;
+  left:20px;
 }
 
 .aboutus h3 {
@@ -431,7 +433,7 @@ body {
   width:125px;
   height:250px;
   top:100px;
-  left:50px;
+  left:80px;
 }
 
 .gob {
@@ -445,7 +447,7 @@ body {
 .nav {
   position:relative;
   top:125px;
-  left:100px;
+  left:125px;
   float:right;
   border:1px solid black;
   border-radius:5px;
@@ -892,6 +894,10 @@ body {
   background-color:green;
 }
 
+#allev {
+  background-color:gold;
+}
+
 .dayproj {
   position:relative;
   width:90%;
@@ -1052,6 +1058,19 @@ body {
   display:none;
 }
 
+.eventform {
+  position:absolute;
+  width:600px;
+  background-color:white;
+  top:200px;
+  left:50%;
+  margin-left:-300px;
+  text-align:center;
+  border-radius:5px;
+  padding-bottom:20px;
+  border: 1px solid black;
+}
+
 .actions {
   position:absolute;
   width:150px;
@@ -1145,8 +1164,8 @@ box-shadow: 0px 1px 3px rgba(0,0,0,0.5);
 
 .emailsignup {
   position:absolute;
-  top:300px;
-  left:270px;
+  top:18px;
+  right:20px;
   text-decoration:none;
   color:white;
   text-align:center;
@@ -1519,10 +1538,17 @@ box-shadow: 0px 1px 3px rgba(0,0,0,0.5);
     border-radius:2px;
 }
 
-#error_explanation {
-  width:200px;
-  height:200px;
-  background-color:red;
+#error {
+  width:20px;
+  height:20px;
+  position:relative;
+  top:5px;
+}
+
+#eventform li {
+  color:red;
+  list-style: none;
+  height:30px;
 }
 
 .detailscontent {

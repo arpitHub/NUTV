@@ -43,7 +43,7 @@
           <h3>
             <%= @project.name %>
           </h3>
-          <% if current_user && (current_user.director? || current_user.eboard? || current_user.id == @project.user1_id || current_user.id == @project.user2_id) %>
+          <% if current_user && (current_user.director? || current_user.eboard? || current_user.id == get_id(@project.user1) || current_user.id == @project.user2_id) %>
           <div class="editbuttons">
             <%= link_to image_tag("edit.png"), edit_project_path(@project) %>
             <%= link_to image_tag("delete.png"), @project, method: :delete, data: {confirm: "Are you sure you want to delete this project?" } %>
@@ -56,12 +56,17 @@
         </div>
         <div class="projdetails">
             <p>
-              <% if @project.user1_id %>
-              Director: <%= link_to User.find(@project.user1_id).full_name, user_path(@project.user1_id) %>
+              <% if @project.user1 %>
+              Director:
+              <% if get_id(@project.user1) != 0 %>
+              <%= link_to User.find(get_id(@project.user1)).full_name, user_path(get_id(@project.user1)) %>
+              <% else %>
+              <%= @project.user1 %>
+              <% end %>
               <% end %>
             </p>
             <p>
-              <% if @project.user1_id %>
+              <% if @project.user2_id %>
               EP: <%= link_to User.find(@project.user2_id).full_name, user_path(@project.user2_id) %>
               <% end %>
             </p> 
@@ -80,27 +85,31 @@
             <% end %>
           </p>
           <div class="people">
-          <p>
-            People on this project: <br> <br>
-            <% if @project.emailchain %>
-            <% digits = @project.emailchain.split(',') %>
-            <% digits.each do |d| %>
-               <%= link_to User.find(d).full_name, user_path(d) %> <br>
-            <% end %>
-            <% end %>
-          </p>
-        </div>
-          </div>
-        <% lastupdated = @project.updated_at %>
+          <% lastupdated = @project.updated_at %>
         <% if @project.emailchain %>
-        <% if @project.emailchain.exclude?(current_user.id.to_s) %>
+        <% if @project.emailchain.exclude?(current_user.full_name) %>
           <%= form_for(@project) do |p| %>
-            <%= p.hidden_field :emailchain, :value => @project.emailchain += "," + current_user.id.to_s %>
+            <%= p.hidden_field :emailchain, :value => @project.emailchain += "," + current_user.full_name %>
             <%= p.hidden_field :updated_at, :value => lastupdated %>
             <%= p.submit "Sign Up!", :class => "signupbutton emailsignup" %>
           <% end %>
         <% end %>
         <% end %>
+          <p>
+            People on this project: <br> <br>
+            <% if @project.emailchain %>
+            <% digits = @project.emailchain.split(',') %>
+            <% digits.each do |d| %>
+                    <% if get_id(d) != 0 %>
+                    <%= link_to d, user_path(get_id(d)) %> <br>
+                    <% else %>
+                    <%= d %> <br>
+                    <% end %>
+            <% end %>
+            <% end %>
+          </p>
+        </div>
+          </div>
 
         <div class="eventdetails">
           <div class="eventsheader">
@@ -108,7 +117,7 @@
             Events:
           </h2>
           </div>
-          <% if current_user && (current_user.director? || current_user.id == @project.user1_id || current_user.id == @project.user2_id) %>
+          <% if current_user && (current_user.director? || current_user.id == get_id(@project.user1) || current_user.id == @project.user2_id) %>
          <div class="projaddevent">
            <a id="projaddeven" href="#"><img id="plus" src="/assets/plus.png"/></a>
          </div>

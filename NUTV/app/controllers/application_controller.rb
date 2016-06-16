@@ -19,11 +19,11 @@ class ApplicationController < ActionController::Base
   end
   
   def require_eboard
-    redirect_to '/' unless current_user.eboard? 
+    redirect_to '/' unless current_user.eboard?
   end
 
   def require_director
-    redirect_to '/' unless current_user.director? 
+    redirect_to '/' unless current_user.director?
   end  
   
   def require_ep

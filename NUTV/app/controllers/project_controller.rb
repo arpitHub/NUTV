@@ -68,15 +68,18 @@ class ProjectController < ApplicationController
 	def new
 		@project = Project.new
 		@event = @project.events.new
+		@users = User.role("ep")
 		respond_with(@project)
 	end
 	
 	def create
+		@users = User.role("ep")
 		#render :json => params and return
   	@project = Project.new(project_params)
+		@event = @project.events.new
 		#puts params.inspect
   	if @project.save
-   		redirect_to '/entertainment/projects'
+   		redirect_to '/projects'
   	else
     	render 'new'
   	end
@@ -84,8 +87,7 @@ class ProjectController < ApplicationController
 	
 	private
   def project_params
-    params.require(:project).permit!
-		#(:name, :director, :ep, :equipment, :dates, :status, :event_id, events_attributes: [ :startminute, :endhour, :endminute, :day, :month, :year, :project, :id, :project_id])
+    params.require(:project).permit(:name, :user1, :user2, :notes, :status, :department, :updatedby, :emailchain, events_attributes: [ :starttime, :endtime, :date, :kind, equipment: []])
 	end
 	
 	private

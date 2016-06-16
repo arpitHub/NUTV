@@ -39,12 +39,19 @@
     </div>
     <div class="detailscontent">
     <div id="eventform">
-    <%= link_to image_tag("close.png"), :back %>
+    <%= link_to image_tag("close.png"), :back, {:id => "cross"} %>
     <h2>
       New Event
     </h2>
           <%= form_for [@project, @event] do |e| %>
-            <%= error_messages_for :event %>
+            <% @event.errors.each do |attr,msg| %>
+              <% if msg.exclude?("Equipment") %>
+              <li><img id="error" src="/assets/error.png"/> <%= msg %></li>
+             <% else %>
+             <li> <%= msg %></li>
+          <% end %>
+            <% end %>
+          <br>
             
             <%= e.radio_button :kind, "Writing Meeting", :class => "typebutton" %> Writing Meeting
             <%= e.radio_button :kind, "Shoot", :class => "typebutton shootbutton", :id => "shootbutton" %> Shoot
@@ -60,44 +67,45 @@
                 <p>
                   Equipment
                 </p>
+          <p>
             <b>Video:</b> <br>
-            <%= e.check_box :equipment, { :multiple => true }, '5D #1', nil %> 5D #1
-            <%= e.check_box :equipment, { :multiple => true }, '5D #2', nil %> 5D #2
-            <%= e.check_box :equipment, { :multiple => true }, '7D #1', nil %> 7D #1
-            <%= e.check_box :equipment, { :multiple => true }, '7D #2', nil %> 7D #2 <br>
-            <%= e.check_box :equipment, { :multiple => true }, 'XF100 #1', nil %> XF100 #1
-            <%= e.check_box :equipment, { :multiple => true }, 'XF100 #2', nil %> XF100 #2 <br>
+            <%= e.check_box :equipment, { :multiple => true, :class => "checkboxes" }, '5D #1', nil %> 5D #1
+            <%= e.check_box :equipment, { :multiple => true, :class => "checkboxes" }, '5D #2', nil %> 5D #2
+            <%= e.check_box :equipment, { :multiple => true, :class => "checkboxes" }, '7D #1', nil %> 7D #1
+            <%= e.check_box :equipment, { :multiple => true, :class => "checkboxes" }, '7D #2', nil %> 7D #2 <br>
+            <%= e.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'XF100 #1', nil %> XF100 #1
+            <%= e.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'XF100 #2', nil %> XF100 #2 <br>
             <b>Audio:</b> <br>
-            <%= e.check_box :equipment, { :multiple => true }, 'Zoom #1', nil %> Zoom #1
-            <%= e.check_box :equipment, { :multiple => true }, 'Zoom #2', nil %> Zoom #2
-            <%= e.check_box :equipment, { :multiple => true }, 'Zoom #3', nil %> Zoom #3 <br>
-            <%= e.check_box :equipment, { :multiple => true }, 'Lav Mic #1', nil %> Lav Mic #1
-            <%= e.check_box :equipment, { :multiple => true }, 'Lav Mic #2', nil %> Lav Mic #2
-            <%= e.check_box :equipment, { :multiple => true }, 'DSLR Mounted Shotgun Mic #1', nil %> DSLR Mounted Shotgun Mic #1 <br>
-            <%= e.check_box :equipment, { :multiple => true }, 'DSLR Mounted Shotgun Mic #2', nil %> DSLR Mounted Shotgun Mic #2 
-            <%= e.check_box :equipment, { :multiple => true }, 'DSLR Mounted Shotgun Mic #3', nil %> DSLR Mounted Shotgun Mic #3 <br>
-            <%= e.check_box :equipment, { :multiple => true }, 'Shotgun Mic', nil %> Shotgun Mic
-            <%= e.check_box :equipment, { :multiple => true }, 'Handheld Mic', nil %> Handheld Mic
-            <%= e.check_box :equipment, { :multiple => true }, 'Boom Stick', nil %> Boom Stick <br>
+            <%= e.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Zoom #1', nil %> Zoom #1
+            <%= e.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Zoom #2', nil %> Zoom #2
+            <%= e.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Zoom #3', nil %> Zoom #3 <br>
+            <%= e.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Lav Mic #1', nil %> Lav Mic #1
+            <%= e.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Lav Mic #2', nil %> Lav Mic #2
+            <%= e.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'DSLR Mounted Shotgun Mic #1', nil %> DSLR Mounted Shotgun Mic #1 <br>
+            <%= e.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'DSLR Mounted Shotgun Mic #2', nil %> DSLR Mounted Shotgun Mic #2 
+            <%= e.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'DSLR Mounted Shotgun Mic #3', nil %> DSLR Mounted Shotgun Mic #3 <br>
+            <%= e.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Shotgun Mic', nil %> Shotgun Mic
+            <%= e.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Handheld Mic', nil %> Handheld Mic
+            <%= e.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Boom Stick', nil %> Boom Stick <br>
             <b>Lenses:</b> <br>
-            <%= e.check_box :equipment, { :multiple => true }, '35mm', nil %> 35mm
-            <%= e.check_box :equipment, { :multiple => true }, '50mm #1', nil %> 50mm #1
-            <%= e.check_box :equipment, { :multiple => true }, '50mm #2', nil %> 50mm #2
-            <%= e.check_box :equipment, { :multiple => true }, '85mm', nil %> 85mm
-            <%= e.check_box :equipment, { :multiple => true }, '28-135mm', nil %> 28-135mm (Kit Lens) <br>
-            <%= e.check_box :equipment, { :multiple => true }, '17-50mm', nil %> 17-50mm (Tamron)
-            <%= e.check_box :equipment, { :multiple => true }, '70-300mm', nil %> 70-300mm (Telephoto)
-            <%= e.check_box :equipment, { :multiple => true }, '14mm', nil %> 14mm (Wide Angle)
-            <%= e.check_box :equipment, { :multiple => true }, 'Tilt-Shift', nil %> Tilt-Shift <br>
+            <%= e.check_box :equipment, { :multiple => true, :class => "checkboxes" }, '35mm', nil %> 35mm
+            <%= e.check_box :equipment, { :multiple => true, :class => "checkboxes" }, '50mm #1', nil %> 50mm #1
+            <%= e.check_box :equipment, { :multiple => true, :class => "checkboxes" }, '50mm #2', nil %> 50mm #2
+            <%= e.check_box :equipment, { :multiple => true, :class => "checkboxes" }, '85mm', nil %> 85mm
+            <%= e.check_box :equipment, { :multiple => true, :class => "checkboxes" }, '28-135mm', nil %> 28-135mm (Kit Lens) <br>
+            <%= e.check_box :equipment, { :multiple => true, :class => "checkboxes" }, '17-50mm', nil %> 17-50mm (Tamron)
+            <%= e.check_box :equipment, { :multiple => true, :class => "checkboxes" }, '70-300mm', nil %> 70-300mm (Telephoto)
+            <%= e.check_box :equipment, { :multiple => true, :class => "checkboxes" }, '14mm', nil %> 14mm (Wide Angle)
+            <%= e.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Tilt-Shift', nil %> Tilt-Shift <br>
             <b>Mounts:</b> <br>
-            <%= e.check_box :equipment, { :multiple => true }, 'Shoulder Rig', nil %> Shoulder Rig
-            <%= e.check_box :equipment, { :multiple => true }, 'Monopod', nil %> Monopod
-            <%= e.check_box :equipment, { :multiple => true }, 'Short Manfrotto Tripod', nil %> Short Manfrotto Tripod
-            <%= e.check_box :equipment, { :multiple => true }, 'Velbon Tripod', nil %> Velbon Tripod (with feet) <br>
-            <%= e.check_box :equipment, { :multiple => true }, 'Magnus VT-4000 #1', nil %> Magnus VT-4000 #1
-            <%= e.check_box :equipment, { :multiple => true }, 'Magnus VT-4000 #2', nil %> Magnus VT-4000 #2
-            <%= e.check_box :equipment, { :multiple => true }, 'Magnus VT-4000 #3', nil %> Magnus VT-4000 #3
-                <br>
+            <%= e.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Shoulder Rig', nil %> Shoulder Rig
+            <%= e.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Monopod', nil %> Monopod
+            <%= e.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Short Manfrotto Tripod', nil %> Short Manfrotto Tripod
+            <%= e.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Velbon Tripod', nil %> Velbon Tripod (with feet) <br>
+            <%= e.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Magnus VT-4000 #1', nil %> Magnus VT-4000 #1
+            <%= e.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Magnus VT-4000 #2', nil %> Magnus VT-4000 #2
+            <%= e.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Magnus VT-4000 #3', nil %> Magnus VT-4000 #3            
+             </p>  <br>
             </div>
           <%= e.submit "Create" %>
           <% end %>

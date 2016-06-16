@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20160607193746) do
 
   create_table "projects", force: true do |t|
     t.text     "name"
-    t.integer  "user1_id"
+    t.string   "user1"
     t.integer  "user2_id"
     t.text     "notes"
     t.string   "status"

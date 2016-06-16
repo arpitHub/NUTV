@@ -63,10 +63,10 @@
          <table class="etable">
           <tr>
             <th>Name <%= sortable "name", image_tag("transparent.png") %></th> 
-            <th>Director <%= sortable "user1_id", image_tag("transparent.png") %>  </th> 
+            <th>Director <%= sortable "user1", image_tag("transparent.png") %>  </th> 
             <th>EP <%= sortable "user2_id", image_tag("transparent.png") %> </th>
             <th>Date Started <%= sortable "created_at", image_tag("transparent.png") %></th>
-             <th>Last Updated <%= sortable "updated_at", image_tag("transparent.png") %> </th>
+            <th>Last Updated <%= sortable "updated_at", image_tag("transparent.png") %> </th>
             <th>Status <%= sortable "status", image_tag("transparent.png") %> </th>
             <th>Department <%= sortable "department", image_tag("transparent.png") %> </th>
             <th class="pics"> </th>
@@ -74,7 +74,12 @@
         <% @projects.each do |p| %>
           <tr>
             <td><%= p.name %></td>
-            <td><%= User.find(p.user1_id).full_name if p.user1_id %></td>
+            <td><% if get_id(p.user1) != 0 %>
+                    <%= User.find(get_id(p.user1)).full_name if p.user1 %>
+                    <% else %>
+                    <%= p.user1 if p.user1 %>
+                    <% end %>
+            </td>
             <td><%= User.find(p.user2_id).first_name if p.user2_id %> <%= User.find(p.user2_id).last_name if p.user2_id %></td>
             <td><%= l p.created_at, format: :day %></td>
             <td><%= l p.updated_at, format: :day %></td>
@@ -101,7 +106,11 @@
                 <div id="editprogress"><%= link_to image_tag("open.png"), project_path(p) %></div>
                   <div class="progresstext">
                     <%= p.name %> <br>
-                    <%= User.find(p.user1_id).full_name if p.user1_id %>
+                    <% if get_id(p.user1) != 0 %>
+                    <%= User.find(get_id(p.user1)).full_name if p.user1 %>
+                    <% else %>
+                    <%= p.user1 if p.user1 %>
+                    <% end %>
                   </div>
               </div>
               </tr>
@@ -123,7 +132,11 @@
                 <div id="editprogress"><%= link_to image_tag("open.png"), project_path(p) %></div>
                   <div class="progresstext">
                     <%= p.name %> <br>
-                    <%= User.find(p.user1_id).full_name if p.user1_id %>
+                    <% if get_id(p.user1) != 0 %>
+                    <%= User.find(get_id(p.user1)).full_name if p.user1 %>
+                    <% else %>
+                    <%= p.user1 if p.user1 %>
+                    <% end %>
                   </div>
                 </div>
               </tr>
@@ -145,7 +158,11 @@
                   <div id="editprogress"><%= link_to image_tag("open.png"), project_path(p) %></div>
                   <div class="progresstext">
                     <%= p.name %> <br>
-                    <%= User.find(p.user1_id).full_name if p.user1_id %>
+                    <% if get_id(p.user1) %>
+                    <%= User.find(get_id(p.user1)).full_name if p.user1 %>
+                    <% else %>
+                    <%= p.user1 if p.user1 %>
+                    <% end %>
                   </div>
                 </div>
               </tr>
@@ -167,7 +184,11 @@
                 <div id="editprogress"><%= link_to image_tag("open.png"), project_path(p) %></div>
                   <div class="progresstext">
                     <%= p.name %> <br>
-                    <%= User.find(p.user1_id).full_name if p.user1_id %>
+                    <% if get_id(p.user1) != 0 %>
+                    <%= User.find(get_id(p.user1)).full_name if p.user1 %>
+                    <% else %>
+                    <%= p.user1 if p.user1 %>
+                    <% end %>
                   </div>
               </div>
               </tr>
@@ -202,7 +223,7 @@
               events[i][5] = '<%= j l e.starttime, format: :hour if e.starttime %>';
               events[i][6] = '<%= CGI.unescape url.project_event_path(e.project_id, e.id) %>';
               events[i][7] = '<%= j e.equipment.to_sentence %>';
-              events[i][8] = '<%= j l e.endtime, format: :hour if e.starttime %>';
+              events[i][8] = '<%= j l e.endtime, format: :hour if e.endtime %>';
               events[i][9] = projdept;
               i++;
               <% end %>
@@ -589,7 +610,7 @@
             </p>
             
             <p>
-              Director <br> <%= p.collection_select(:user1_id, User.all, :id, :full_name, {:prompt => "Select Director"}) %>  <br>
+              Director <br> <%= p.text_field :user1 %>  <br>
             </p>
             
             <p>
@@ -605,8 +626,8 @@
             </p>
             
             
-           <%= p.hidden_field :emailchain, :value => current_user.id.to_s %>
-            <%= p.hidden_field :department, :value => "entertainment" %>
+            <%= p.hidden_field :emailchain, :value => current_user.full_name %>
+            <%= p.hidden_field :department, :value => "All" %>
 
             <p>
             <input type="checkbox" name="event" value="Event" id="eventbox" class="checkboxes">Add Event</p><br>
@@ -617,8 +638,8 @@
                 <%= event.radio_button :kind, "Writing Meeting", :class => "typebutton" %> Writing Meeting
                 <%= event.radio_button :kind, "Shoot", :class => "typebutton shootbutton", :id => "shootbutton" %> Shoot
                 <%= event.radio_button :kind, "Editing Meeting", :class => "typebutton" %> Editing Meeting <br>
-              </p> 
-              
+              </p>
+                
                 Date: <%= event.date_field :date %> <br>
             
                 Start Time: <%= event.time_field :starttime %> <br>
