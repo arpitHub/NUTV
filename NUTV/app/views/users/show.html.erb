@@ -36,7 +36,7 @@
       <a href="/entertainment">Entertainment</a>
       <% end %>
     </div>
-    <div class="detailscontent">
+    <div class="profcontent">
       <div class="userprof">
         <div class="username">
           <h3>
@@ -57,9 +57,11 @@
          <u>Projects Directed</u><br>
         </h2>
         <% @projects.each do |p| %>
+          <% if p.user1 == @user.full_name %>
           <p>
             <%= link_to p.name, project_path(p) %> <br>
           </p>
+          <% end %>
         <% end %>
         </div>
         <div class="userprojs" id="helpedon">

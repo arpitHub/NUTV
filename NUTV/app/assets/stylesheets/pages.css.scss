@@ -7,7 +7,7 @@
   width:100%;
   background-color:white;
   left:0px;
-  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  font-family:"Kalinga", "Book Antiqua", Palatino, serif;
   background-image:    url(/assets/cityscape.png);
   background-repeat:   no-repeat;
   background-position: 200px -70px;
@@ -57,6 +57,10 @@
   float:right;
   border:1px solid black;
   text-align:center;
+}
+
+.accountwrap p {
+  font-family:"Ebrima", "Book Antiqua", Palatino, serif;
 }
 
 .header #logo {
@@ -153,6 +157,7 @@ body {
 
 .accountbox h2 {
   font-size:40px;
+  font-family:"Kalinga", "Book Antiqua", Palatino, serif;
 }
 
 .profile {
@@ -166,7 +171,9 @@ body {
 .profile p {
   font-size:30px;
   color:white;
-  left:50px;
+  top:-10px;
+  position:relative;
+  font-family:"Kalinga", "Book Antiqua", Palatino, serif;
 }
 
 .profile a {
@@ -193,7 +200,7 @@ body {
   position:relative;
   width:30px;
   height:50px;
-  top:-10px;
+  top:-20px;
   left:10px;
 }
 
@@ -219,9 +226,10 @@ body {
   position:absolute;
   text-decoration:none;
   color:white;
-  font-size:45px;
+  font-size:40px;
   left:10px;
   top:-20px;
+  font-family:"Kalinga", "Book Antiqua", Palatino, serif;
 }
 
 #twitterbox p {
@@ -319,6 +327,7 @@ body {
   line-height:30px;
   padding-left:50px;
   opacity:.9;
+  font-family:"Kalinga", "Book Antiqua", Palatino, serif;
 }
 
 .circles {
@@ -354,6 +363,15 @@ body {
   }
 }
 
+@media screen and (max-width: 1150px) {
+  .nav {
+    display: none;
+  }
+  .videos {
+    display:none;
+  }
+}
+
 .homebody {
   width:94vw;
   min-height:100%;
@@ -362,8 +380,8 @@ body {
 .videos {
   position:relative;
   top:150px;
-  left:20px;
-  width:1600px;
+  left:-10px;
+  width:100%;
   overflow:hidden;
 }
 
@@ -371,8 +389,8 @@ body {
   float:left;
   position:relative;
   padding:10px;
-  width:500px;
-  left:30px;
+  width:31%;
+  left:0px;
 }
 
 .videocontainer iframe {
@@ -386,44 +404,43 @@ body {
 
 .videos h2 {
   position:relative;
-  left:50px;
+  left:20px;
   font-size:40px;
   border-bottom:1px solid black;
-  font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+  font-family:"Kalinga", "Book Antiqua", Palatino, serif;
   width:93%;
 }
 
 .content {
   top:75px;
-  width:1400px;
+  width:95vw;
   height:1200px;
   position:relative;
   left:50%;
-  margin-left:-800px;
+  margin-left:-45vw;
   display:block;
 }
 
 .aboutus {
   position: relative;
   height:300px;
-  width:900px;
+  width:55vw;
   text-align:left;
   border-radius:10px;
-  padding-left:50px;
+  padding-left:20px;
   float:left;
-  left:20px;
 }
 
 .aboutus h3 {
   font-size:40px;
   border-bottom:1px solid black;
-  font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
-  width:900px;
+  font-family:"Kalinga", "Book Antiqua", Palatino, serif;
+  width:55vw;
 }
 
 .aboutus p {
   padding-left:20px;
-  font-family: Tahoma, Geneva, sans-serif;
+  font-family:"Ebrima", "Book Antiqua", Palatino, serif;
   font-size:20px;
 }
 
@@ -433,7 +450,7 @@ body {
   width:125px;
   height:250px;
   top:100px;
-  left:80px;
+  left:60px;
 }
 
 .gob {
@@ -447,8 +464,8 @@ body {
 .nav {
   position:relative;
   top:125px;
-  left:125px;
-  float:right;
+  left:150px;
+  float:left;
   border:1px solid black;
   border-radius:5px;
   -moz-box-shadow: 1px 0px 15px rgba(0,0,0,1);
@@ -466,6 +483,7 @@ body {
   font-size:40px;
   line-height:100px;
   text-align:center;
+  font-family:"Kalinga", "Book Antiqua", Palatino, serif;
 }
  
 .nav a:hover {
@@ -524,11 +542,13 @@ body {
 }
 
 .eleftnav h3 {
-  font-size:30px;
+  font-size:25px;
+  font-family:"Kalinga", "Book Antiqua", Palatino, serif;
 }
 
 .eleftnav p {
-  font-size:20px;
+  font-size:17px;
+  font-family:"Kalinga", "Book Antiqua", Palatino, serif;
 }
 
 .eabout {
@@ -549,11 +569,21 @@ body {
   margin-bottom:-15px;
   text-align:left;
   border-bottom:1px solid black;
+  font-family:"Kalinga", "Book Antiqua", Palatino, serif;
 }
 
 .eabout p {
-  padding:20px 20px 0px 20px;
+  padding:10px 20px 0px 25px;
+  font-size:23px;
+  font-family:"Kalinga", "Book Antiqua", Palatino, serif;
+}
+
+#newabout p {
   font-size:25px;
+}
+
+#sportabout p {
+  font-size:20px;
 }
 
 #entimage {
@@ -609,39 +639,24 @@ body {
   margin-bottom:0px;
   font-size:40px;
   padding-left:30px;
+  font-family:"Kalinga", "Book Antiqua", Palatino, serif;
 }
 
 /**** PROJECTS ****/
 
 .eprojects {
   position:relative;
-  width:1450px;
-  border-radius:5px;
+  height:1200px;
+  width:1500px;
   left:50px;
   top:100px;
-  margin-bottom:200px;
-  //-moz-box-shadow: 1px 0px 30px rgba(0,0,0,1);
-  //-webkit-box-shadow: 1px 0px 30px rgba(0,0,0,1);
-  //box-shadow: 1px 0px 30px rgba(0,0,0,1);
-  background: transparent; /* For browsers that do not support gradients */
-  //background: -webkit-linear-gradient(#A9A9A9, #4D4E51); /* For Safari 5.1 to 6.0 */
-  //background: -o-linear-gradient(#A9A9A9, #4D4E51); /* For Opera 11.1 to 12.0 */
-  //background: -moz-linear-gradient(#A9A9A9, #4D4E51); /* For Firefox 3.6 to 15 */
-  //background: linear-gradient(#A9A9A9, #4D4E51);
-}
-
-.clearfix {
-  clear: both 
-}
-
-.projectbody {
-  min-height:1000px;
+  overflow:auto;
 }
 
 .etable {
   border-collapse: collapse;
-  font-family: "Trebuchet MS", Helvetica, sans-serif;
-  font-size:20px;
+  font-family: "Ebrima", Helvetica, sans-serif;
+  font-size:22px;
   width:1400px;
   table-layout:fixed;
 }
@@ -761,9 +776,9 @@ body {
 
 #progresstab {
   position:absolute;
-  top:-220px;
-  left:80px;
-  width:1500px;
+  top:-30px;
+  left:60px;
+  overflow:hidden;
 }
 
 .projectprogress {
@@ -776,8 +791,8 @@ body {
   position:relative;
   left:50%;
   margin-left:-150px;
-  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-  font-size:20px;
+  font-family: "Ebrima", "Book Antiqua", Palatino, serif;
+  font-size:25px;
   padding-top:20px;
   -moz-box-shadow: 1px 0px 15px rgba(0,0,0,1);
   -webkit-box-shadow: 1px 0px 15px rgba(0,0,0,1);
@@ -788,7 +803,7 @@ body {
 
 .progresstext {
   position:relative;
-  top:15px;
+  top:10px;
 }
 
 .projectprogress #editprogress {
@@ -832,7 +847,7 @@ body {
 
 #calendartab {
   position:absolute;
-  top:-220px;
+  top:-30px;
   left:125px;
   width:1275px;
 }
@@ -849,7 +864,7 @@ body {
 .day p {
   position:relative;
   top:-45px;
-  left:5px;
+  padding-left:5px;
 }
 
 .today {
@@ -1002,29 +1017,30 @@ body {
 
 .topbanner h2 {
   position:relative;
-  font-size:100px;
+  font-size:90px;
   top:-70px;
   z-index:5;
   float:right;
   right:200px;
   color:white;
+  font-family:"Ebrima", "Book Antiqua", Palatino, serif;
 }
 
 .pcontent {
   top:0px;
   width:1400px;
-  height:1700px;
   position:relative;
   left:50%;
   margin-left:-800px;
   display:block;
+  margin-bottom:300px;
 }
 
 
 /****NEW PROJECT ****/
 
 .newproj {
-  position:absolute;
+  position:relative;
   width:600px;
   background-color:grey;
   top:300px;
@@ -1035,6 +1051,24 @@ body {
   padding-bottom:20px;
   border: 1px solid black;
   margin-bottom:100px;
+}
+
+#projform {
+  position:absolute;
+  width:600px;
+  background-color:white;
+  top:100px;
+  left:50%;
+  margin-left:-300px;
+  border-radius:5px;
+  padding-bottom:50px;
+  border: 1px solid black;
+  margin-bottom:200px;
+  text-align:center;
+}
+
+.projerrorbody {
+  height:2000px;
 }
 
 .newproj h3 {
@@ -1062,12 +1096,11 @@ body {
   position:absolute;
   width:600px;
   background-color:white;
-  top:200px;
+  top:100px;
   left:50%;
   margin-left:-300px;
-  text-align:center;
   border-radius:5px;
-  padding-bottom:20px;
+  padding-bottom:0px;
   border: 1px solid black;
 }
 
@@ -1085,13 +1118,20 @@ body {
   color:white;
 }
 
+.actions p {
+  position:relative;
+  left:3px;
+  font-size:15px;
+  font-family:"Kalinga", "Book Antiqua", Palatino, serif;
+}
+
 .actions #plus {
   position:absolute;
   z-index:11;
   width:40px;
   height:40px;
-  right:15px;
-  bottom:3px;
+  right:10px;
+  bottom:5px;
 }
 
 #cross {
@@ -1135,6 +1175,11 @@ body {
   padding: 5px;
   border: 2px solid #999;
   border-radius:2px;
+}
+
+.field_with_errors {
+  position:relative;
+  display:inline;
 }
 
 .checkboxes {
@@ -1298,7 +1343,15 @@ box-shadow: 0px 1px 3px rgba(0,0,0,0.5);
 #back {
   position:absolute;
   left:5px;
-  top:15px;
+  top:10px;
+}
+
+#back a {
+  text-decoration:none;
+  font-size:30px;
+  color:white;
+  margin:0px 5px 0px 5px;
+  font-family:"Ebrima", "Book Antiqua", Palatino, serif;
 }
 
 .detholder {
@@ -1319,7 +1372,7 @@ box-shadow: 0px 1px 3px rgba(0,0,0,0.5);
 .projdetails {
   position:absolute;
   width:450px;
-  background-color:#9A0000;
+  background-color:#EF584C;
   top:110px;
   left:85px;
   border-radius:5px;
@@ -1490,13 +1543,17 @@ box-shadow: 0px 1px 3px rgba(0,0,0,0.5);
   position:absolute;
   width:600px;
   background-color:white;
-  top:200px;
+  top:100px;
   left:50%;
   margin-left:-300px;
   text-align:center;
   border-radius:5px;
   padding-bottom:20px;
   border: 1px solid black;
+}
+
+#project_events_attributes_1_date {
+  display:none;
 }
 
 /****USERS****/
@@ -1566,7 +1623,7 @@ html {
 .userprof {
   position:relative;
   width:1100px;
-  min-height:800px;
+  height:800px;
   top:100px;
   left:50%;
   margin-left:-550px;
@@ -1576,7 +1633,11 @@ html {
   -webkit-box-shadow: 1px 0px 15px rgba(0,0,0,1);
   box-shadow: 1px 0px 15px rgba(0,0,0,1);
   overflow:auto;
-  margin-bottom:100px;
+  padding-bottom:100px;
+}
+
+.profcontent {
+  height:1100px;
 }
 
 .username {
@@ -1599,6 +1660,7 @@ html {
   z-index:15;
   left:8%;
   font-size:50px;
+  font-family:"Ebrima", "Book Antiqua", Palatino, serif;
 }
 
 #lens {
@@ -1624,14 +1686,35 @@ html {
 
 .userprojs h2 {
   font-size:30px;
+  font-family:"Ebrima", "Book Antiqua", Palatino, serif;
 }
 
 .userprojs p {
   font-size: 25px;
+  font-family:"Ebrima", "Book Antiqua", Palatino, serif;
 }
 
 #helpedon {
   background-color:#00aced;
 }
 
+/****FONTS****/
+@font-face {
+  font-family: "28 Days Later";
+  src: url(/assets/28DaysLater.ttf);
+}
 
+@font-face {
+  font-family: "Kalinga";
+  src: url(/assets/kalinga.ttf);
+}
+
+@font-face {
+  font-family: "Ebrima";
+  src: url(/assets/ebrima.ttf);
+}
+
+@font-face {
+  font-family: "Futura";
+  src: url(/assets/Futura.ttf);
+}

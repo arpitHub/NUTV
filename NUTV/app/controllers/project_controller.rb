@@ -6,8 +6,8 @@ class ProjectController < ApplicationController
 		@projects = Project.order(sort_column + " " + sort_direction)
 		@project = Project.new
 		@allprojects = Project.all
-	  @users = User.role("ep")
 		@events = @project.events.new
+	  @users = User.role("ep")
 		@allevents = Event.all
 	end
 	
@@ -67,7 +67,6 @@ class ProjectController < ApplicationController
 
 	def new
 		@project = Project.new
-		@event = @project.events.new
 		@users = User.role("ep")
 		respond_with(@project)
 	end
@@ -76,7 +75,6 @@ class ProjectController < ApplicationController
 		@users = User.role("ep")
 		#render :json => params and return
   	@project = Project.new(project_params)
-		@event = @project.events.new
 		#puts params.inspect
   	if @project.save
    		redirect_to '/projects'

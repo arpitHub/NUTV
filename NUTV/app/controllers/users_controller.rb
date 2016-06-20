@@ -25,7 +25,7 @@ end
   
   def show
   	@user = User.find(params[:id])
-    @projects = Project.user1(@user.id)
+    @projects = Project.all
 		@projectson = Project.user2(@user.id)
 		#|| Project.emailchain.to_sentence.include?(@user.id)
 	end

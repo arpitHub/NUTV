@@ -35,7 +35,7 @@
           </p>
           
           <p>
-             Director: <br> <%= p.collection_select(:user1_id, User.all, :id, :full_name, {:prompt => "Select Director"}, class: 'form-control' ) %> <br>
+              Director <br> <%= p.text_field :user1 %>  <br>
           </p>
          
           <p>
