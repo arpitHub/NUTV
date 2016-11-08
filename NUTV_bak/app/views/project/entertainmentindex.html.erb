@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>NUTV - Home</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <%= javascript_include_tag "tabs.js" %>
+    <%= javascript_include_tag "calendar.js" %>
+    <%= javascript_include_tag "create.js" %>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="/mobile.css" />
+    <meta name="description" content="NUTV Website">
+    <meta name="keywords" content="NUTV, Northeastern, University, Television">
+    <meta name="author" content="Eric Gift">
+  </head>
+  <body class=projectbody>
+    <div class="header">
+      <a id="logo" href="/home"><img src="/assets/nutv.jpg"/></a>
+      <% if current_user %>
+      <div class="accountwrap">
+      <p class="accountnav" id="greeting">
+        Hello, <%= current_user.first_name %>!
+      </p>
+        <p>
+         <%= link_to "Account", user_path(current_user), :class => "accountnav" %>
+      </p>
+      <p>
+         <%= link_to "Logout", logout_path, method: "delete", :class => "accountnav" %>
+      </p>
+
+      </div>
+      <a href="/news/projects">News</a>
+      <a href="/sports/projects">Sports</a>
+      <a href="/entertainment/projects">Entertainment</a>
+      <a href="/projects">All</a>
+      <% else %>
+      <a href="/news">News</a>
+      <a href="/sports">Sports</a>
+      <a href="/entertainment">Entertainment</a>
+      <% end %>
+    </div>
+    <div class="topbanner" id="sportsbanner">
+      <h2>
+        entertainment
+      </h2>
+      <div id="tabs" class="tab-nav">
+          <a href="#" id="listlink" class="tab-nav-link is-active">List View</a>
+          <a href="#" id="progresslink" class="tab-nav-link">Progress View</a>
+          <a href="#" id="calendarlink" class="tab-nav-link">Calendar View</a>
+       </div>
+      <a class="actions" href="#">
+          <p>
+            New Project
+        </p>
+          <img id="plus" src="/assets/plus.png"/>
+        </a>
+      <img id="clapper" src="/assets/clapper.jpg"/>
+    </div>
+    <div class="pcontent">
+      <div class="eprojects">
+      <div class="c-tab hide" id="listtab">
+         <table class="etable">
+          <tr>
+            <th>Name <%= sortable "name", image_tag("transparent.png") %></th> 
+            <th>Director <%= sortable "user1", image_tag("transparent.png") %>  </th> 
+            <th>EP <%= sortable "user2_id", image_tag("transparent.png") %> </th>
+            <th>Date Started <%= sortable "created_at", image_tag("transparent.png") %></th>
+            <th>Last Updated <%= sortable "updated_at", image_tag("transparent.png") %> </th>
+            <th>Status <%= sortable "status", image_tag("transparent.png") %> </th>
+            <th class="pics"> </th>
+          </tr>
+        <% @projects.each do |p| %>
+          <tr>
+            <td><%= p.name %></td>
+            <td><% if get_id(p.user1) != 0 %>
+                    <%= User.find(get_id(p.user1)).full_name if p.user1 %>
+                    <% else %>
+                    <%= p.user1 if p.user1 %>
+                    <% end %>
+            </td>
+            <td><%= User.find(p.user2_id).first_name if p.user2_id %> <%= User.find(p.user2_id).last_name if p.user2_id %></td>
+            <td><%= l p.created_at, format: :day %></td>
+            <td><%= l p.updated_at, format: :daytime %></td>
+            <td><%= p.status %></td>
+            <td class="pics"><%= link_to image_tag("open.png"), project_path(p) %></td>
+          </tr>
+        <% end %>
+        </table> 
+        </div>
+      
+      <div class="c-tab" id="progresstab">
+        <div class="column" id="c1">
+          <div class="title">
+            <h3>
+              Writing
+            </h3>
+          </div>
+          <table>
+            <% @projects.each do |p| %>
+            <% if p.status == "Writing" %>
+              <tr>
+                <div class="projectprogress" id="writingblock">
+                <div id="editprogress"><%= link_to image_tag("open.png"), project_path(p) %></div>
+                  <div class="progresstext">
+                    <%= p.name %> <br>
+                    <% if get_id(p.user1) != 0 %>
+                    <%= User.find(get_id(p.user1)).full_name if p.user1 %>
+                    <% else %>
+                    <%= p.user1 if p.user1 %>
+                    <% end %>
+                  </div>
+              </div>
+              </tr>
+            <% end %>
+            <% end %>
+          </table>
+        </div>
+        <div class="column" id="c2">
+          <div class="title">
+            <h3>
+              Shooting
+            </h3>
+          </div>
+          <table>
+            <% @projects.each do |p| %>
+            <% if p.status == "Shooting" %>
+              <tr>
+                <div class="projectprogress" id="shootingblock">
+                <div id="editprogress"><%= link_to image_tag("open.png"), project_path(p) %></div>
+                  <div class="progresstext">
+                    <%= p.name %> <br>
+                    <% if get_id(p.user1) != 0 %>
+                    <%= User.find(get_id(p.user1)).full_name if p.user1 %>
+                    <% else %>
+                    <%= p.user1 if p.user1 %>
+                    <% end %>
+                  </div>
+                </div>
+              </tr>
+            <% end %>
+            <% end %>
+          </table>
+        </div>
+        <div class="column" id="c3">
+          <div class="title">
+            <h3>
+              Editing
+            </h3>
+          </div>
+          <table>
+            <% @projects.each do |p| %>
+            <% if p.status == "Editing" %>
+              <tr>
+                <div class="projectprogress" id="editingblock">
+                  <div id="editprogress"><%= link_to image_tag("open.png"), project_path(p) %></div>
+                  <div class="progresstext">
+                    <%= p.name %> <br>
+                    <% if get_id(p.user1) != 0 %>
+                    <%= User.find(get_id(p.user1)).full_name if p.user1 %>
+                    <% else %>
+                    <%= p.user1 if p.user1 %>
+                    <% end %>
+                  </div>
+                </div>
+              </tr>
+            <% end %>
+            <% end %>
+          </table>
+        </div>
+        <div class="column" id="c4">
+          <div class="title">
+            <h3>
+              Completed
+            </h3>
+          </div>
+          <table>
+            <% @projects.each do |p| %>
+            <% if p.status == "Completed" %>
+              <tr>
+                <div class="projectprogress" id="completedblock">
+                <div id="editprogress"><%= link_to image_tag("open.png"), project_path(p) %></div>
+                  <div class="progresstext">
+                    <%= p.name %> <br>
+                    <% if get_id(p.user1) != 0 %>
+                    <%= User.find(get_id(p.user1)).full_name if p.user1 %>
+                    <% else %>
+                    <%= p.user1 if p.user1 %>
+                    <% end %>
+                  </div>
+              </div>
+              </tr>
+            <% end %>
+            <% end %>
+          </table>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      <div class="c-tab" id="calendartab">
+        <% url = Rails.application.routes.url_helpers %>
+        <%= javascript_tag do %>
+            var events = [];
+            var i = 0;
+        <% end %>
+        <% @allprojects.each do |p| %>
+          <%= javascript_tag do %>
+              var projname = '<%= p.name %>';
+              var projdept = '<%= p.department %>';
+          <% end %>
+          <% p.events.each do |e| %>
+          <% if e.date && e.starttime && e.endtime %>
+            <%= javascript_tag do %>
+              events[i] = [];
+              events[i][0] = '<%= j e.date.strftime("%d") %>';
+              events[i][1] = '<%= j e.date.strftime("%m") %>';
+              events[i][2] = '<%= j e.date.strftime("%y") %>';
+              events[i][3] = '<%= j e.kind %>';
+              events[i][4] = projname;
+              events[i][5] = '<%= j l e.starttime, format: :hour if e.starttime %>';
+              events[i][6] = '<%= CGI.unescape url.project_event_path(e.project_id, e.id) %>';
+              events[i][7] = '<%= j e.equipment.to_sentence %>';
+              events[i][8] = '<%= j l e.endtime, format: :hour if e.endtime %>';
+              events[i][9] = projdept;
+              i++;
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+        <h3 id="calendartitle">
+          X
+        </h3>
+        <button type="button" id="prev" onclick="prevMonth()">Previous</button>
+        <button type="button" id="next" onclick="nextMonth()">Next</button>
+
+       <table>
+         <tr>
+           <th>Sunday</th>
+           <th>Monday</th>
+           <th>Tuesday</th>
+           <th>Wednesday</th>
+           <th>Thursday</th>
+           <th>Friday</th>
+           <th>Saturday</th>
+         </tr>
+         <tr>
+          <td><div class="day">
+            <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="0">
+               X
+            </p>
+            </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="1">
+               Q
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="2">
+               X
+             </p>      
+             </div></td>
+           <td><div class="day">
+            <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="3">
+               X
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="4">
+               X
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="5">
+               X
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="6">
+               X
+             </p>
+             </div></td>
+         </tr>
+         <tr>
+          <td><div class="day">
+            <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="7">
+               X
+            </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="8">
+               Q
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="9">
+               X
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="10">
+               X
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="11">
+               X
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="12">
+               X
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="13">
+               X
+             </p>
+             </div></td>
+         </tr>
+         <tr>
+          <td><div class="day">
+            <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="14">
+               X
+            </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="15">
+               Q
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="16">
+               X
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="17">
+               X
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="18">
+               X
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="19">
+               X
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="20">
+               X
+             </p>
+             </div></td>
+         </tr>
+         <tr>
+          <td><div class="day">
+            <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="21">
+               X
+            </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="22">
+               Q
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="23">
+               X
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="24">
+               X
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="25">
+               X
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="26">
+               X
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="27">
+               X
+             </p>
+             </div></td>
+         </tr>
+         <tr>
+          <td><div class="day">
+            <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="28">
+               X
+            </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="29">
+               Q
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="30">
+               X
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="31">
+               X
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="32">
+               X
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="33">
+               X
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="34">
+               X
+             </p>
+             </div></td>
+         </tr>
+         <tr>
+          <td><div class="day">
+            <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="35">
+               X
+            </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="36">
+               Q
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="37">
+               X
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="38">
+               X
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="39">
+               X
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="40">
+               X
+             </p>
+             </div></td>
+           <td><div class="day">
+             <a class="caldet" href="#">
+              <img class="caldetpic" src="/assets/open.png"/>
+            </a>
+             <p id="41">
+               X
+             </p>
+             </div></td>
+         </tr>
+        </table>
+      </div>
+     </div>
+    </div>
+    
+    <div id="projform" class="newproj hidden">
+      <a id="close" href="#"><img id="cross" src="/assets/close.png"/></a>
+        <h3>
+          <i>New Project</i>
+        </h3>
+        <%= form_for(@project) do |p| %>
+          <div class="field">
+            <p>
+              Name
+            </p>
+            <%= p.text_field :name, :size => 60 %> <br>
+            <p>
+              Director <br> <%= p.text_field :user1 %>  <br>
+            </p>
+            <p>
+              EP
+            </p>
+            <%= p.collection_select(:user2_id, @users, :id, :full_name, {:prompt => "Select EP"}) %> <br>
+            <p>
+              Status
+            </p>
+            <%= p.select :status, [['Writing','Writing'],['Shooting','Shooting'],['Editing','Editing'],['Completed','Completed']] %> <br>
+            <p>
+              Notes
+            </p>
+            <%= p.text_area :notes, { :class => 'notesarea' } %> <br>  <br>
+            
+            <%= p.hidden_field :emailchain, :value => current_user.id.to_s %>
+            <%= p.hidden_field :department, :value => "Entertainment" %>
+            
+            <p>
+            <input type="checkbox" name="event" value="Event" id="eventbox" class="checkboxes">Add Event</p><br>
+            <div id="addevent" class="hidden">
+            <%= p.fields_for :events do |event| %>
+              
+               <p>
+                <%= event.radio_button :kind, "Writing Meeting", :class => "typebutton" %> Writing Meeting
+                <%= event.radio_button :kind, "Shoot", :class => "typebutton shootbutton", :id => "shootbutton" %> Shoot
+                <%= event.radio_button :kind, "Editing Meeting", :class => "typebutton" %> Editing Meeting <br>
+              </p> 
+              
+                Date: <%= event.date_field :date %> <br>
+            
+                Start Time: <%= event.time_field :starttime %> <br>
+              
+                End Time: <%= event.time_field :endtime %> <br> <br>
+              <div class="equipmentreserve hidden">
+                <h2>
+                  Equipment:
+                </h2>
+                <p>
+            <b>Video:</b> <br>
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, '5D #1', nil %> 5D #1
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, '5D #2', nil %> 5D #2
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, '7D #1', nil %> 7D #1
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, '7D #2', nil %> 7D #2 <br>
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'XF100 #1', nil %> XF100 #1
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'XF100 #2', nil %> XF100 #2 <br>
+            <b>Audio:</b> <br>
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Zoom #1', nil %> Zoom #1
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Zoom #2', nil %> Zoom #2
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Zoom #3', nil %> Zoom #3 <br>
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Lav Mic #1', nil %> Lav Mic #1
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Lav Mic #2', nil %> Lav Mic #2
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'DSLR Mounted Shotgun Mic #1', nil %> DSLR Mounted Shotgun Mic #1 <br>
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'DSLR Mounted Shotgun Mic #2', nil %> DSLR Mounted Shotgun Mic #2 
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'DSLR Mounted Shotgun Mic #3', nil %> DSLR Mounted Shotgun Mic #3 <br>
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Shotgun Mic', nil %> Shotgun Mic
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Handheld Mic', nil %> Handheld Mic
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Boom Stick', nil %> Boom Stick <br>
+            <b>Lenses:</b> <br>
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, '35mm', nil %> 35mm
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, '50mm #1', nil %> 50mm #1
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, '50mm #2', nil %> 50mm #2
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, '85mm', nil %> 85mm
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, '28-135mm', nil %> 28-135mm (Kit Lens) <br>
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, '17-50mm', nil %> 17-50mm (Tamron)
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, '70-300mm', nil %> 70-300mm (Telephoto)
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, '14mm', nil %> 14mm (Wide Angle)
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Tilt-Shift', nil %> Tilt-Shift <br>
+            <b>Mounts:</b> <br>
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Shoulder Rig', nil %> Shoulder Rig
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Monopod', nil %> Monopod
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Short Manfrotto Tripod', nil %> Short Manfrotto Tripod
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Velbon Tripod', nil %> Velbon Tripod (with feet) <br>
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Magnus VT-4000 #1', nil %> Magnus VT-4000 #1
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Magnus VT-4000 #2', nil %> Magnus VT-4000 #2
+            <%= event.check_box :equipment, { :multiple => true, :class => "checkboxes" }, 'Magnus VT-4000 #3', nil %> Magnus VT-4000 #3            
+             </p>  <br>
+           <% end %>
+            </div>
+        </div>
+      
+        <div class="create">
+          <%= p.submit "Create" %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    
+      <div class="dayview hidden">
+        <a id="closeday" href="#"><img id="cross" src="/assets/close.png"/></a>
+        <p id="dayviewtitle">
+          X
+        </p>
+    </div>
+    <div id="projdisplay" class="newproj hidden">
+      <a id="closedis" href="#"><img id="cross" src="/assets/close.png"/></a>
+        <h3>
+          <i>Show Project</i>
+        </h3>
+
+    </div>
+  </body>
+</html>

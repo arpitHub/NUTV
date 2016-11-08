@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>NUTV - Home</title>
+    <%= javascript_include_tag "create.js" %>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="/mobile.css" />
+    <meta name="description" content="NUTV Website">
+    <meta name="keywords" content="NUTV, Northeastern, University, Television">
+    <meta name="author" content="Eric Gift">
+  </head>
+  <body class="projbody">
+    <div class="header">
+      <a id="logo" href="/home"><img src="/assets/nutv.jpg"/></a>
+      <% if current_user %>
+      <div class="accountwrap">
+      <p class="accountnav" id="greeting">
+        Hello, <%= current_user.first_name %>!
+      </p>
+        <p>
+         <%= link_to "Account", user_path(current_user), :class => "accountnav" %>
+      </p>
+      <p>
+         <%= link_to "Logout", logout_path, method: "delete", :class => "accountnav" %>
+      </p>
+
+      </div>
+      <a href="/news/projects">News</a>
+      <a href="/sports/projects">Sports</a>
+      <a href="/entertainment/projects">Entertainment</a>
+      <a href="/projects">All</a>
+      <% else %>
+      <a href="/news">News</a>
+      <a href="/sports">Sports</a>
+      <a href="/entertainment">Entertainment</a>
+      <% end %>
+    </div>
+    <div class="detailscontent">
+      <div class="detholder">
+        <div class="projtopnav">
+          <h3>
+            <%= @project.name %>
+          </h3>
+          <% if current_user && (current_user.director? || current_user.eboard? || current_user.id == get_id(@project.user1) || current_user.id == @project.user2_id) %>
+          <div class="editbuttons">
+            <%= link_to image_tag("edit.png"), edit_project_path(@project) %>
+            <%= link_to image_tag("delete.png"), @project, method: :delete, data: {confirm: "Are you sure you want to delete this project?" } %>
+          </div>
+          <% end %>
+        <div id="back">
+          <%= link_to "A ", '/projects' %>
+          <%= link_to " E ", '/entertainment/projects' %>
+          <%= link_to " S ", '/sports/projects' %>
+          <%= link_to " N", '/news/projects' %>
+        </div>
+        </div>
+        <div class="projdetails">
+            <p>
+              <% if @project.user1 %>
+              Director:
+              <% if get_id(@project.user1) != 0 %>
+              <%= link_to User.find(get_id(@project.user1)).full_name, user_path(get_id(@project.user1)) %>
+              <% else %>
+              <%= @project.user1 %>
+              <% end %>
+              <% end %>
+            </p>
+            <p>
+              <% if @project.user2_id %>
+              EP: <%= link_to User.find(@project.user2_id).full_name, user_path(@project.user2_id) %>
+              <% end %>
+            </p> 
+            <p>
+              Status: <%= @project.status %>
+            </p>
+            <p>
+              Notes: <%= simple_format @project.notes %>
+            </p>
+          
+          
+          <p> <br> <br>
+          Last Updated: <%= l @project.updated_at.in_time_zone("Eastern Time (US & Canada)"), format: :daytime %> 
+            <% if @project.updatedby %>
+              by <%= User.find(@project.updatedby).full_name %>
+            <% end %>
+          </p>
+          <div class="people">
+          <% lastupdated = @project.updated_at %>
+        <% if @project.emailchain %>
+        <% if @project.emailchain.exclude?(current_user.full_name) %>
+          <%= form_for(@project) do |p| %>
+            <%= p.hidden_field :emailchain, :value => @project.emailchain += "," + current_user.full_name %>
+            <%= p.hidden_field :updated_at, :value => lastupdated %>
+            <%= p.submit "Sign Up!", :class => "signupbutton emailsignup" %>
+          <% end %>
+        <% end %>
+        <% end %>
+          <p>
+            People on this project: <br> <br>
+            <% if @project.emailchain %>
+            <% digits = @project.emailchain.split(',') %>
+            <% digits.each do |d| %>
+                    <% if get_id(d) != 0 %>
+                    <%= link_to d, user_path(get_id(d)) %> <br>
+                    <% else %>
+                    <%= d %> <br>
+                    <% end %>
+            <% end %>
+            <% end %>
+          </p>
+        </div>
+          </div>
+
+        <div class="eventdetails">
+          <div class="eventsheader">
+          <h2>
+            Events:
+          </h2>
+          </div>
+          <% if current_user && (current_user.director? || current_user.id == get_id(@project.user1) || current_user.id == @project.user2_id) %>
+         <div class="projaddevent">
+           <a id="projaddeven" href="#"><img id="plus" src="/assets/plus.png"/></a>
+         </div>
+          <% end %>
+          <% if @events %>
+          <% @events.each do |e| %>
+          <% if e.kind && e.date %>
+          <div class="indevent">
+              <% if e.kind %>
+                <%= e.kind %> <br>
+              <% else %>
+                Misc. Event <br>
+              <% end %>
+              <%= l e.date, format: :day if e.date %> @ <%= l e.starttime, format: :hour if e.starttime %> <br>
+            <%= link_to "Details", [@project, e] %>
+              </div>
+          
+            <% end %>
+          <% end %>
+          <% end %>
+      </div>
+    </div>      
+      </div>
+  <div id="eventform" class="hidden">
+    <a id="closeevent" href="#"><img id="cross" src="/assets/close.png"/></a>
+    <h2>
+      New Event
+    </h2>
+          <%= form_for [@project, @event] do |e| %>
+            <%= error_messages_for :event %>
+            
+            <%= e.radio_button :kind, "Writing Meeting", :class => "typebutton" %> Writing Meeting
+            <%= e.radio_button :kind, "Shoot", :class => "typebutton shootbutton", :id => "shootbutton" %> Shoot
+            <%= e.radio_button :kind, "Editing Meeting", :class => "typebutton" %> Editing Meeting <br>        
+    
+            Date: <%= e.date_field :date %> <br>
+            
+            Start Time: <%= e.time_field :starttime %> <br>
+             
+            End Time: <%= e.time_field :endtime %> <br> <br>
+        
+        <div class="equipmentreserve hidden">
+                <p>
+                  Equipment
+                </p>
+            <b>Video:</b> <br>
+            <%= e.check_box :equipment, { :multiple => true }, '5D #1', nil %> 5D #1
+            <%= e.check_box :equipment, { :multiple => true }, '5D #2', nil %> 5D #2
+            <%= e.check_box :equipment, { :multiple => true }, '7D #1', nil %> 7D #1
+            <%= e.check_box :equipment, { :multiple => true }, '7D #2', nil %> 7D #2 <br>
+            <%= e.check_box :equipment, { :multiple => true }, 'XF100 #1', nil %> XF100 #1
+            <%= e.check_box :equipment, { :multiple => true }, 'XF100 #2', nil %> XF100 #2 <br>
+            <b>Audio:</b> <br>
+            <%= e.check_box :equipment, { :multiple => true }, 'Zoom #1', nil %> Zoom #1
+            <%= e.check_box :equipment, { :multiple => true }, 'Zoom #2', nil %> Zoom #2
+            <%= e.check_box :equipment, { :multiple => true }, 'Zoom #3', nil %> Zoom #3 <br>
+            <%= e.check_box :equipment, { :multiple => true }, 'Lav Mic #1', nil %> Lav Mic #1
+            <%= e.check_box :equipment, { :multiple => true }, 'Lav Mic #2', nil %> Lav Mic #2
+            <%= e.check_box :equipment, { :multiple => true }, 'DSLR Mounted Shotgun Mic #1', nil %> DSLR Mounted Shotgun Mic #1 <br>
+            <%= e.check_box :equipment, { :multiple => true }, 'DSLR Mounted Shotgun Mic #2', nil %> DSLR Mounted Shotgun Mic #2 
+            <%= e.check_box :equipment, { :multiple => true }, 'DSLR Mounted Shotgun Mic #3', nil %> DSLR Mounted Shotgun Mic #3 <br>
+            <%= e.check_box :equipment, { :multiple => true }, 'Shotgun Mic', nil %> Shotgun Mic
+            <%= e.check_box :equipment, { :multiple => true }, 'Handheld Mic', nil %> Handheld Mic
+            <%= e.check_box :equipment, { :multiple => true }, 'Boom Stick', nil %> Boom Stick <br>
+            <b>Lenses:</b> <br>
+            <%= e.check_box :equipment, { :multiple => true }, '35mm', nil %> 35mm
+            <%= e.check_box :equipment, { :multiple => true }, '50mm #1', nil %> 50mm #1
+            <%= e.check_box :equipment, { :multiple => true }, '50mm #2', nil %> 50mm #2
+            <%= e.check_box :equipment, { :multiple => true }, '85mm', nil %> 85mm
+            <%= e.check_box :equipment, { :multiple => true }, '28-135mm', nil %> 28-135mm (Kit Lens) <br>
+            <%= e.check_box :equipment, { :multiple => true }, '17-50mm', nil %> 17-50mm (Tamron)
+            <%= e.check_box :equipment, { :multiple => true }, '70-300mm', nil %> 70-300mm (Telephoto)
+            <%= e.check_box :equipment, { :multiple => true }, '14mm', nil %> 14mm (Wide Angle)
+            <%= e.check_box :equipment, { :multiple => true }, 'Tilt-Shift', nil %> Tilt-Shift <br>
+            <b>Mounts:</b> <br>
+            <%= e.check_box :equipment, { :multiple => true }, 'Shoulder Rig', nil %> Shoulder Rig
+            <%= e.check_box :equipment, { :multiple => true }, 'Monopod', nil %> Monopod
+            <%= e.check_box :equipment, { :multiple => true }, 'Short Manfrotto Tripod', nil %> Short Manfrotto Tripod
+            <%= e.check_box :equipment, { :multiple => true }, 'Velbon Tripod', nil %> Velbon Tripod (with feet) <br>
+            <%= e.check_box :equipment, { :multiple => true }, 'Magnus VT-4000 #1', nil %> Magnus VT-4000 #1
+            <%= e.check_box :equipment, { :multiple => true }, 'Magnus VT-4000 #2', nil %> Magnus VT-4000 #2
+            <%= e.check_box :equipment, { :multiple => true }, 'Magnus VT-4000 #3', nil %> Magnus VT-4000 #3
+                <br>
+            </div>
+          <%= e.submit "Create" %>
+          <% end %>
+    
+          </div>
+  </body>
+</html>
+

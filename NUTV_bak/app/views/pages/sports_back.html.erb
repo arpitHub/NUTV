@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>NUTV - Sports</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="/mobile.css" />
+    <meta name="description" content="NUTV Website">
+    <meta name="keywords" content="NUTV, Northeastern, University, Television">
+    <meta name="author" content="Eric Gift">
+  </head>
+  <body>
+    <div class="header">
+      <a id="logo" href="/home"><img src="/assets/nutv.jpg"/></a>
+      <% if current_user %>
+      <div class="accountwrap">
+      <p class="accountnav" id="greeting">
+        Hello, <%= current_user.first_name %>!
+      </p>
+        <p>
+         <%= link_to "Account", user_path(current_user), :class => "accountnav" %>
+      </p>
+      <p>
+         <%= link_to "Logout", logout_path, method: "delete", :class => "accountnav" %>
+      </p>
+
+      </div>
+      <a href="/news/projects">News</a>
+      <a href="/sports/projects">Sports</a>
+      <a href="/entertainment/projects">Entertainment</a>
+      <a href="/projects">All</a>
+      <% else %>
+      <a href="/news">News</a>
+      <a href="/sports">Sports</a>
+      <a href="/entertainment">Entertainment</a>
+      <% end %>
+    </div>
+    <img class="departmentimage" id="entimage" src="/assets/sports.png" alt=sports />
+    <div class="econtent">
+
+         <div class="eabout" id="sportabout">
+        <h3>
+          About Sports
+        </h3>
+        <p>
+          Love sports? So do we! NUTV Sports is Northeastern’s only student-run video sports reporting organization, which is a long winded way of saying that we have awesome camera equipment and use it to make whatever we want!
+          Whether you’re interested in building a reel or just talking sports on camera, NUTV Sports is the most fun way to do it.
+          In the past our team of friends has produced our own SportsCenter-esque studio show, made field reports from Northeastern and major league sporting events, and interviewed some of the best athletes in their field.
+          What we do next is up to YOU!
+        </p>
+      </div>
+      <div class="eleftnav">
+        <h3>
+          <i>Meetings</i>
+        </h3>
+        <p>
+          <b>When:</b> <br>
+          Tuesdays <br>
+          232 Curry - 7pm <br>
+          <br>
+          <b>Directors:</b> <br>
+          Michael Passarelli <br>
+          Gavin Davis
+        </p>
+      </div>
+      <div class="videoheader">
+          <h2>
+            Best of Sports
+          </h2>
+      </div>
+      <div class="highlightvids">
+        <div class="vidbox">
+          <div class="sportsvid">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/cQJ-X3Dpus8" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <div class="sportsvid">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/fnVExXGLnP8" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <div class="sportsvid">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/QJkZQjdymHQ" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <div class="sportsvid">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/-5wNvgHiV1Y" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>

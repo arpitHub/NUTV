@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>NUTV - Home</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NUTV Website">
+    <meta name="keywords" content="NUTV, Northeastern, University, Television">
+    <meta name="author" content="Eric Gift">
+  </head>
+  <body class="homebody">
+    <div class="header">
+      <a id="logo" href="/home"><img src="/assets/nutv.jpg"/></a>
+      <% if current_user %>
+      <a href="/news/projects">News</a>
+      <a href="/sports/projects">Sports</a>
+      <a href="/entertainment/projects">Entertainment</a>
+      <a href="/projects">All</a>
+      <% else %>
+      <a href="/news">News</a>
+      <a href="/sports">Sports</a>
+      <a href="/entertainment">Entertainment</a>
+      <% end %>
+    </div>
+    <div class="homeimage">
+        <img id="camera" src="/assets/camera.png" alt="camera" />
+       <div class="rightlink">
+        <h2>
+          Connect with us!
+        </h2>
+        <a href="https://www.facebook.com/northeasterntv#"> <img class="circles" src="/assets/facebookcircle.png" alt="fb" /> </a>
+        <a href="https://twitter.com/NUTV"> <img class="circles" src="/assets/twittercircle.png" alt="twitter" /> </a>
+        <a href="https://www.instagram.com/northeasternuniversitytv/"> <img class="circles" src="/assets/instagramcircle.png" alt="insta" /></a>
+        <a href="https://www.youtube.com/channel/UCvc7BC4Q8qEu-2YUUu4BI7Q"> <img class="circles" src="/assets/youtubecircle.png" alt="yt" /></a>
+      </div>
+     <div class="rightbox">
+      <div class="accountbox">
+        <% if current_user %>
+        <h2>
+          Hello, <%= current_user.first_name %>!
+        </h2>
+          <%= link_to user_path(current_user) do %>
+            <div id="loginbox" class="profile">
+              <p>
+                Account
+              </p>
+            <img class="go" src="/assets/go.png" alt="go" />
+          </div>
+         <% end %>
+        <%= link_to logout_path, method: "delete" do %>
+          <div id="signupbox" class="profile">
+            <p>
+              Logout
+            </p>
+            <img class="go" src="/assets/go.png" alt="go" />
+        </div>
+        </div>
+           <% end %>
+        <div class="socialbox">
+        <a href="/entertainment/projects">
+          <div id="fbbox" class="sbox">
+            <p>
+              entertainment
+            </p>
+            <img class="masks" src="/assets/masks.png"/>
+          </div>
+        </a>
+        <a href="/sports/projects">
+          <div id="twitterbox" class="sbox">
+            <p>
+             sports
+            </p>
+            <img class="basketball" src="/assets/basketball.png"/>
+          </div>
+        </a>
+        <a href="/news/projects">
+          <div id="instabox" class="sbox">
+            <p>
+              news
+            </p>
+            <img class="mic" src="/assets/mic.png"/>
+          </div>
+        </a>
+      </div>
+        <% else %>
+          <h2>
+            Welcome to NUTV!
+          </h2>
+          <a class="aprofile" href="/login">
+            <div id="loginbox" class="profile" >
+              <p>
+                Login
+              </p>
+              <img class="go" src="/assets/go.png" alt="go" />
+            </div>
+            </a>
+        <a class="aprofile" href="/signup">
+          <div id="signupbox" class="profile">
+            <p>
+              Signup
+            </p>
+            <img class="go" src="/assets/go.png" alt="go" />
+          </div>
+           </a>
+        <div class="promodiv">
+           <iframe class="promovid" width="700" height="420" src="https://www.youtube.com/embed/PnkZjQa1-d4" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+       <% end %>
+       </div>
+      </div>
+
+    <div class="content">
+       <div class="aboutus">
+        <h3>
+          About Us
+        </h3>
+        <p>
+          NUTV (Northeastern Television) is a video production club on campus, offering those with or without
+
+production experience an opportunity to make videos (and also friends!). Equipped with a drone, a
+
+steady cam, editing software, and numerous tripods, DSLRs, lenses, mics, and FX cameras, NUTV
+
+members have the freedom to work with different equipment and produce videos of different styles
+
+and genres. Specifically, each of NUTV’s three departments (News, Sports, and Entertainment) also
+
+specialize in different facets of video production, so feel free to explore what each department does.
+
+Ultimately, NUTV is a teaching and learning club in addition to a production club, and we love helping
+
+people make awesome productions. Everyone is welcome, so come by, learn, make, and have a good
+
+time!
+        </p>
+      </div>
+      <img class="videocamera" src="/assets/videocamera.png" alt="videocamera" />
+      <div class="nav">
+        <a class="eboard" id="eboardlink" href="/eboard"><div>
+          E-Board
+          <img class="gob" src="/assets/go.png" alt="go" />
+        </div></a>
+        <a class="eboard" id="contactlink" href="/contact"><div>
+          Contact
+          <img class="gob" src="/assets/go.png" alt="go" />
+        </div></a>
+      </div>
+        <div class="videos">
+          <h2>
+            The Latest From NUTV
+          </h2>
+          <div class="videocontainer">
+            <iframe class="grid" src="https://www.youtube.com/v/videoseries?list=PL3s6etJXhUBH9xuGzqSRiT4sCq6Hy6SFc&index=0"></iframe>
+          </div>
+          <div class="videocontainer">
+            <iframe class="grid" src="https://www.youtube.com/v/videoseries?list=PL3s6etJXhUBH9xuGzqSRiT4sCq6Hy6SFc&index=1"></iframe>
+          </div>
+          <div class="videocontainer">
+            <iframe class="grid" src="https://www.youtube.com/v/videoseries?list=PL3s6etJXhUBH9xuGzqSRiT4sCq6Hy6SFc&index=2"></iframe>
+          </div>
+      </div>
+    </div>
+    <div class="footer">
+      <h3>
+        Design by <a href="http://www.ericjgift.com">Eric Gift</a>, 2016
+      </h3>
+    </div>
+  </body>
+</html>
