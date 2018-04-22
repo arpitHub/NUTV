@@ -1,0 +1,2 @@
+# NUTV
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e5c7daa3ff044c599e218c1afd9c7f18)](https://app.codacy.com/app/rawat.a/NUTV?utm_source=github.com&utm_medium=referral&utm_content=arpitHub/NUTV&utm_campaign=badger)
